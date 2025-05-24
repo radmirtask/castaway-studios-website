@@ -1,0 +1,79 @@
+---
+/** @ts-nocheck */
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, getEntryBySlug } from 'astro:content';
+
+// 1. Tell Astro which dynamic pages to build
+export async function getStaticPaths() {
+  const allJobs = await getCollection('careers');
+  return allJobs.map((job) => ({
+    params: { slug: job.slug },
+  }));
+}
+
+// 2. Grab the URL param for this page
+const { slug } = Astro.params;
+
+// 3. Fetch the career entry for that slug
+const job = await getEntryBySlug('careers', slug);
+
+// 4. If no matching job, throw to show a 404
+if (!job) {
+  throw new Error(`Career not found: ${slug}`);
+}
+---
+<BaseLayout title={`${job.data.title} – Careers`}>
+  <div class="container mx-auto px-4 py-8 max-w-2xl">
+    <h1 class="text-3xl font-bold mb-2">{job.data.title}</h1>
+    <p class="text-gray-600 mb-4">{job.data.location}</p>
+    <p class="mb-6">{job.data.shortDescription}</p>
+
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">Responsibilities</h2>
+      <ul class="list-disc list-inside space-y-1">
+        {job.data.responsibilities.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">Requirements</h2>
+      <ul class="list-disc list-inside space-y-1">
+        {job.data.requirements.map((item) => (
+          <li>{item}</li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="mb-6">
+      <h2 class="text-xl font-semibold mb-2">How to Apply</h2>
+      {job.data.applyLink && (
+        <a
+          href={job.data.applyLink}
+          class="text-blue-600 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Apply Here
+        </a>
+      )}
+      {job.data.applyEmail && (
+        <p>
+          Send your resume to{' '}
+          <a
+            href={`mailto:${job.data.applyEmail}`}
+            class="text-blue-600 hover:underline"
+          >
+            {job.data.applyEmail}
+          </a>
+        </p>
+      )}
+    </section>
+
+    <article class="prose">
+      {job.body}
+    </article>
+  </div>
+</BaseLayout>
+

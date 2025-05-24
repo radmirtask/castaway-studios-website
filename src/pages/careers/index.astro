@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+// Fetch all career entries
+const jobs = await getCollection('careers');
+---
+<BaseLayout title="Careers – Castaway Studios">
+  <h1 class="text-3xl font-bold text-center my-8">Join Our Team</h1>
+  <div class="container mx-auto px-4">
+    <div class="space-y-8">
+      {jobs.map((job) => (
+        <a
+          href={`/careers/${job.slug}`}
+          class="block p-6 border border-gray-200 rounded hover:shadow-lg transition"
+        >
+          <h2 class="text-2xl font-semibold">{job.data.title}</h2>
+          <p class="text-gray-600">{job.data.location}</p>
+          <p class="mt-2 text-gray-700">{job.data.shortDescription}</p>
+        </a>
+      ))}
+    </div>
+  </div>
+</BaseLayout>

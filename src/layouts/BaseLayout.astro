@@ -2,6 +2,7 @@
 import '../styles/global.css';              
 const { title = 'Castaway Studios' } = Astro.props;  
 import Nav from '../components/Nav.jsx';
+import Footer from '../components/Footer.jsx';
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -15,5 +16,6 @@ import Nav from '../components/Nav.jsx';
     <main>
       <slot />
     </main>
+    <Footer client:load />
   </body>
 </html>

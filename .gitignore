@@ -5,4 +5,22 @@ node_modules/
 dist/
 # Env files
 .env
+.env.production
 "@ | Out-File -Encoding utf8 .gitignore
+
+
+# generated types
+.astro/
+
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# macOS-specific files
+.DS_Store
+
+# jetbrains setting folder
+.idea/

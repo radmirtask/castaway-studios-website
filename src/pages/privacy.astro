@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+// Page-specific SEO (optional)
+const meta = {
+  title: 'Privacy Policy – Castaway Studios',
+  description: 'Read our Privacy Policy to learn how Castaway Studios collects, uses, and protects your data.',
+};
+---
+<BaseLayout title={meta.title}>
+  <head>
+    <meta name="description" content={meta.description} />
+    <meta property="og:title" content={meta.title} />
+    <meta property="og:description" content={meta.description} />
+  </head>
+
+  <div class="container mx-auto px-4 py-12 max-w-3xl">
+    <h1 class="text-3xl font-bold mb-6">Privacy Policy</h1>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-2">Introduction</h2>
+      <p>Your privacy is important to us. This policy explains what information we collect and how we use it.</p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-2">Information We Collect</h2>
+      <ul class="list-disc list-inside">
+        <li>Personal information you provide (name, email)…</li>
+        <li>Usage data (pages visited, game metrics)…</li>
+      </ul>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-2">How We Use Your Information</h2>
+      <p>We use data to improve our games, send updates, and for analytics.</p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-2">Sharing & Security</h2>
+      <p>We do not sell your data. We take reasonable measures to protect it.</p>
+    </section>
+
+    <section class="mb-8">
+      <h2 class="text-2xl font-semibold mb-2">Contact Us</h2>
+      <p>If you have questions about this policy, email us at <a href="mailto:hello@castawaystudios.com" class="text-blue-600 hover:underline">hello@castawaystudios.com</a>.</p>
+    </section>
+  </div>
+</BaseLayout>

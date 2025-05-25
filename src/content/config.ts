@@ -38,4 +38,16 @@ export const collections = {
       applyEmail:       z.string().email().optional(),    // Application email
     }),
   }),
+
+
+  // Press collection
+  press: defineCollection({
+    schema: z.object({
+      title:      z.string(),           // Post title
+      date:       z.string(),           // ISO date e.g. "2025-05-24"
+      excerpt:    z.string(),           // Short summary
+      coverImage: z.string().optional(),// Optional path to header image
+      tags:       z.array(z.string()).optional(), // Optional tags
+    }),
+  }),
 };

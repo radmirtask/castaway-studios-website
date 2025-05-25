@@ -1,0 +1,33 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, getEntryBySlug } from 'astro:content';
+
+// Tell Astro which pages to generate
+export async function getStaticPaths() {
+  const all = await getCollection('press');
+  return all.map((p) => ({ params: { slug: p.slug } }));
+}
+
+const { slug } = Astro.params;
+const post  = await getEntryBySlug('press', slug);
+if (!post) throw new Error(`Post not found: ${slug}`);
+---
+<BaseLayout title={`${post.data.title} – Press`}>
+  <div class="container mx-auto px-4 py-8 max-w-3xl">
+    <h1 class="text-4xl font-bold mb-2">{post.data.title}</h1>
+    <p class="text-gray-500 mb-6">
+      {new Date(post.data.date).toLocaleDateString()}
+      {post.data.tags?.length && ` · ${post.data.tags.join(', ')}`}
+    </p>
+    {post.data.coverImage && (
+      <img
+        src={post.data.coverImage}
+        alt={post.data.title}
+        class="w-full h-64 object-cover rounded mb-6"
+      />
+    )}
+    <article class="prose max-w-none">
+      {post.body}
+    </article>
+  </div>
+</BaseLayout>

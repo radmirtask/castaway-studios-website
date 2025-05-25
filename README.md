@@ -67,6 +67,7 @@ src/
 * **Careers**: Add job posting Markdown under `src/content/careers/`.
 
 Frontmatter is validated by the Zod schemas in `src/content/config.ts`.
+https://zod.dev/
 
 ---
 

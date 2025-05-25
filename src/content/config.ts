@@ -9,6 +9,7 @@ export const collections = {
       releaseDate: z.string(),
       description: z.string(),
       coverImage:  z.string(),
+      trailer:     z.string().optional(),
     }),
   }),
 

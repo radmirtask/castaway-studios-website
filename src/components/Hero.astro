@@ -1,0 +1,52 @@
+<section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-lights-off to-lights-off/50 z-0"></div>
+  
+  <div class="container mx-auto px-4 text-center relative z-10">
+    <h1 class="text-4xl md:text-7xl font-bold mb-6 animate-fade-in">
+      <span class="text-violet">CASTAWAY</span>
+      <span class="block text-off-white">STUDIOS</span>
+    </h1>
+    
+    <p class="text-xl md:text-2xl text-pink mb-12 max-w-2xl mx-auto animate-slide-up">
+      Crafting immersive gaming experiences that push the boundaries of creativity and innovation.
+    </p>
+    
+    <div class="flex flex-col md:flex-row gap-4 justify-center animate-fade-in">
+      <a href="/games" 
+         class="px-8 py-3 bg-pumpkin text-lights-off font-semibold rounded-lg hover:scale-105 transition-transform">
+        View Our Games
+      </a>
+      <a href="/careers" 
+         class="px-8 py-3 border-2 border-pink text-pink font-semibold rounded-lg hover:bg-pink hover:text-lights-off transition-colors">
+        Join the Team
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 1s ease-out 0.5s forwards;
+    opacity: 0;
+  }
+</style> 

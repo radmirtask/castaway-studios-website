@@ -1,11 +1,11 @@
 ---
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import Layout from '../../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 // Fetch all career entries
 const jobs = await getCollection('careers');
 ---
-<BaseLayout title="Careers – Castaway Studios">
+<Layout title="Careers – Castaway Studios">
   <h1 class="text-3xl font-bold text-center my-8">Join Our Team</h1>
   <div class="container mx-auto px-4">
     <div class="space-y-8">
@@ -21,4 +21,4 @@ const jobs = await getCollection('careers');
       ))}
     </div>
   </div>
-</BaseLayout>
+</Layout>

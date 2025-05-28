@@ -1,12 +1,12 @@
 ---
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
 // Page-specific SEO (optional)
 const meta = {
   title: 'Privacy Policy – Castaway Studios',
   description: 'Read our Privacy Policy to learn how Castaway Studios collects, uses, and protects your data.',
 };
 ---
-<BaseLayout title={meta.title}>
+<Layout title={meta.title}>
   <head>
     <meta name="description" content={meta.description} />
     <meta property="og:title" content={meta.title} />
@@ -44,4 +44,4 @@ const meta = {
       <p>If you have questions about this policy, email us at <a href="mailto:hello@castawaystudios.com" class="text-blue-600 hover:underline">hello@castawaystudios.com</a>.</p>
     </section>
   </div>
-</BaseLayout>
+</Layout>

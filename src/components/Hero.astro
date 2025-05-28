@@ -1,28 +1,166 @@
 <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
-  <div class="absolute inset-0 bg-gradient-to-b from-lights-off to-lights-off/50 z-0"></div>
+  <!-- Multi-Video Background with Parallax - Desktop -->
+  <div class="video-background absolute inset-0 z-0">
+    <!-- Desktop Layout: Horizontal video segments -->
+    <div class="hidden md:block">
+      <!-- First video segment (left third) -->
+      <div class="video-segment absolute inset-0" style="clip-path: polygon(0 0, 33% 0, 33% 100%, 0 100%);">
+        <video 
+          autoplay 
+          muted 
+          loop 
+          playsinline
+          class="w-full h-full object-cover"
+          style="transform: translateZ(0);"
+        >
+          <source src="/videos/gameplay.mp4#t=0" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <!-- Electric Purple vertical separator bar -->
+      <div class="separator-bar absolute h-full w-2 z-10" 
+           style="left: 33%; background: linear-gradient(180deg, transparent 0%, #B316D5 20%, #B316D5 80%, transparent 100%); box-shadow: 0 0 20px #B316D5;">
+      </div>
+
+      <!-- Second video segment (middle third) -->
+      <div class="video-segment absolute inset-0" style="clip-path: polygon(33% 0, 66% 0, 66% 100%, 33% 100%);">
+        <video 
+          autoplay 
+          muted 
+          loop 
+          playsinline
+          class="w-full h-full object-cover"
+          style="transform: translateZ(0);"
+        >
+          <source src="/videos/gameplay.mp4#t=30" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <!-- Hibiscus Pink vertical separator bar -->
+      <div class="separator-bar absolute h-full w-2 z-10" 
+           style="left: 66%; background: linear-gradient(180deg, transparent 0%, #CD2373 20%, #CD2373 80%, transparent 100%); box-shadow: 0 0 20px #CD2373;">
+      </div>
+
+      <!-- Third video segment (right third) -->
+      <div class="video-segment absolute inset-0" style="clip-path: polygon(66% 0, 100% 0, 100% 100%, 66% 100%);">
+        <video 
+          autoplay 
+          muted 
+          loop 
+          playsinline
+          class="w-full h-full object-cover"
+          style="transform: translateZ(0);"
+        >
+          <source src="/videos/gameplay.mp4#t=60" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+
+      <!-- Animated vertical accent bars for extra style -->
+      <div class="accent-bar absolute h-full w-1 z-20 animate-pulse" 
+           style="left: 32.5%; background: linear-gradient(180deg, #FFEE34 0%, #B316D5 50%, #CD2373 100%); opacity: 0.6;">
+      </div>
+      <div class="accent-bar absolute h-full w-1 z-20 animate-pulse" 
+           style="left: 66.5%; background: linear-gradient(180deg, #CD2373 0%, #FFEE34 50%, #B316D5 100%); opacity: 0.6; animation-delay: 0.5s;">
+      </div>
+    </div>
+
+    <!-- Mobile Layout: Single video -->
+    <div class="md:hidden">
+      <div class="video-segment absolute inset-0">
+        <video 
+          autoplay 
+          muted 
+          loop 
+          playsinline
+          class="w-full h-full object-cover"
+          style="transform: translateZ(0);"
+        >
+          <source src="/videos/gameplay.mp4" type="video/mp4">
+          Your browser does not support the video tag.
+        </video>
+      </div>
+    </div>
+
+    <!-- Dark overlay to ensure text readability -->
+    <div class="absolute inset-0 bg-black/40 z-30"></div>
+  </div>
   
-  <div class="container mx-auto px-4 text-center relative z-10">
+  <!-- Content with faster parallax movement -->
+  <div class="content-layer container mx-auto px-4 text-center relative z-40">
     <h1 class="text-4xl md:text-7xl font-bold mb-6 animate-fade-in">
-      <span class="text-violet">CASTAWAY</span>
-      <span class="block text-off-white">STUDIOS</span>
+      <span style="color: #B316D5;">CASTAWAY</span>
+      <span class="block" style="color: #F5F5F5;">STUDIOS</span>
     </h1>
     
-    <p class="text-xl md:text-2xl text-pink mb-12 max-w-2xl mx-auto animate-slide-up">
+    <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto animate-slide-up" style="color: #CD2373;">
       Crafting immersive gaming experiences that push the boundaries of creativity and innovation.
     </p>
     
     <div class="flex flex-col md:flex-row gap-4 justify-center animate-fade-in">
       <a href="/games" 
-         class="px-8 py-3 bg-pumpkin text-lights-off font-semibold rounded-lg hover:scale-105 transition-transform">
+         class="px-8 py-3 font-semibold rounded-lg hover:scale-105 transition-all duration-300"
+         style="background-color: #FFEE34; color: #1B031B;">
         View Our Games
       </a>
       <a href="/careers" 
-         class="px-8 py-3 border-2 border-pink text-pink font-semibold rounded-lg hover:bg-pink hover:text-lights-off transition-colors">
+         class="px-8 py-3 border-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+         style="border-color: #CD2373; color: #CD2373;"
+         onmouseenter="this.style.backgroundColor='#CD2373'; this.style.color='#1B031B';"
+         onmouseleave="this.style.backgroundColor='transparent'; this.style.color='#CD2373';">
         Join the Team
       </a>
     </div>
   </div>
 </section>
+
+<script>
+  // Parallax effect for horizontal video segments
+  function handleParallax() {
+    const scrolled = window.pageYOffset;
+    const videoSegments = document.querySelectorAll('.video-segment') as NodeListOf<HTMLElement>;
+    const separatorBars = document.querySelectorAll('.separator-bar') as NodeListOf<HTMLElement>;
+    const accentBars = document.querySelectorAll('.accent-bar') as NodeListOf<HTMLElement>;
+    const contentLayer = document.querySelector('.content-layer') as HTMLElement;
+    
+    if (videoSegments.length > 0 && contentLayer) {
+      // Different parallax speeds for each video segment
+      videoSegments.forEach((segment, index) => {
+        const speed = 0.2 + (index * 0.1); // Different speeds: 0.2, 0.3, 0.4
+        const videoSpeed = scrolled * speed;
+        segment.style.transform = `translateY(${videoSpeed}px)`;
+      });
+
+      // Vertical separator bars move at different speed
+      separatorBars.forEach((bar, index) => {
+        const speed = 0.15 + (index * 0.05);
+        const barSpeed = scrolled * speed;
+        bar.style.transform = `translateY(${barSpeed}px)`;
+      });
+
+      // Vertical accent bars with slight movement
+      accentBars.forEach((bar, index) => {
+        const speed = 0.1 + (index * 0.02);
+        const accentSpeed = scrolled * speed;
+        bar.style.transform = `translateY(${accentSpeed}px)`;
+      });
+      
+      // Content moves at normal speed but with slight offset for depth
+      const contentSpeed = scrolled * 0.1;
+      contentLayer.style.transform = `translateY(${-contentSpeed}px)`;
+    }
+  }
+
+  // Add scroll event listener
+  window.addEventListener('scroll', handleParallax);
+  
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    window.removeEventListener('scroll', handleParallax);
+  });
+</script>
 
 <style>
   @keyframes fade-in {
@@ -48,5 +186,38 @@
   .animate-slide-up {
     animation: slide-up 1s ease-out 0.5s forwards;
     opacity: 0;
+  }
+
+  /* Ensure video segments cover their areas */
+  .video-segment {
+    will-change: transform;
+  }
+  
+  .separator-bar {
+    will-change: transform;
+  }
+
+  .accent-bar {
+    will-change: transform;
+  }
+  
+  .content-layer {
+    will-change: transform;
+  }
+
+  /* Smooth hardware acceleration */
+  .video-segment video {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Custom pulse animation for accent bars */
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.9; }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
   }
 </style> 

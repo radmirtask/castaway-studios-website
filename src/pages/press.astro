@@ -1,13 +1,13 @@
 ---
 /** @ts-nocheck */
-import BaseLayout from '../layouts/BaseLayout.astro';
+import Layout from '../layouts/Layout.astro';
 import { getCollection } from 'astro:content';
 
 // Load all press posts, sorted by date descending
 const posts = (await getCollection('press'))
   .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
 ---
-<BaseLayout title="Press & News – Castaway Studios">
+<Layout title="Press & News – Castaway Studios">
   <h1 class="text-3xl font-bold text-center my-8">Press & News</h1>
   <div class="container mx-auto px-4 space-y-6">
     {posts.map((post) => (
@@ -33,4 +33,4 @@ const posts = (await getCollection('press'))
       </a>
     ))}
   </div>
-</BaseLayout>
+</Layout>

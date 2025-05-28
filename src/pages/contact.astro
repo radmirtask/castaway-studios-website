@@ -1,27 +1,70 @@
-<form id="contact-form" class="space-y-4">
-  <!-- name, email, message inputs -->
-  <button type="submit">Send Message</button>
-</form>
-<script type="module">
-  const form = document.getElementById('contact-form');
-  const status = document.getElementById('status');
-  form.addEventListener('submit', async (e) => {
-    e.preventDefault();
-    status.textContent = 'Sending…';
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      message: form.message.value,
-    };
-    const res = await fetch('/api/contact', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(data),
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact – Castaway Studios">
+  <section class="pt-32 pb-20 min-h-screen flex items-center justify-center">
+    <div class="w-full max-w-lg bg-lights-off/70 rounded-xl shadow-lg p-8 border border-violet/20">
+      <h1 class="text-4xl font-bold mb-8 text-center text-violet">Get in Touch</h1>
+      <form id="contact-form" class="space-y-6">
+        <input
+          name="name"
+          type="text"
+          placeholder="Your Name"
+          required
+          class="w-full bg-lights-off border border-violet/30 rounded-lg px-4 py-3 text-off-white placeholder-off-white/60 focus:outline-none focus:border-violet focus:ring-2 focus:ring-violet/40 transition"
+        />
+        <input
+          name="email"
+          type="email"
+          placeholder="Your Email"
+          required
+          class="w-full bg-lights-off border border-violet/30 rounded-lg px-4 py-3 text-off-white placeholder-off-white/60 focus:outline-none focus:border-violet focus:ring-2 focus:ring-violet/40 transition"
+        />
+        <textarea
+          name="message"
+          rows="5"
+          placeholder="Your Message"
+          required
+          class="w-full bg-lights-off border border-violet/30 rounded-lg px-4 py-3 text-off-white placeholder-off-white/60 focus:outline-none focus:border-violet focus:ring-2 focus:ring-violet/40 transition"
+        ></textarea>
+        <button
+          type="submit"
+          class="w-full bg-pumpkin text-lights-off font-bold rounded-lg px-4 py-3 hover:bg-pink hover:text-off-white transition-colors shadow-md"
+        >
+          Send Message
+        </button>
+      </form>
+      <p id="status" class="mt-4 text-center text-sm text-pink"></p>
+    </div>
+  </section>
+
+  <script type="module">
+    const form = document.getElementById('contact-form');
+    const status = document.getElementById('status');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      status.textContent = 'Sending…';
+      const data = {
+        name: form.name.value,
+        email: form.email.value,
+        message: form.message.value,
+      };
+      try {
+        const res = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const json = await res.json();
+        status.textContent = json.success
+          ? "Message sent! We'll be in touch soon."
+          : 'Error sending message.';
+        if (json.success) form.reset();
+      } catch (err) {
+        console.error(err);
+        status.textContent = 'Error sending message.';
+      }
     });
-    const json = await res.json();
-    status.textContent = json.success
-      ? 'Message sent! We’ll be in touch.'
-      : 'Error sending message.';
-    if (json.success) form.reset();
-  });
-</script>
+  </script>
+</Layout>

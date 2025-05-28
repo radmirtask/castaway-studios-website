@@ -1,1 +1,58 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Brand Colors */
+    --color-electric: #B316D5;
+    --color-hibiscus: #CD2373;
+    --color-pumpkin: #FFEE34;
+    --color-wild: #F5F5F5;
+    --color-off-black: #1B031B;
+    --color-violet-500: #CF31ED;
+    --color-pink-500: #EC509E;
+    --color-pumpkin-300: #FFEE34;
+  }
+
+  html {
+    @apply antialiased;
+  }
+  
+  body {
+    background-color: var(--color-off-black);
+    color: var(--color-wild);
+  }
+
+  /* Custom utility classes for brand colors */
+  .text-electric { color: var(--color-electric); }
+  .text-hibiscus { color: var(--color-hibiscus); }
+  .text-pumpkin { color: var(--color-pumpkin); }
+  .text-wild { color: var(--color-wild); }
+  .text-off-black { color: var(--color-off-black); }
+  
+  .bg-electric { background-color: var(--color-electric); }
+  .bg-hibiscus { background-color: var(--color-hibiscus); }
+  .bg-pumpkin { background-color: var(--color-pumpkin); }
+  .bg-wild { background-color: var(--color-wild); }
+  .bg-off-black { background-color: var(--color-off-black); }
+  
+  .border-electric { border-color: var(--color-electric); }
+  .border-hibiscus { border-color: var(--color-hibiscus); }
+  .border-pumpkin { border-color: var(--color-pumpkin); }
+  .border-wild { border-color: var(--color-wild); }
+  .border-off-black { border-color: var(--color-off-black); }
+
+  /* Gradient backgrounds using brand colors */
+  .bg-gradient-electric-hibiscus {
+    background: linear-gradient(135deg, var(--color-electric), var(--color-hibiscus));
+  }
+  
+  .bg-gradient-hibiscus-pumpkin {
+    background: linear-gradient(135deg, var(--color-hibiscus), var(--color-pumpkin));
+  }
+  
+  .bg-gradient-electric-pumpkin {
+    background: linear-gradient(135deg, var(--color-electric), var(--color-pumpkin));
+  }
+}

@@ -1,6 +1,6 @@
 ---
 /** @ts-nocheck */
-import BaseLayout from '../../layouts/BaseLayout.astro';
+import Layout from '../../layouts/Layout.astro';
 import VideoPlayer from '../../components/VideoPlayer.jsx';
 import { getCollection, getEntryBySlug } from 'astro:content';
 
@@ -13,7 +13,7 @@ const { slug } = Astro.params;
 const entry = await getEntryBySlug('games', slug);
 if (!entry) throw new Error(`Game not found: ${slug}`);
 ---
-<BaseLayout title={`${entry.data.title} – Castaway Studios`}>
+<Layout title={`${entry.data.title} – Castaway Studios`}>
   <div class="container mx-auto px-4 py-8">
     <h1 class="text-4xl font-bold mb-4">{entry.data.title}</h1>
     <p class="text-gray-600 mb-6">
@@ -37,4 +37,4 @@ if (!entry) throw new Error(`Game not found: ${slug}`);
       {entry.body}
     </article>
   </div>
-</BaseLayout>
+</Layout>

@@ -1,0 +1,72 @@
+---
+interface TimelineItem {
+  title: string;
+  description: string;
+  date?: string;
+  icon?: string;
+}
+
+interface Props {
+  title: string;
+  subtitle?: string;
+  items: TimelineItem[];
+  className?: string;
+}
+
+const { title, subtitle, items, className = '' } = Astro.props;
+---
+
+<section class={`section-padding ${className}`}>
+  <div class="container-custom">
+    <!-- Header -->
+    <div class="text-center mb-16">
+      <h2 class="heading-2 mb-4">{title}</h2>
+      {subtitle && (
+        <p class="body-text-lg text-text-secondary max-w-2xl mx-auto">
+          {subtitle}
+        </p>
+      )}
+    </div>
+    
+    <!-- Timeline -->
+    <div class="max-w-4xl mx-auto">
+      <div class="relative">
+        <!-- Main timeline line -->
+        <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-accent-pink/30"></div>
+        
+        <!-- Timeline items -->
+        <div class="space-y-12">
+          {items.map((item, index) => (
+            <div class="timeline-item group">
+              <!-- Icon circle -->
+              <div class="absolute left-0 top-0 w-16 h-16 rounded-full bg-accent-pink flex items-center justify-center shadow-glow-pink group-hover:shadow-glow-pink group-hover:scale-110 transition-all duration-300">
+                {item.icon ? (
+                  <span class="text-2xl">{item.icon}</span>
+                ) : (
+                  <span class="text-text-primary font-bold text-lg">{index + 1}</span>
+                )}
+              </div>
+              
+              <!-- Content -->
+              <div class="ml-24">
+                <div class="bg-background-primary border border-accent-pink/20 rounded-card p-6 group-hover:border-accent-pink/40 group-hover:shadow-card-hover transition-all duration-300">
+                  <div class="flex items-start justify-between mb-3">
+                    <h3 class="heading-4 text-text-primary">{item.title}</h3>
+                    {item.date && (
+                      <span class="caption-text text-accent-pink bg-accent-pink/10 px-3 py-1 rounded-full">
+                        {item.date}
+                      </span>
+                    )}
+                  </div>
+                  <p class="body-text text-text-secondary">
+                    {item.description}
+                  </p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section> 

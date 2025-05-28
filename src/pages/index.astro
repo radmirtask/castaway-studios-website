@@ -1,10 +1,381 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import Hero from '../components/Hero.astro';
-import GamesPreview from '../components/GamesPreview.astro';
+import GameCard from '../components/GameCard.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+import { getCollection } from 'astro:content';
+
+// Get games for preview
+const games = await getCollection('games');
+const featuredGames = games.slice(0, 3);
+
+// Timeline data for development process
+const timelineItems = [
+  {
+    title: "Concept & Design",
+    description: "We start with innovative ideas and create compelling game concepts that push the boundaries of interactive entertainment.",
+    date: "Week 1-2",
+    icon: "💡"
+  },
+  {
+    title: "Development",
+    description: "Our expert team brings concepts to life using cutting-edge technology and proven development methodologies.",
+    date: "Week 3-12",
+    icon: "⚡"
+  },
+  {
+    title: "Testing & Polish",
+    description: "Rigorous testing and refinement ensure every game meets our high standards for quality and player experience.",
+    date: "Week 13-16",
+    icon: "🎯"
+  },
+  {
+    title: "Launch",
+    description: "Strategic launch campaigns and ongoing support help our games reach their full potential in the market.",
+    date: "Week 17+",
+    icon: "🚀"
+  }
+];
 ---
 
-<Layout title="Castaway Studios - Game Development Studio">
-  <Hero />
-  <GamesPreview />
+<Layout title="Castaway Studios - Visions of Tomorrow" description="Creating unforgettable gaming experiences with cutting-edge technology and creative storytelling. Discover our innovative games and join the future of interactive entertainment.">
+  <!-- Hero Section with Video Background -->
+  <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
+    <!-- Multi-Video Background with Parallax - Desktop -->
+    <div class="video-background absolute inset-0 z-0">
+      <!-- Desktop Layout: Horizontal video segments -->
+      <div class="hidden md:block">
+        <!-- First video segment (left third) -->
+        <div class="video-segment absolute inset-0" style="clip-path: polygon(0 0, 33% 0, 33% 100%, 0 100%);">
+          <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline
+            class="w-full h-full object-cover"
+            style="transform: translateZ(0);"
+          >
+            <source src="/videos/gameplay.mp4#t=0" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <!-- Electric Purple vertical separator bar -->
+        <div class="separator-bar absolute h-full w-2 z-10" 
+             style="left: 33%; background: linear-gradient(180deg, transparent 0%, #B316D5 20%, #B316D5 80%, transparent 100%); box-shadow: 0 0 20px #B316D5;">
+        </div>
+
+        <!-- Second video segment (middle third) -->
+        <div class="video-segment absolute inset-0" style="clip-path: polygon(33% 0, 66% 0, 66% 100%, 33% 100%);">
+          <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline
+            class="w-full h-full object-cover"
+            style="transform: translateZ(0);"
+          >
+            <source src="/videos/gameplay.mp4#t=30" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <!-- Hibiscus Pink vertical separator bar -->
+        <div class="separator-bar absolute h-full w-2 z-10" 
+             style="left: 66%; background: linear-gradient(180deg, transparent 0%, #CD2373 20%, #CD2373 80%, transparent 100%); box-shadow: 0 0 20px #CD2373;">
+        </div>
+
+        <!-- Third video segment (right third) -->
+        <div class="video-segment absolute inset-0" style="clip-path: polygon(66% 0, 100% 0, 100% 100%, 66% 100%);">
+          <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline
+            class="w-full h-full object-cover"
+            style="transform: translateZ(0);"
+          >
+            <source src="/videos/gameplay.mp4#t=60" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+
+        <!-- Animated vertical accent bars for extra style -->
+        <div class="accent-bar absolute h-full w-1 z-20 animate-pulse" 
+             style="left: 32.5%; background: linear-gradient(180deg, #FFEE34 0%, #B316D5 50%, #CD2373 100%); opacity: 0.6;">
+        </div>
+        <div class="accent-bar absolute h-full w-1 z-20 animate-pulse" 
+             style="left: 66.5%; background: linear-gradient(180deg, #CD2373 0%, #FFEE34 50%, #B316D5 100%); opacity: 0.6; animation-delay: 0.5s;">
+        </div>
+      </div>
+
+      <!-- Mobile Layout: Single video -->
+      <div class="md:hidden">
+        <div class="video-segment absolute inset-0">
+          <video 
+            autoplay 
+            muted 
+            loop 
+            playsinline
+            class="w-full h-full object-cover"
+            style="transform: translateZ(0);"
+          >
+            <source src="/videos/gameplay.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      </div>
+
+      <!-- Dark overlay to ensure text readability -->
+      <div class="absolute inset-0 bg-black/40 z-30"></div>
+    </div>
+
+    <!-- Content Layer -->
+    <div class="content-layer container-custom relative z-40">
+      <div class="text-center max-w-5xl mx-auto">
+        <!-- Subtitle -->
+        <div class="mb-6">
+          <span class="inline-block bg-accent-yellow text-text-on-yellow px-6 py-2 rounded-full text-sm font-medium uppercase tracking-wider animate-fade-in">
+            Game Development Studio
+          </span>
+        </div>
+        
+        <!-- Main Title -->
+        <h1 class="heading-1 mb-8 text-gradient-violet-pink animate-slide-up">
+          VISIONS OF TOMORROW
+        </h1>
+        
+        <!-- Yellow accent strip -->
+        <div class="relative mb-8 animate-slide-up">
+          <div class="h-1 bg-accent-yellow mx-auto max-w-md rounded-full shadow-glow-yellow"></div>
+          <div class="absolute inset-0 h-1 bg-gradient-to-r from-transparent via-accent-yellow to-transparent mx-auto max-w-lg rounded-full blur-sm"></div>
+        </div>
+        
+        <!-- Description -->
+        <p class="body-text-lg text-text-primary mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up">
+          We create unforgettable gaming experiences that push the boundaries of interactive entertainment. From concept to launch, we craft worlds that captivate and inspire.
+        </p>
+        
+        <!-- Action Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
+          <a href="/games" class="btn-primary group">
+            Explore Games
+            <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+          
+          <a href="/about" class="btn-secondary group">
+            Our Story
+            <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Scroll indicator -->
+    <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce z-40">
+      <svg class="w-6 h-6 text-text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+      </svg>
+    </div>
+  </section>
+
+  <!-- Games Collection Section -->
+  <section class="section-padding bg-background-primary">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="heading-2 mb-4">GAME COLLECTION</h2>
+        <p class="body-text-lg text-text-secondary max-w-2xl mx-auto">
+          Discover our portfolio of innovative games that blend cutting-edge technology with compelling storytelling.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        {featuredGames.map((game) => (
+          <GameCard 
+            title={game.data.title}
+            description={game.data.description}
+            image={game.data.coverImage}
+            href={`/games/${game.slug}`}
+          />
+        ))}
+      </div>
+      
+      <div class="text-center">
+        <a href="/games" class="btn-secondary">
+          View All Games
+          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Development Process Timeline -->
+  <ProcessTimeline 
+    title="Our Development Process"
+    subtitle="From initial concept to final launch, we follow a proven methodology that ensures every game reaches its full potential."
+    items={timelineItems}
+    className="bg-background-primary"
+  />
+
+  <!-- Call to Action Section -->
+  <section class="section-padding bg-gradient-violet-pink relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-64 h-64 bg-accent-yellow rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-text-primary rounded-full blur-3xl animate-float" style="animation-delay: -1s;"></div>
+    </div>
+    
+    <div class="container-custom relative z-10">
+      <div class="text-center max-w-4xl mx-auto">
+        <h2 class="heading-2 mb-6 text-text-primary">Ready to Create Something Amazing?</h2>
+        <p class="body-text-lg text-text-primary/90 mb-8 max-w-2xl mx-auto">
+          Join our team of passionate developers, designers, and storytellers. Together, we'll build the future of gaming.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/careers" class="btn-primary bg-text-primary text-background-primary hover:bg-text-secondary">
+            View Open Positions
+          </a>
+          <a href="/contact" class="btn-secondary border-text-primary text-text-primary hover:bg-text-primary hover:text-background-primary">
+            Get In Touch
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section class="section-padding-sm bg-background-primary">
+    <div class="container-custom">
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+        <div class="group">
+          <div class="text-4xl font-bold text-accent-yellow mb-2 group-hover:scale-110 transition-transform duration-300">10+</div>
+          <div class="caption-text">Games Developed</div>
+        </div>
+        <div class="group">
+          <div class="text-4xl font-bold text-accent-pink mb-2 group-hover:scale-110 transition-transform duration-300">50K+</div>
+          <div class="caption-text">Players Worldwide</div>
+        </div>
+        <div class="group">
+          <div class="text-4xl font-bold text-accent-violet mb-2 group-hover:scale-110 transition-transform duration-300">25+</div>
+          <div class="caption-text">Team Members</div>
+        </div>
+        <div class="group">
+          <div class="text-4xl font-bold text-accent-yellow mb-2 group-hover:scale-110 transition-transform duration-300">5</div>
+          <div class="caption-text">Years Experience</div>
+        </div>
+      </div>
+    </div>
+  </section>
 </Layout>
+
+<script>
+  // Parallax effect for horizontal video segments
+  function handleParallax() {
+    const scrolled = window.pageYOffset;
+    const videoSegments = document.querySelectorAll('.video-segment') as NodeListOf<HTMLElement>;
+    const separatorBars = document.querySelectorAll('.separator-bar') as NodeListOf<HTMLElement>;
+    const accentBars = document.querySelectorAll('.accent-bar') as NodeListOf<HTMLElement>;
+    const contentLayer = document.querySelector('.content-layer') as HTMLElement;
+    
+    if (videoSegments.length > 0 && contentLayer) {
+      // Different parallax speeds for each video segment
+      videoSegments.forEach((segment, index) => {
+        const speed = 0.2 + (index * 0.1); // Different speeds: 0.2, 0.3, 0.4
+        const videoSpeed = scrolled * speed;
+        segment.style.transform = `translateY(${videoSpeed}px)`;
+      });
+
+      // Vertical separator bars move at different speed
+      separatorBars.forEach((bar, index) => {
+        const speed = 0.15 + (index * 0.05);
+        const barSpeed = scrolled * speed;
+        bar.style.transform = `translateY(${barSpeed}px)`;
+      });
+
+      // Vertical accent bars with slight movement
+      accentBars.forEach((bar, index) => {
+        const speed = 0.1 + (index * 0.02);
+        const accentSpeed = scrolled * speed;
+        bar.style.transform = `translateY(${accentSpeed}px)`;
+      });
+      
+      // Content moves at normal speed but with slight offset for depth
+      const contentSpeed = scrolled * 0.1;
+      contentLayer.style.transform = `translateY(${-contentSpeed}px)`;
+    }
+  }
+
+  // Add scroll event listener
+  window.addEventListener('scroll', handleParallax);
+  
+  // Cleanup on page unload
+  window.addEventListener('beforeunload', () => {
+    window.removeEventListener('scroll', handleParallax);
+  });
+</script>
+
+<style>
+  @keyframes fade-in {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  @keyframes slide-up {
+    from { 
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to { 
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fade-in {
+    animation: fade-in 1s ease-out forwards;
+  }
+
+  .animate-slide-up {
+    animation: slide-up 1s ease-out 0.5s forwards;
+    opacity: 0;
+  }
+
+  /* Ensure video segments cover their areas */
+  .video-segment {
+    will-change: transform;
+  }
+  
+  .separator-bar {
+    will-change: transform;
+  }
+
+  .accent-bar {
+    will-change: transform;
+  }
+  
+  .content-layer {
+    will-change: transform;
+  }
+
+  /* Smooth hardware acceleration */
+  .video-segment video {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+  }
+
+  /* Custom pulse animation for accent bars */
+  @keyframes pulse {
+    0%, 100% { opacity: 0.6; }
+    50% { opacity: 0.9; }
+  }
+
+  .animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+</style>

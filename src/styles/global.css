@@ -1,27 +1,86 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   :root {
-    /* Brand Colors */
+    /* Castaway Studios Brand Colors */
+    --color-background-primary: #1B031B;
+    --color-text-primary: #F5F5F5;
+    --color-accent-violet: #B316D5;
+    --color-accent-pink: #CD2373;
+    --color-accent-pink-alt: #EC509E;
+    --color-accent-yellow: #FFEE34;
+    --color-text-on-yellow: #000000;
+    --color-text-secondary: rgba(245, 245, 245, 0.8);
+    --color-text-muted: rgba(245, 245, 245, 0.6);
+    
+    /* Legacy colors for backward compatibility */
     --color-electric: #B316D5;
     --color-hibiscus: #CD2373;
     --color-pumpkin: #FFEE34;
     --color-wild: #F5F5F5;
     --color-off-black: #1B031B;
-    --color-violet-500: #CF31ED;
-    --color-pink-500: #EC509E;
-    --color-pumpkin-300: #FFEE34;
+  }
+
+  * {
+    box-sizing: border-box;
   }
 
   html {
-    @apply antialiased;
+    @apply antialiased scroll-smooth;
+    font-family: 'Poppins', sans-serif;
   }
   
   body {
-    background-color: var(--color-off-black);
-    color: var(--color-wild);
+    @apply bg-background-primary text-text-primary min-h-screen;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  /* Typography Utilities */
+  .heading-1 {
+    @apply text-h1 font-heading text-text-primary;
+  }
+  
+  .heading-2 {
+    @apply text-h2 font-heading text-text-primary;
+  }
+  
+  .heading-3 {
+    @apply text-h3 font-heading text-text-primary;
+  }
+  
+  .heading-4 {
+    @apply text-h4 font-heading text-text-primary;
+  }
+  
+  .body-text {
+    @apply text-body font-body text-text-primary;
+  }
+  
+  .body-text-lg {
+    @apply text-body-lg font-body text-text-primary;
+  }
+  
+  .caption-text {
+    @apply text-caption font-body text-text-secondary;
+  }
+
+  /* Responsive Typography */
+  @media (max-width: 768px) {
+    .heading-1 {
+      @apply text-5xl;
+    }
+    
+    .heading-2 {
+      @apply text-4xl;
+    }
+    
+    .heading-3 {
+      @apply text-3xl;
+    }
   }
 
   /* Custom utility classes for brand colors */
@@ -55,4 +114,140 @@
   .bg-gradient-electric-pumpkin {
     background: linear-gradient(135deg, var(--color-electric), var(--color-pumpkin));
   }
+}
+
+@layer components {
+  /* Button Components */
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-button font-medium rounded-button;
+    @apply bg-accent-pink-alt text-text-primary border-none;
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:bg-accent-pink hover:shadow-glow-pink hover:scale-105;
+    @apply active:scale-95 focus:outline-none focus:ring-2 focus:ring-accent-pink-alt focus:ring-offset-2 focus:ring-offset-background-primary;
+  }
+  
+  .btn-secondary {
+    @apply inline-flex items-center justify-center px-6 py-3 text-button font-medium rounded-button;
+    @apply bg-transparent text-accent-pink-alt border-2 border-accent-pink-alt;
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:bg-accent-pink-alt hover:text-text-primary hover:shadow-glow-pink;
+    @apply active:scale-95 focus:outline-none focus:ring-2 focus:ring-accent-pink-alt focus:ring-offset-2 focus:ring-offset-background-primary;
+  }
+  
+  .btn-outline-violet {
+    @apply inline-flex items-center justify-center px-6 py-3 text-button font-medium rounded-button;
+    @apply bg-transparent text-accent-violet border-2 border-accent-violet;
+    @apply transition-all duration-300 ease-in-out;
+    @apply hover:bg-accent-violet hover:text-text-primary hover:shadow-glow-violet;
+    @apply active:scale-95 focus:outline-none focus:ring-2 focus:ring-accent-violet focus:ring-offset-2 focus:ring-offset-background-primary;
+  }
+
+  /* Card Components */
+  .card-game {
+    @apply bg-accent-yellow text-text-on-yellow rounded-card p-6;
+    @apply shadow-card transition-all duration-300 ease-in-out;
+    @apply hover:shadow-card-hover hover:shadow-glow-yellow hover:-translate-y-1;
+  }
+  
+  .card-dark {
+    @apply bg-background-primary border border-accent-violet/20 rounded-card p-6;
+    @apply shadow-card transition-all duration-300 ease-in-out;
+    @apply hover:shadow-card-hover hover:border-accent-violet/40 hover:-translate-y-1;
+  }
+
+  /* Input Components */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-input border border-text-secondary/30;
+    @apply bg-background-primary text-text-primary placeholder-text-muted;
+    @apply transition-all duration-300 ease-in-out;
+    @apply focus:outline-none focus:border-accent-violet focus:ring-2 focus:ring-accent-violet/20;
+  }
+
+  /* Navigation Components */
+  .nav-link {
+    @apply text-text-primary font-medium transition-all duration-300 ease-in-out;
+    @apply hover:text-accent-yellow hover:scale-105;
+    @apply relative after:absolute after:bottom-0 after:left-0 after:w-0 after:h-0.5;
+    @apply after:bg-accent-yellow after:transition-all after:duration-300;
+    @apply hover:after:w-full;
+  }
+
+  /* Container */
+  .container-custom {
+    @apply max-w-container mx-auto px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Section Spacing */
+  .section-padding {
+    @apply py-16 lg:py-24;
+  }
+  
+  .section-padding-sm {
+    @apply py-12 lg:py-16;
+  }
+
+  /* Glow Effects */
+  .glow-violet {
+    @apply shadow-glow-violet;
+  }
+  
+  .glow-pink {
+    @apply shadow-glow-pink;
+  }
+  
+  .glow-yellow {
+    @apply shadow-glow-yellow;
+  }
+
+  /* Timeline Components */
+  .timeline-item {
+    @apply relative pl-8 pb-8;
+  }
+  
+  .timeline-item::before {
+    @apply absolute left-0 top-0 w-4 h-4 rounded-full bg-accent-pink;
+    content: '';
+  }
+  
+  .timeline-item::after {
+    @apply absolute left-2 top-4 w-0.5 h-full bg-accent-pink/30;
+    content: '';
+  }
+  
+  .timeline-item:last-child::after {
+    display: none;
+  }
+}
+
+@layer utilities {
+  /* Text Gradient Utilities */
+  .text-gradient-violet-pink {
+    background: linear-gradient(135deg, var(--color-accent-violet), var(--color-accent-pink));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .text-gradient-pink-yellow {
+    background: linear-gradient(135deg, var(--color-accent-pink), var(--color-accent-yellow));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Background Gradient Utilities */
+  .bg-gradient-violet-pink {
+    background: linear-gradient(135deg, var(--color-accent-violet), var(--color-accent-pink));
+  }
+  
+  .bg-gradient-pink-yellow {
+    background: linear-gradient(135deg, var(--color-accent-pink), var(--color-accent-yellow));
+  }
+  
+  .bg-gradient-dark-overlay {
+    background: linear-gradient(135deg, rgba(27, 3, 27, 0.9), rgba(27, 3, 27, 0.7));
+  }
+
+  /* Animation Utilities - These are already defined in Tailwind config */
+  /* No need to redefine them here as it creates circular dependencies */
 }

@@ -5,32 +5,93 @@ import { getCollection } from 'astro:content';
 
 // Load all press posts, sorted by date descending
 const posts = (await getCollection('press'))
-  .sort((a, b) => new Date(b.data.date) - new Date(a.data.date));
+  .sort((a, b) => new Date(b.data.date).getTime() - new Date(a.data.date).getTime());
 ---
-<Layout title="Press & News – Castaway Studios">
-  <h1 class="text-3xl font-bold text-center my-8">Press & News</h1>
-  <div class="container mx-auto px-4 space-y-6">
-    {posts.map((post) => (
-      <a
-        href={`/press/${post.slug}`}
-        class="block md:flex items-center gap-6 p-6 border rounded-lg hover:shadow-lg transition"
-      >
-        {post.data.coverImage && (
-          <img
-            src={post.data.coverImage}
-            alt={post.data.title}
-            class="w-full md:w-48 h-32 object-cover rounded"
-          />
-        )}
-        <div>
-          <h2 class="text-2xl font-semibold">{post.data.title}</h2>
-          <p class="text-gray-500 text-sm">
-            {new Date(post.data.date).toLocaleDateString()} ·{' '}
-            {post.data.tags?.join(', ')}
+
+<Layout title="Press & News – Castaway Studios" description="Stay updated with the latest news, announcements, and press releases from Castaway Studios.">
+  <section class="section-padding">
+    <div class="container-custom">
+      <!-- Header -->
+      <div class="text-center mb-16">
+        <h1 class="heading-1 mb-6 text-gradient-violet-pink">Press & News</h1>
+        <p class="body-text-lg text-text-secondary max-w-2xl mx-auto">
+          Stay updated with the latest news, announcements, and press releases from Castaway Studios.
+        </p>
+      </div>
+
+      <!-- Press Posts Grid -->
+      <div class="space-y-8">
+        {posts.map((post) => (
+          <article class="card-dark group">
+            <a href={`/press/${post.slug}`} class="block">
+              <div class="md:flex items-start gap-8">
+                {post.data.coverImage && (
+                  <div class="md:w-64 flex-shrink-0 mb-6 md:mb-0">
+                    <img
+                      src={post.data.coverImage}
+                      alt={post.data.title}
+                      class="w-full h-48 md:h-32 object-cover rounded-lg transition-transform duration-300 group-hover:scale-105"
+                    />
+                  </div>
+                )}
+                
+                <div class="flex-1">
+                  <div class="flex items-start justify-between mb-4">
+                    <h2 class="heading-3 text-text-primary group-hover:text-accent-violet transition-colors duration-300">
+                      {post.data.title}
+                    </h2>
+                    <svg class="w-6 h-6 text-accent-violet opacity-0 group-hover:opacity-100 transition-all duration-300 transform group-hover:translate-x-1 flex-shrink-0 ml-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </div>
+                  
+                  <div class="flex items-center gap-4 mb-4">
+                    <time class="caption-text text-accent-pink bg-accent-pink/10 px-3 py-1 rounded-full">
+                      {new Date(post.data.date).toLocaleDateString('en-US', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                      })}
+                    </time>
+                    
+                    {post.data.tags && post.data.tags.length > 0 && (
+                      <div class="flex gap-2">
+                        {post.data.tags.map((tag) => (
+                          <span class="caption-text text-accent-yellow bg-accent-yellow/10 px-3 py-1 rounded-full">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                  
+                  <p class="body-text text-text-secondary line-clamp-3">
+                    {post.data.excerpt}
+                  </p>
+                </div>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+
+      <!-- Empty State -->
+      {posts.length === 0 && (
+        <div class="text-center py-16">
+          <div class="w-24 h-24 bg-accent-violet/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-12 h-12 text-accent-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
+            </svg>
+          </div>
+          <h3 class="heading-3 mb-4">No Press Releases Yet</h3>
+          <p class="body-text text-text-secondary mb-8">
+            We're working on exciting announcements. Check back soon for the latest news!
           </p>
-          <p class="mt-2 text-gray-700">{post.data.excerpt}</p>
+          <a href="/contact" class="btn-primary">
+            Get In Touch
+          </a>
         </div>
-      </a>
-    ))}
-  </div>
+      )}
+    </div>
+  </section>
 </Layout>

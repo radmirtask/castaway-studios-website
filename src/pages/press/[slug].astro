@@ -1,4 +1,5 @@
 ---
+/** @ts-nocheck */
 import Layout from '../../layouts/Layout.astro';
 import { getCollection, getEntryBySlug } from 'astro:content';
 
@@ -9,7 +10,7 @@ export async function getStaticPaths() {
 }
 
 const { slug } = Astro.params;
-const post  = await getEntryBySlug('press', slug);
+const post = await getEntryBySlug('press', slug);
 if (!post) throw new Error(`Post not found: ${slug}`);
 ---
 <Layout title={`${post.data.title} – Press`}>

@@ -4,6 +4,7 @@ import { z, defineCollection } from 'astro:content';
 export const collections = {
   // Games collection schema
   games: defineCollection({
+    type: 'content',
     schema: z.object({
       title:       z.string(),
       releaseDate: z.string(),
@@ -15,6 +16,7 @@ export const collections = {
 
   // Team collection schema
   team: defineCollection({
+    type: 'content',
     schema: z.object({
       name:   z.string(),
       role:   z.string(),
@@ -29,6 +31,7 @@ export const collections = {
 
   // Careers collection schema
   careers: defineCollection({
+    type: 'content',
     schema: z.object({
       title:            z.string(),                       // Job title
       location:         z.string(),                       // Job location
@@ -43,6 +46,7 @@ export const collections = {
 
   // Press collection
   press: defineCollection({
+    type: 'content',
     schema: z.object({
       title:      z.string(),           // Post title
       date:       z.string(),           // ISO date e.g. "2025-05-24"

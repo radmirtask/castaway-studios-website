@@ -67,111 +67,170 @@ const benefits = [
 ];
 ---
 
-<Layout title="Careers - Castaway Studios">
-  <section class="pt-32 pb-20">
-    <div class="container mx-auto px-4">
-      <h1 class="text-4xl md:text-6xl font-bold text-center mb-4">
-        <span class="text-violet">Join</span>
-        <span class="text-off-white"> Our Team</span>
-      </h1>
-      <p class="text-xl text-pink text-center mb-16 max-w-3xl mx-auto">
-        Help us create the next generation of gaming experiences.
-      </p>
-
-      <!-- Benefits Section -->
-      <div class="mb-20">
-        <h2 class="text-3xl font-bold text-center mb-12">
-          <span class="text-violet">Why</span>
-          <span class="text-off-white"> Join Us</span>
-        </h2>
+<Layout title="Careers - Castaway Studios" description="Join our team of passionate developers, designers, and storytellers. Help us create the next generation of gaming experiences.">
+  <!-- Hero Section -->
+  <section class="section-padding bg-background-primary relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-1/4 left-1/4 w-64 h-64 bg-accent-violet rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-pink rounded-full blur-3xl animate-float" style="animation-delay: -1s;"></div>
+    </div>
+    
+    <div class="container-custom relative z-10">
+      <div class="text-center max-w-4xl mx-auto">
+        <h1 class="heading-1 mb-6 text-gradient-violet-pink">
+          JOIN OUR TEAM
+        </h1>
+        <p class="body-text-lg text-text-secondary mb-8">
+          Help us create the next generation of gaming experiences. Be part of a passionate team that's pushing the boundaries of interactive entertainment.
+        </p>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {benefits.map((benefit) => (
-            <div class="bg-lights-off/50 rounded-xl p-6 border border-violet/20 hover:border-violet/40 transition-colors">
-              <div class="w-12 h-12 bg-violet/20 rounded-lg flex items-center justify-center mb-4">
-                <svg class="w-6 h-6 text-violet" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  {benefit.icon === "heart" && (
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
-                  )}
-                  {benefit.icon === "academic-cap" && (
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
-                  )}
-                  {benefit.icon === "clock" && (
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-                  )}
-                  {benefit.icon === "light-bulb" && (
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-                  )}
-                </svg>
-              </div>
-              <h3 class="text-xl font-bold text-off-white mb-2">{benefit.title}</h3>
-              <p class="text-off-white/80">{benefit.description}</p>
-            </div>
-          ))}
+        <!-- Yellow accent strip -->
+        <div class="relative mb-12">
+          <div class="h-1 bg-accent-yellow mx-auto max-w-md rounded-full shadow-glow-yellow"></div>
         </div>
       </div>
+    </div>
+  </section>
 
-      <!-- Open Positions -->
-      <div>
-        <h2 class="text-3xl font-bold text-center mb-12">
-          <span class="text-violet">Open</span>
-          <span class="text-off-white"> Positions</span>
-        </h2>
-        
-        <div class="space-y-6">
-          {positions.map((position) => (
-            <div class="bg-lights-off/50 rounded-xl p-6 border border-violet/20 hover:border-violet/40 transition-colors">
-              <div class="flex flex-col md:flex-row md:items-center justify-between mb-4">
-                <div>
-                  <h3 class="text-2xl font-bold text-off-white">{position.title}</h3>
-                  <p class="text-pink">{position.department}</p>
-                </div>
-                <div class="flex flex-wrap gap-4 mt-4 md:mt-0">
-                  <span class="px-3 py-1 text-sm bg-violet/20 text-violet rounded-full">
-                    {position.location}
-                  </span>
-                  <span class="px-3 py-1 text-sm bg-pink/20 text-pink rounded-full">
-                    {position.type}
-                  </span>
-                </div>
+  <!-- Benefits Section -->
+  <section class="section-padding bg-background-primary">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="heading-2 mb-4">Why Join Castaway Studios?</h2>
+        <p class="body-text-lg text-text-secondary max-w-2xl mx-auto">
+          We believe in creating an environment where creativity thrives and innovation flourishes.
+        </p>
+      </div>
+      
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {benefits.map((benefit) => (
+          <div class="card-dark group text-center">
+            <div class="w-16 h-16 bg-accent-violet/20 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:bg-accent-violet/30 transition-colors duration-300">
+              <svg class="w-8 h-8 text-accent-violet" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                {benefit.icon === "heart" && (
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                )}
+                {benefit.icon === "academic-cap" && (
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 14l9-5-9-5-9 5 9 5z" />
+                )}
+                {benefit.icon === "clock" && (
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                )}
+                {benefit.icon === "light-bulb" && (
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                )}
+              </svg>
+            </div>
+            <h3 class="heading-4 text-text-primary mb-3">{benefit.title}</h3>
+            <p class="body-text text-text-secondary">{benefit.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Open Positions -->
+  <section class="section-padding bg-background-primary">
+    <div class="container-custom">
+      <div class="text-center mb-16">
+        <h2 class="heading-2 mb-4">Open Positions</h2>
+        <p class="body-text-lg text-text-secondary max-w-2xl mx-auto">
+          Ready to make your mark in the gaming industry? Explore our current openings.
+        </p>
+      </div>
+      
+      <div class="space-y-8 max-w-4xl mx-auto">
+        {positions.map((position) => (
+          <div class="card-dark group">
+            <div class="flex flex-col lg:flex-row lg:items-start justify-between mb-6">
+              <div class="flex-1">
+                <h3 class="heading-3 text-text-primary mb-2">{position.title}</h3>
+                <p class="body-text text-accent-pink mb-1">{position.department}</p>
               </div>
-              
-              <p class="text-off-white/80 mb-6">{position.description}</p>
-              
-              <div class="mb-6">
-                <h4 class="text-lg font-semibold text-off-white mb-3">Requirements</h4>
-                <ul class="space-y-2">
-                  {position.requirements.map((req) => (
-                    <li class="flex items-center text-off-white/80">
-                      <svg class="w-4 h-4 mr-2 text-pumpkin" fill="currentColor" viewBox="0 0 20 20">
-                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                      </svg>
-                      {req}
-                    </li>
-                  ))}
-                </ul>
+              <div class="flex flex-wrap gap-3 mt-4 lg:mt-0">
+                <span class="caption-text text-accent-violet bg-accent-violet/10 px-3 py-1 rounded-full">
+                  {position.location}
+                </span>
+                <span class="caption-text text-accent-pink bg-accent-pink/10 px-3 py-1 rounded-full">
+                  {position.type}
+                </span>
               </div>
-              
+            </div>
+            
+            <p class="body-text text-text-secondary mb-6">{position.description}</p>
+            
+            <div class="mb-8">
+              <h4 class="heading-4 text-text-primary mb-4">Requirements</h4>
+              <ul class="space-y-3">
+                {position.requirements.map((req) => (
+                  <li class="flex items-start body-text text-text-secondary">
+                    <svg class="w-5 h-5 mr-3 mt-0.5 text-accent-yellow flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                    </svg>
+                    {req}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            
+            <div class="flex justify-end">
               <a 
-                href={`/careers/${position.title.toLowerCase().replace(/\s+/g, '-')}`}
-                class="inline-flex items-center text-pink hover:text-violet transition-colors"
+                href="/contact"
+                class="btn-primary group"
               >
                 Apply Now
-                <svg 
-                  xmlns="http://www.w3.org/2000/svg" 
-                  class="h-5 w-5 ml-2" 
-                  viewBox="0 0 20 20" 
-                  fill="currentColor"
-                >
-                  <path 
-                    fill-rule="evenodd" 
-                    d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" 
-                    clip-rule="evenodd" 
-                  />
+                <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
               </a>
             </div>
-          ))}
+          </div>
+        ))}
+      </div>
+      
+      <!-- No positions available state -->
+      {positions.length === 0 && (
+        <div class="text-center py-16">
+          <div class="w-24 h-24 bg-accent-violet/10 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-12 h-12 text-accent-violet" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H6a2 2 0 01-2-2V8a2 2 0 012-2V6" />
+            </svg>
+          </div>
+          <h3 class="heading-3 mb-4">No Open Positions</h3>
+          <p class="body-text text-text-secondary mb-8">
+            We're not actively hiring right now, but we're always interested in hearing from talented individuals.
+          </p>
+          <a href="/contact" class="btn-secondary">
+            Send Us Your Portfolio
+          </a>
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- Call to Action -->
+  <section class="section-padding bg-gradient-violet-pink relative overflow-hidden">
+    <!-- Background decoration -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-0 left-0 w-64 h-64 bg-accent-yellow rounded-full blur-3xl animate-float"></div>
+      <div class="absolute bottom-0 right-0 w-96 h-96 bg-text-primary rounded-full blur-3xl animate-float" style="animation-delay: -1s;"></div>
+    </div>
+    
+    <div class="container-custom relative z-10">
+      <div class="text-center max-w-4xl mx-auto">
+        <h2 class="heading-2 mb-6 text-text-primary">Ready to Start Your Journey?</h2>
+        <p class="body-text-lg text-text-primary/90 mb-8">
+          Don't see the perfect role? We're always looking for exceptional talent to join our team.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a href="/contact" class="btn-primary bg-text-primary text-background-primary hover:bg-text-secondary">
+            Get In Touch
+          </a>
+          <a href="/about" class="btn-secondary border-text-primary text-text-primary hover:bg-text-primary hover:text-background-primary">
+            Learn About Us
+          </a>
         </div>
       </div>
     </div>

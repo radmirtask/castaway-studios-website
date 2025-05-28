@@ -1,0 +1,58 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+  image?: string;
+  href?: string;
+  className?: string;
+}
+
+const { title, description, image, href = '#', className = '' } = Astro.props;
+---
+
+<a 
+  href={href}
+  class={`card-game group block relative overflow-hidden ${className}`}
+>
+  <!-- Top decorative elements -->
+  <div class="absolute top-4 right-4 w-2 h-2 bg-text-on-yellow rounded-full"></div>
+  <div class="absolute top-8 left-4 right-4 h-px bg-text-on-yellow/20"></div>
+  
+  <!-- Content -->
+  <div class="relative z-10 pt-12">
+    {image && (
+      <div class="mb-4 overflow-hidden rounded-lg">
+        <img 
+          src={image} 
+          alt={title}
+          class="w-full h-32 object-cover transition-transform duration-300 group-hover:scale-110"
+        />
+      </div>
+    )}
+    
+    <h3 class="text-2xl font-bold text-text-on-yellow mb-2 uppercase tracking-wide">
+      {title}
+    </h3>
+    
+    {description && (
+      <p class="text-text-on-yellow/80 text-sm mb-4 line-clamp-2">
+        {description}
+      </p>
+    )}
+    
+    <!-- Arrow icon -->
+    <div class="flex justify-end">
+      <svg 
+        class="w-6 h-6 text-text-on-yellow transition-transform duration-300 group-hover:translate-x-1" 
+        fill="none" 
+        stroke="currentColor" 
+        viewBox="0 0 24 24"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      </svg>
+    </div>
+  </div>
+  
+  <!-- Hover overlay -->
+  <div class="absolute inset-0 bg-gradient-to-br from-accent-yellow/0 to-accent-yellow/20 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+</a> 

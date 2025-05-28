@@ -1,69 +1,27 @@
----
-import BaseLayout from '../layouts/BaseLayout.astro';
----
-<BaseLayout title="Contact – Castaway Studios">
-  <div class="container mx-auto px-4 py-12 max-w-lg">
-    <h1 class="text-3xl font-bold mb-6 text-center">Get in Touch</h1>
-    <form id="contact-form" class="space-y-4">
-      <input
-        name="name"
-        type="text"
-        placeholder="Your Name"
-        required
-        class="w-full border border-gray-300 rounded px-3 py-2"
-      />
-      <input
-        name="email"
-        type="email"
-        placeholder="Your Email"
-        required
-        class="w-full border border-gray-300 rounded px-3 py-2"
-      />
-      <textarea
-        name="message"
-        rows="5"
-        placeholder="Your Message"
-        required
-        class="w-full border border-gray-300 rounded px-3 py-2"
-      ></textarea>
-      <button
-        type="submit"
-        class="w-full bg-blue-600 text-white rounded px-4 py-2 hover:bg-blue-700 transition"
-      >
-        Send Message
-      </button>
-    </form>
-    <p id="status" class="mt-4 text-center text-sm"></p>
-  </div>
-
-  <script type="module">
-    const form = document.getElementById('contact-form');
-    const status = document.getElementById('status');
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      status.textContent = 'Sending…';
-      const data = {
-        name: form.name.value,
-        email: form.email.value,
-        message: form.message.value,
-      };
-      try {
-        const res = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(data),
-        });
-        const json = await res.json();
-        if (json.success) {
-          status.textContent = 'Message sent! We’ll be in touch soon.';
-          form.reset();
-        } else {
-          status.textContent = 'Oops—something went wrong.';
-        }
-      } catch (err) {
-        console.error(err);
-        status.textContent = 'Error sending message.';
-      }
+<form id="contact-form" class="space-y-4">
+  <!-- name, email, message inputs -->
+  <button type="submit">Send Message</button>
+</form>
+<script type="module">
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('status');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = 'Sending…';
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value,
+    };
+    const res = await fetch('/api/contact', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
     });
-  </script>
-</BaseLayout>
+    const json = await res.json();
+    status.textContent = json.success
+      ? 'Message sent! We’ll be in touch.'
+      : 'Error sending message.';
+    if (json.success) form.reset();
+  });
+</script>

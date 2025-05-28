@@ -33,8 +33,15 @@
 ---
 
 ## Environment Variables
+
+**In root directory create .env file:**
 ```
-Пока нету :)
+CONTACT_EMAIL=example@gmail.com
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=example@gmail.com
+SMTP_PASS=YOUR_EMAIL_PASSWORD
+
 ```
 ---
 

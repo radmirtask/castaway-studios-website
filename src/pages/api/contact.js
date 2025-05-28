@@ -1,12 +1,16 @@
 import nodemailer from 'nodemailer';
 
+// No prerender so it's a true server route
+export const prerender = false;
+
 export async function POST({ request }) {
   try {
     const { name, email, message } = await request.json();
-    // configure a transporter (e.g. Gmail, Sendgrid SMTP, etc.)
-    let transporter = nodemailer.createTransport({
+
+    // Create transporter using SMTP env vars
+    const transporter = nodemailer.createTransport({
       host: process.env.SMTP_HOST,
-      port: +(process.env.SMTP_PORT || 587),
+      port: Number(process.env.SMTP_PORT || 587),
       secure: false,
       auth: {
         user: process.env.SMTP_USER,
@@ -14,6 +18,7 @@ export async function POST({ request }) {
       },
     });
 
+    // Send the email
     await transporter.sendMail({
       from: `"${name}" <${email}>`,
       to: process.env.CONTACT_EMAIL,
@@ -21,15 +26,15 @@ export async function POST({ request }) {
       text: message,
     });
 
-    return new Response(
-      JSON.stringify({ success: true }),
-      { status: 200 }
-    );
+    return new Response(JSON.stringify({ success: true }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
+    });
   } catch (err) {
-    console.error(err);
+    console.error('Contact API error:', err);
     return new Response(
-      JSON.stringify({ error: 'Failed to send message' }),
-      { status: 500 }
+      JSON.stringify({ success: false, error: 'Failed to send message' }),
+      { status: 500, headers: { 'Content-Type': 'application/json' } }
     );
   }
 }

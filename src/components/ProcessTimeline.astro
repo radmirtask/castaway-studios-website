@@ -32,7 +32,7 @@ const { title, subtitle, items, className = '' } = Astro.props;
     <div class="max-w-6xl mx-auto">
       <div class="relative">
         <!-- Animated timeline line -->
-        <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 top-0 w-1 bg-accent-pink/40" style="height: 0;"></div>
+        <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 top-0 w-1 bg-accent-pink/40 z-10" style="height: 0;"></div>
         
         <!-- Timeline items -->
         <div class="space-y-32">
@@ -197,7 +197,7 @@ const { title, subtitle, items, className = '' } = Astro.props;
 <style>
   .timeline-line {
     transition: height 1.2s cubic-bezier(0.16, 1, 0.3, 1);
-    z-index: 1;
+    z-index: 10;
   }
   
   .timeline-item {
@@ -213,6 +213,8 @@ const { title, subtitle, items, className = '' } = Astro.props;
   .timeline-icon {
     transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
     will-change: transform;
+    z-index: 30;
+    position: relative;
   }
   
   .timeline-icon.revealed {
@@ -242,6 +244,7 @@ const { title, subtitle, items, className = '' } = Astro.props;
     .timeline-line {
       left: 3rem;
       transform: translateX(0);
+      z-index: 10;
     }
     
     .timeline-item {
@@ -251,10 +254,13 @@ const { title, subtitle, items, className = '' } = Astro.props;
     .timeline-item .timeline-icon {
       left: 3rem;
       transform: translateX(-50%);
+      z-index: 30;
+      position: relative;
     }
     
     .timeline-item.revealed .timeline-icon {
       transform: translateX(-50%) scale(1) !important;
+      z-index: 30;
     }
     
     .timeline-item .w-1\/2 {

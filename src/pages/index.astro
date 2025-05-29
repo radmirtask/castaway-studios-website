@@ -39,61 +39,76 @@ const timelineItems = [
 
 <Layout title="Castaway Studios - Visions of Tomorrow" description="Creating unforgettable gaming experiences with cutting-edge technology and creative storytelling. Discover our innovative games and join the future of interactive entertainment.">
   <!-- Hero Section with Video Background -->
-  <section class="min-h-screen flex items-center justify-center relative overflow-hidden">
-    <!-- Multi-Video Background with Parallax - Desktop -->
+  <section class="h-screen flex items-center justify-center relative overflow-hidden">
+    <!-- Multi-Video Background - Desktop -->
     <div class="video-background absolute inset-0 z-0">
-      <!-- Desktop Layout: Horizontal video segments -->
-      <div class="hidden md:block">
-        <!-- First video segment (left third) -->
-        <div class="video-segment absolute inset-0" style="clip-path: polygon(0 0, 33% 0, 33% 100%, 0 100%);">
+      <!-- Desktop Layout: 3 videos side by side -->
+      <div class="hidden md:flex h-full">
+        <!-- First video (left third) -->
+        <div class="video-segment flex-1 relative">
           <video 
             autoplay 
             muted 
             loop 
             playsinline
+            preload="auto"
             class="w-full h-full object-cover"
             style="transform: translateZ(0);"
+            onloadstart="console.log('Video 1 loading started')"
+            onloadeddata="console.log('Video 1 loaded')"
+            onerror="console.log('Video 1 error', this.error)"
           >
+            <source src="/videos/gameplay_mob.mp4#t=0" type="video/mp4">
             <source src="/videos/gameplay.mp4#t=0" type="video/mp4">
             Your browser does not support the video tag.
           </video>
+          
+          <!-- Electric Purple vertical separator bar -->
+          <div class="separator-bar absolute top-0 right-0 h-full w-2 z-10" 
+               style="background: linear-gradient(180deg, transparent 0%, #B316D5 20%, #B316D5 80%, transparent 100%); box-shadow: 0 0 20px #B316D5;">
+          </div>
         </div>
 
-        <!-- Electric Purple vertical separator bar -->
-        <div class="separator-bar absolute h-full w-2 z-10" 
-             style="left: 33%; background: linear-gradient(180deg, transparent 0%, #B316D5 20%, #B316D5 80%, transparent 100%); box-shadow: 0 0 20px #B316D5;">
-        </div>
-
-        <!-- Second video segment (middle third) -->
-        <div class="video-segment absolute inset-0" style="clip-path: polygon(33% 0, 66% 0, 66% 100%, 33% 100%);">
+        <!-- Second video (middle third) -->
+        <div class="video-segment flex-1 relative">
           <video 
             autoplay 
             muted 
             loop 
             playsinline
+            preload="auto"
             class="w-full h-full object-cover"
             style="transform: translateZ(0);"
+            onloadstart="console.log('Video 2 loading started')"
+            onloadeddata="console.log('Video 2 loaded')"
+            onerror="console.log('Video 2 error', this.error)"
           >
+            <source src="/videos/gameplay_mob.mp4#t=30" type="video/mp4">
             <source src="/videos/gameplay.mp4#t=30" type="video/mp4">
             Your browser does not support the video tag.
           </video>
+          
+          <!-- Hibiscus Pink vertical separator bar -->
+          <div class="separator-bar absolute top-0 right-0 h-full w-2 z-10" 
+               style="background: linear-gradient(180deg, transparent 0%, #CD2373 20%, #CD2373 80%, transparent 100%); box-shadow: 0 0 20px #CD2373;">
+          </div>
         </div>
 
-        <!-- Hibiscus Pink vertical separator bar -->
-        <div class="separator-bar absolute h-full w-2 z-10" 
-             style="left: 66%; background: linear-gradient(180deg, transparent 0%, #CD2373 20%, #CD2373 80%, transparent 100%); box-shadow: 0 0 20px #CD2373;">
-        </div>
-
-        <!-- Third video segment (right third) -->
-        <div class="video-segment absolute inset-0" style="clip-path: polygon(66% 0, 100% 0, 100% 100%, 66% 100%);">
+        <!-- Third video (right third) -->
+        <div class="video-segment flex-1 relative">
           <video 
             autoplay 
             muted 
             loop 
             playsinline
+            preload="auto"
             class="w-full h-full object-cover"
             style="transform: translateZ(0);"
+            onloadstart="console.log('Video 3 loading started')"
+            onloadeddata="console.log('Video 3 loaded')"
+            onerror="console.log('Video 3 error', this.error)"
           >
+            <source src="/videos/gameplay_mob.mp4#t=60" type="video/mp4">
             <source src="/videos/gameplay.mp4#t=60" type="video/mp4">
             Your browser does not support the video tag.
           </video>
@@ -101,10 +116,10 @@ const timelineItems = [
 
         <!-- Animated vertical accent bars for extra style -->
         <div class="accent-bar absolute h-full w-1 z-20 animate-pulse" 
-             style="left: 32.5%; background: linear-gradient(180deg, #FFEE34 0%, #B316D5 50%, #CD2373 100%); opacity: 0.6;">
+             style="left: calc(33.33% - 1px); background: linear-gradient(180deg, #FFEE34 0%, #B316D5 50%, #CD2373 100%); opacity: 0.6;">
         </div>
         <div class="accent-bar absolute h-full w-1 z-20 animate-pulse" 
-             style="left: 66.5%; background: linear-gradient(180deg, #CD2373 0%, #FFEE34 50%, #B316D5 100%); opacity: 0.6; animation-delay: 0.5s;">
+             style="left: calc(66.66% - 1px); background: linear-gradient(180deg, #CD2373 0%, #FFEE34 50%, #B316D5 100%); opacity: 0.6; animation-delay: 0.5s;">
         </div>
       </div>
 
@@ -116,9 +131,14 @@ const timelineItems = [
             muted 
             loop 
             playsinline
+            preload="auto"
             class="w-full h-full object-cover"
             style="transform: translateZ(0);"
+            onloadstart="console.log('Mobile video loading started')"
+            onloadeddata="console.log('Mobile video loaded')"
+            onerror="console.log('Mobile video error', this.error)"
           >
+            <source src="/videos/gameplay_mob.mp4" type="video/mp4">
             <source src="/videos/gameplay.mp4" type="video/mp4">
             Your browser does not support the video tag.
           </video>
@@ -132,43 +152,41 @@ const timelineItems = [
     <!-- Content Layer -->
     <div class="content-layer container-custom relative z-40">
       <div class="text-center max-w-5xl mx-auto">
-        <!-- Subtitle -->
-        <div class="mb-6">
-          <span class="inline-block bg-accent-yellow text-text-on-yellow px-6 py-2 rounded-full text-sm font-medium uppercase tracking-wider animate-fade-in">
-            Game Development Studio
-          </span>
-        </div>
-        
-        <!-- Main Title -->
-        <h1 class="heading-1 mb-8 text-gradient-violet-pink animate-slide-up">
-          VISIONS OF TOMORROW
+        <!-- Company Title -->
+        <h1 class="text-4xl md:text-7xl font-bold mb-6 animate-fade-in">
+          <span style="color: #B316D5;">CASTAWAY</span>
+          <span class="block" style="color: #F5F5F5;">STUDIOS</span>
         </h1>
         
-        <!-- Yellow accent strip -->
+        <!-- Yellow accent strip separator -->
         <div class="relative mb-8 animate-slide-up">
           <div class="h-1 bg-accent-yellow mx-auto max-w-md rounded-full shadow-glow-yellow"></div>
           <div class="absolute inset-0 h-1 bg-gradient-to-r from-transparent via-accent-yellow to-transparent mx-auto max-w-lg rounded-full blur-sm"></div>
         </div>
         
+        <!-- Main Title -->
+        <h2 class="heading-1 mb-8 text-gradient-violet-pink animate-slide-up">
+          VISIONS OF TOMORROW
+        </h2>
+        
         <!-- Description -->
-        <p class="body-text-lg text-text-primary mb-12 max-w-3xl mx-auto leading-relaxed animate-slide-up">
-          We create unforgettable gaming experiences that push the boundaries of interactive entertainment. From concept to launch, we craft worlds that captivate and inspire.
+        <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto animate-slide-up" style="color: #CD2373;">
+          Crafting immersive gaming experiences that push the boundaries of creativity and innovation.
         </p>
         
         <!-- Action Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center animate-slide-up">
-          <a href="/games" class="btn-primary group">
-            Explore Games
-            <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+        <div class="flex flex-col md:flex-row gap-4 justify-center animate-fade-in">
+          <a href="/games" 
+             class="px-8 py-3 font-semibold rounded-lg hover:scale-105 transition-all duration-300"
+             style="background-color: #FFEE34; color: #1B031B;">
+            View Our Games
           </a>
-          
-          <a href="/about" class="btn-secondary group">
-            Our Story
-            <svg class="w-5 h-5 ml-2 transition-transform duration-300 group-hover:scale-110" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.828 14.828a4 4 0 01-5.656 0M9 10h1m4 0h1m-6 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-            </svg>
+          <a href="/careers" 
+             class="px-8 py-3 border-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+             style="border-color: #CD2373; color: #CD2373;"
+             onmouseenter="this.style.backgroundColor='#CD2373'; this.style.color='#1B031B';"
+             onmouseleave="this.style.backgroundColor='transparent'; this.style.color='#CD2373';">
+            Join the Team
           </a>
         </div>
       </div>
@@ -196,21 +214,21 @@ const timelineItems = [
         <!-- Game 1 - With Video Trailer -->
         <GameCard 
           title="Cosmic Voyager"
-          video="/videos/gameplay.mp4"
+          video="/videos/gameplay_mob.mp4#t=0"
           href="/games/cosmic-voyager"
         />
         
-        <!-- Game 2 - With Image -->
+        <!-- Game 2 - With Different Gameplay Video -->
         <GameCard 
           title="Neon Nights"
-          image="/images/neon-nights.jpg"
+          video="/videos/gameplay_mob.mp4#t=30"
           href="/games/neon-nights"
         />
         
-        <!-- Game 3 - With Image -->
+        <!-- Game 3 - With Another Gameplay Segment -->
         <GameCard 
           title="Mystic Realms"
-          image="/images/mystic-realms.jpg"
+          video="/videos/gameplay_mob.mp4#t=60"
           href="/games/mystic-realms"
         />
       </div>
@@ -287,6 +305,44 @@ const timelineItems = [
 </Layout>
 
 <script>
+  // Force video playback and handle errors
+  document.addEventListener('DOMContentLoaded', function() {
+    const videos = document.querySelectorAll('video');
+    
+    videos.forEach((video, index) => {
+      console.log(`Video ${index + 1} found:`, video);
+      
+      // Try to play the video
+      const playPromise = video.play();
+      
+      if (playPromise !== undefined) {
+        playPromise
+          .then(() => {
+            console.log(`Video ${index + 1} started playing successfully`);
+          })
+          .catch(error => {
+            console.log(`Video ${index + 1} autoplay failed:`, error);
+            
+            // If autoplay fails, try playing on user interaction
+            document.addEventListener('click', function() {
+              video.play().catch(e => console.log(`Manual play failed for video ${index + 1}:`, e));
+            }, { once: true });
+          });
+      }
+      
+      // Add error event listener
+      video.addEventListener('error', function(e) {
+        console.error(`Video ${index + 1} error:`, e);
+        console.error('Video error details:', video.error);
+      });
+      
+      // Add loaded event listener
+      video.addEventListener('loadeddata', function() {
+        console.log(`Video ${index + 1} loaded successfully`);
+      });
+    });
+  });
+
   // Parallax effect for horizontal video segments
   function handleParallax() {
     const scrolled = window.pageYOffset;

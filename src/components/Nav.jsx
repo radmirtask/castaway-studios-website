@@ -1,9 +1,27 @@
 import React, { useState, useEffect } from 'react';
 
 export default function Nav() {
-  const [isOpen, setIsOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
-
+  const [open, setOpen] = useState(false);
+  const [currentPath, setCurrentPath] = useState('');
+  
+  useEffect(() => {
+    // Set initial path
+    setCurrentPath(window.location.pathname);
+    
+    // Listen for navigation changes (for SPA routing)
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+    };
+    
+    // Listen for popstate events (back/forward navigation)
+    window.addEventListener('popstate', handleLocationChange);
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('popstate', handleLocationChange);
+    };
+  }, []);
+  
   const links = [
     { href: '/', label: 'Home' },
     { href: '/games', label: 'Games' },
@@ -12,21 +30,20 @@ export default function Nav() {
     { href: '/contact', label: 'Contact' },
   ];
 
+  // Function to check if a link is active
+  const isActiveLink = (href) => {
+    if (href === '/') {
+      return currentPath === '/';
+    }
+    return currentPath.startsWith(href);
+  };
+
   const socialLinks = [
     { href: 'https://twitter.com', icon: 'twitter', label: 'Twitter' },
     { href: 'https://instagram.com', icon: 'instagram', label: 'Instagram' },
     { href: 'https://linkedin.com', icon: 'linkedin', label: 'LinkedIn' },
     { href: 'https://discord.com', icon: 'discord', label: 'Discord' },
   ];
-
-  // Handle scroll effect
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   const SocialIcon = ({ icon }) => {
     const iconPaths = {
@@ -37,7 +54,12 @@ export default function Nav() {
     };
 
     return (
-      <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+      <svg 
+        className="w-5 h-5" 
+        fill="currentColor" 
+        viewBox="0 0 24 24"
+        xmlns="http://www.w3.org/2000/svg"
+      >
         <path d={iconPaths[icon]} />
       </svg>
     );
@@ -54,6 +76,11 @@ export default function Nav() {
           background-color: #B316D5 !important;
           opacity: 0.1 !important;
         }
+        .nav-link-home.active {
+          color: #B316D5 !important;
+          border-color: #B316D5 !important;
+          background-color: rgba(179, 22, 213, 0.15) !important;
+        }
         
         .nav-link-games:hover {
           color: #CD2373 !important;
@@ -62,6 +89,11 @@ export default function Nav() {
         .nav-link-games:hover .bg-overlay {
           background-color: #CD2373 !important;
           opacity: 0.1 !important;
+        }
+        .nav-link-games.active {
+          color: #CD2373 !important;
+          border-color: #CD2373 !important;
+          background-color: rgba(205, 35, 115, 0.15) !important;
         }
         
         .nav-link-team:hover {
@@ -72,6 +104,11 @@ export default function Nav() {
           background-color: #FFEE34 !important;
           opacity: 0.1 !important;
         }
+        .nav-link-team.active {
+          color: #FFEE34 !important;
+          border-color: #FFEE34 !important;
+          background-color: rgba(255, 238, 52, 0.15) !important;
+        }
         
         .nav-link-careers:hover {
           color: #B316D5 !important;
@@ -81,6 +118,11 @@ export default function Nav() {
           background-color: #B316D5 !important;
           opacity: 0.1 !important;
         }
+        .nav-link-careers.active {
+          color: #B316D5 !important;
+          border-color: #B316D5 !important;
+          background-color: rgba(179, 22, 213, 0.15) !important;
+        }
         
         .nav-link-contact:hover {
           color: #CD2373 !important;
@@ -89,6 +131,11 @@ export default function Nav() {
         .nav-link-contact:hover .bg-overlay {
           background-color: #CD2373 !important;
           opacity: 0.1 !important;
+        }
+        .nav-link-contact.active {
+          color: #CD2373 !important;
+          border-color: #CD2373 !important;
+          background-color: rgba(205, 35, 115, 0.15) !important;
         }
 
         .social-icon-0:hover {
@@ -123,8 +170,16 @@ export default function Nav() {
           background-color: #B316D5 !important;
           color: #1B031B !important;
         }
+        .mobile-nav-link-0.active {
+          background-color: #B316D5 !important;
+          color: #1B031B !important;
+        }
         
         .mobile-nav-link-1:hover {
+          background-color: #CD2373 !important;
+          color: #1B031B !important;
+        }
+        .mobile-nav-link-1.active {
           background-color: #CD2373 !important;
           color: #1B031B !important;
         }
@@ -133,13 +188,25 @@ export default function Nav() {
           background-color: #FFEE34 !important;
           color: #1B031B !important;
         }
+        .mobile-nav-link-2.active {
+          background-color: #FFEE34 !important;
+          color: #1B031B !important;
+        }
         
         .mobile-nav-link-3:hover {
           background-color: #B316D5 !important;
           color: #1B031B !important;
         }
+        .mobile-nav-link-3.active {
+          background-color: #B316D5 !important;
+          color: #1B031B !important;
+        }
         
         .mobile-nav-link-4:hover {
+          background-color: #CD2373 !important;
+          color: #1B031B !important;
+        }
+        .mobile-nav-link-4.active {
           background-color: #CD2373 !important;
           color: #1B031B !important;
         }
@@ -170,118 +237,244 @@ export default function Nav() {
         }
       `}</style>
       
-      <nav className={`fixed w-full z-50 transition-all duration-300 ${
-        isScrolled 
-          ? 'bg-background-primary/95 backdrop-blur-md shadow-lg border-b border-accent-violet/20' 
-          : 'bg-background-primary/80 backdrop-blur-sm'
-      }`}>
-        <div className="container-custom">
-          <div className="flex items-center justify-between h-20">
+      <nav className="fixed w-full backdrop-blur-sm z-50 shadow-lg" style={{ backgroundColor: 'rgba(27, 3, 27, 0.9)' }}>
+        <div className="container mx-auto px-4 py-4">
+          {/* Desktop layout - Three-section grid (1280px+) */}
+          <div className="hidden xl:grid xl:grid-cols-3 items-center">
             
-            {/* Logo */}
-            <div className="flex-shrink-0">
-              <a href="/" className="group flex items-center space-x-3">
+            {/* Left section - Logo (1/3) */}
+            <div className="flex justify-center">
+              <a href="/" className="flex items-center group">
                 <div className="relative">
                   <img 
                     src="/ddAsset 3.svg" 
                     alt="Castaway Studios" 
-                    className="h-10 w-auto transition-all duration-300 group-hover:scale-110"
-                    style={{ filter: 'brightness(0) invert(1)' }}
+                    className="h-12 w-auto transition-all duration-300 group-hover:scale-110"
+                    style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
                   />
-                  <div className="absolute inset-0 bg-accent-violet/20 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
                 </div>
-                {/* <span className="text-xl font-bold text-gradient-violet-pink hidden sm:block">
-                  CASTAWAY STUDIOS
-                </span> */}
               </a>
             </div>
 
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center space-x-8">
-              {links.map((link, index) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={`nav-link-${link.label.toLowerCase()} relative px-4 py-2 rounded-lg transition-all duration-300 group`}
-                >
-                  <span className="relative z-10">{link.label}</span>
-                  <div className="bg-overlay absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </a>
-              ))}
+            {/* Center section - Navigation tabs (1/3) */}
+            <div className="flex justify-center">
+              <div className="flex space-x-2">
+                {links.map(({ href, label }, index) => {
+                  const linkClasses = [
+                    'nav-link-home',
+                    'nav-link-games', 
+                    'nav-link-team',
+                    'nav-link-careers',
+                    'nav-link-contact'
+                  ];
+                  
+                  const isActive = isActiveLink(href);
+                  
+                  return (
+                    <a
+                      key={href}
+                      href={href}
+                      className={`relative px-6 py-3 font-medium transition-all duration-300 rounded-lg border border-transparent ${linkClasses[index]} ${isActive ? 'active' : ''}`}
+                      style={{ color: '#F5F5F5' }}
+                    >
+                      <span className="relative z-10">{label}</span>
+                      <div className="bg-overlay absolute inset-0 rounded-lg opacity-0 transition-all duration-300"></div>
+                    </a>
+                  );
+                })}
+              </div>
             </div>
 
-            {/* Desktop Social Links */}
-            <div className="hidden md:flex items-center space-x-4">
-              {socialLinks.map((social, index) => (
-                <a
-                  key={social.href}
-                  href={social.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={`p-2 rounded-lg transition-all duration-300 hover:scale-110 border-2 border-transparent social-icon-${index}`}
-                  style={{ 
-                    backgroundColor: 'rgba(245, 245, 245, 0.1)',
-                    color: '#F5F5F5'
-                  }}
-                  aria-label={social.label}
-                >
-                  <SocialIcon icon={social.icon} />
-                </a>
-              ))}
-            </div>
-
-            {/* Mobile Menu Button */}
-            <div className="md:hidden">
-              <button
-                onClick={() => setIsOpen(!isOpen)}
-                className="hamburger-btn p-2 rounded-lg bg-accent-violet/10 text-accent-violet transition-all duration-300"
-                aria-label="Toggle menu"
-              >
-                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  {isOpen ? (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                  ) : (
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                  )}
-                </svg>
-              </button>
-            </div>
-          </div>
-
-          {/* Mobile Menu */}
-          <div className={`md:hidden transition-all duration-300 overflow-hidden ${
-            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-          }`}>
-            <div className="py-4 space-y-2 border-t border-accent-violet/20">
-              {links.map((link, index) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  className={`mobile-nav-link-${index} block px-4 py-3 rounded-lg text-text-primary transition-all duration-300`}
-                  onClick={() => setIsOpen(false)}
-                >
-                  {link.label}
-                </a>
-              ))}
-              
-              {/* Mobile Social Links */}
-              <div className="flex justify-center space-x-4 pt-4 border-t border-accent-violet/20">
-                {socialLinks.map((social, index) => (
+            {/* Right section - Social media icons (1/3) */}
+            <div className="flex justify-center">
+              <div className="flex space-x-3">
+                {socialLinks.map(({ href, icon, label }, index) => (
                   <a
-                    key={social.href}
-                    href={social.href}
+                    key={icon}
+                    href={href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`mobile-social-icon-${index} p-3 rounded-lg bg-accent-violet/10 text-accent-violet transition-all duration-300`}
-                    aria-label={social.label}
+                    className={`w-11 h-11 rounded-full flex items-center justify-center transition-all duration-300 hover:scale-110 border-2 border-transparent social-icon-${index}`}
+                    style={{ 
+                      backgroundColor: 'rgba(245, 245, 245, 0.1)',
+                      color: '#F5F5F5'
+                    }}
+                    aria-label={label}
                   >
-                    <SocialIcon icon={social.icon} />
+                    <SocialIcon icon={icon} />
                   </a>
                 ))}
               </div>
             </div>
           </div>
+
+          {/* Large Tablet layout - Logo and navigation (1024px-1279px) */}
+          <div className="hidden lg:flex xl:hidden items-center justify-between">
+            {/* Logo on the left */}
+            <a href="/" className="flex items-center group">
+              <div className="relative">
+                <img 
+                  src="/ddAsset 3.svg" 
+                  alt="Castaway Studios" 
+                  className="h-10 w-auto transition-all duration-300 group-hover:scale-110"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
+                />
+              </div>
+            </a>
+
+            {/* Navigation tabs on the right */}
+            <div className="flex space-x-2">
+              {links.map(({ href, label }, index) => {
+                const linkClasses = [
+                  'nav-link-home',
+                  'nav-link-games', 
+                  'nav-link-team',
+                  'nav-link-careers',
+                  'nav-link-contact'
+                ];
+                
+                const isActive = isActiveLink(href);
+                
+                return (
+                  <a
+                    key={href}
+                    href={href}
+                    className={`relative px-3 py-2 font-medium transition-all duration-300 rounded-lg border border-transparent text-sm ${linkClasses[index]} ${isActive ? 'active' : ''}`}
+                    style={{ color: '#F5F5F5' }}
+                  >
+                    <span className="relative z-10">{label}</span>
+                    <div className="bg-overlay absolute inset-0 rounded-lg opacity-0 transition-all duration-300"></div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Medium Tablet layout - Logo and compact navigation (768px-1023px) */}
+          <div className="hidden md:flex lg:hidden items-center justify-between">
+            {/* Logo on the left */}
+            <a href="/" className="flex items-center group">
+              <div className="relative">
+                <img 
+                  src="/ddAsset 3.svg" 
+                  alt="Castaway Studios" 
+                  className="h-9 w-auto transition-all duration-300 group-hover:scale-110"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
+                />
+              </div>
+            </a>
+
+            {/* Navigation tabs on the right - more compact */}
+            <div className="flex space-x-1">
+              {links.map(({ href, label }, index) => {
+                const linkClasses = [
+                  'nav-link-home',
+                  'nav-link-games', 
+                  'nav-link-team',
+                  'nav-link-careers',
+                  'nav-link-contact'
+                ];
+                
+                const isActive = isActiveLink(href);
+                
+                return (
+                  <a
+                    key={href}
+                    href={href}
+                    className={`relative px-2 py-2 font-medium transition-all duration-300 rounded-lg border border-transparent text-xs ${linkClasses[index]} ${isActive ? 'active' : ''}`}
+                    style={{ color: '#F5F5F5' }}
+                  >
+                    <span className="relative z-10">{label}</span>
+                    <div className="bg-overlay absolute inset-0 rounded-lg opacity-0 transition-all duration-300"></div>
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Mobile layout - Logo and hamburger on same level */}
+          <div className="md:hidden flex items-center justify-between">
+            {/* Logo on the left */}
+            <a href="/" className="flex items-center group">
+              <div className="relative">
+                <img 
+                  src="/ddAsset 3.svg" 
+                  alt="Castaway Studios" 
+                  className="h-10 w-auto transition-all duration-300 group-hover:scale-110"
+                  style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
+                />
+              </div>
+            </a>
+
+            {/* Hamburger menu on the right */}
+            <button
+              className="focus:outline-none p-2 rounded-lg transition-all duration-300 hamburger-btn"
+              style={{ color: '#F5F5F5' }}
+              onClick={() => setOpen(!open)}
+              aria-label="Toggle menu"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-6 w-6"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+                />
+              </svg>
+            </button>
+          </div>
         </div>
+
+        {/* Mobile menu (only when open) */}
+        {open && (
+          <div className="md:hidden shadow-md border-t" style={{ backgroundColor: 'rgba(27, 3, 27, 0.85)', borderColor: '#B316D5' }}>
+            <div className="flex flex-col space-y-2 p-4">
+              {/* Mobile navigation links */}
+              {links.map(({ href, label }, index) => {
+                const isActive = isActiveLink(href);
+                return (
+                  <a
+                    key={href}
+                    href={href}
+                    className={`block px-4 py-4 rounded-lg transition-all duration-300 font-medium text-center text-lg mobile-nav-link-${index} ${isActive ? 'active' : ''}`}
+                    style={{ color: '#F5F5F5' }}
+                  >
+                    {label}
+                  </a>
+                );
+              })}
+              
+              {/* Mobile social links */}
+              <div className="pt-4 border-t" style={{ borderColor: '#B316D5' }}>
+                <p className="text-base mb-4 px-4 text-center font-medium" style={{ color: '#F5F5F5' }}>Follow us</p>
+                <div className="flex justify-center space-x-4">
+                  {socialLinks.map(({ href, icon, label }, index) => (
+                    <a
+                      key={icon}
+                      href={href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 mobile-social-icon-${index}`}
+                      style={{ 
+                        backgroundColor: 'rgba(245, 245, 245, 0.1)',
+                        color: '#F5F5F5'
+                      }}
+                      aria-label={label}
+                    >
+                      <SocialIcon icon={icon} />
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
     </>
   );

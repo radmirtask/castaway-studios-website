@@ -35,19 +35,108 @@ const { title, description = "Creating unforgettable gaming experiences with cut
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content={title} />
     <meta name="twitter:description" content={description} />
+    
+    <!-- Animated Background Styles -->
+    <style>
+      .animated-bg {
+        background: linear-gradient(
+          45deg,
+          #1B031B 0%,
+          #2D0A2D 25%,
+          #B316D5 50%,
+          #CD2373 75%,
+          #1B031B 100%
+        );
+        background-size: 400% 400%;
+        animation: gradient-wave 25s ease infinite;
+        opacity: 0.95;
+      }
+      
+      @keyframes gradient-wave {
+        0% {
+          background-position: 0% 50%;
+          transform: scale(1) rotate(0deg);
+        }
+        25% {
+          background-position: 100% 0%;
+          transform: scale(1.03) rotate(0.5deg);
+        }
+        50% {
+          background-position: 100% 100%;
+          transform: scale(1) rotate(0deg);
+        }
+        75% {
+          background-position: 0% 100%;
+          transform: scale(1.03) rotate(-0.5deg);
+        }
+        100% {
+          background-position: 0% 50%;
+          transform: scale(1) rotate(0deg);
+        }
+      }
+      
+      /* Ensure content is visible above the background */
+      body {
+        position: relative;
+      }
+      
+      /* Add subtle overlay for better text readability */
+      .animated-bg::after {
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgba(27, 3, 27, 0.25);
+        z-index: 1;
+      }
+      
+      /* Ensure all page sections don't block the background */
+      section {
+        position: relative;
+        background: transparent !important;
+      }
+      
+      /* Fix for any section with background colors */
+      .bg-background-primary {
+        background: transparent !important;
+      }
+      
+      .bg-gradient-violet-pink {
+        background: rgba(179, 22, 213, 0.1) !important;
+      }
+      
+      /* Override component backgrounds */
+      .bg-background-primary\/90 {
+        background: rgba(27, 3, 27, 0.2) !important;
+      }
+      
+      /* Make sure cards and other elements are semi-transparent */
+      .card-dark {
+        background: rgba(27, 3, 27, 0.3) !important;
+      }
+      
+      /* Timeline component backgrounds */
+      .timeline-item > div > div {
+        background: rgba(27, 3, 27, 0.3) !important;
+      }
+    </style>
   </head>
   
-  <body class="bg-background-primary text-text-primary min-h-screen antialiased">
+  <body class="bg-background-primary text-text-primary min-h-screen antialiased relative overflow-x-hidden">
+    <!-- Animated Gradient Wave Background -->
+    <div class="animated-bg fixed inset-0 z-0"></div>
+    
     <!-- Navigation -->
-    <Nav client:load />
+    <div class="relative z-50">
+      <Nav client:load />
+    </div>
 
     <!-- Main Content -->
-    <main class="pt-20">
+    <main class="pt-20 relative z-10">
       <slot />
     </main>
 
     <!-- Footer -->
-    <footer class="mt-20 border-t border-accent-violet/20 bg-background-primary">
+    <footer class="mt-20 border-t border-accent-violet/20 bg-transparent relative z-10">
       <div class="container-custom section-padding">
         <!-- Main Footer Content -->
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
@@ -113,20 +202,6 @@ const { title, description = "Creating unforgettable gaming experiences with cut
               <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.174-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.402.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.357-.629-2.746-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24.009 12.017 24.009c6.624 0 11.99-5.367 11.99-11.988C24.007 5.367 18.641.001 12.017.001z"></path>
             </svg>
           </a>
-        </div>
-      </div>
-      
-      <!-- Copyright Bar -->
-      <div class="bg-text-primary text-background-primary py-4">
-        <div class="container-custom">
-          <div class="flex flex-col md:flex-row justify-between items-center text-sm">
-            <p>&copy; {new Date().getFullYear()} Castaway Studios. All rights reserved.</p>
-            <div class="flex space-x-6 mt-2 md:mt-0">
-              <a href="/privacy" class="hover:text-accent-pink transition-colors duration-300">Privacy</a>
-              <a href="/terms" class="hover:text-accent-pink transition-colors duration-300">Terms</a>
-              <a href="/cookies" class="hover:text-accent-pink transition-colors duration-300">Cookies</a>
-            </div>
-          </div>
         </div>
       </div>
     </footer>

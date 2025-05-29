@@ -193,14 +193,26 @@ const timelineItems = [
       </div>
       
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-        {featuredGames.map((game) => (
-          <GameCard 
-            title={game.data.title}
-            description={game.data.description}
-            image={game.data.coverImage}
-            href={`/games/${game.slug}`}
-          />
-        ))}
+        <!-- Game 1 - With Video Trailer -->
+        <GameCard 
+          title="Cosmic Voyager"
+          video="/videos/gameplay.mp4"
+          href="/games/cosmic-voyager"
+        />
+        
+        <!-- Game 2 - With Image -->
+        <GameCard 
+          title="Neon Nights"
+          image="/images/neon-nights.jpg"
+          href="/games/neon-nights"
+        />
+        
+        <!-- Game 3 - With Image -->
+        <GameCard 
+          title="Mystic Realms"
+          image="/images/mystic-realms.jpg"
+          href="/games/mystic-realms"
+        />
       </div>
       
       <div class="text-center">

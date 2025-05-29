@@ -19,8 +19,8 @@ const { title, subtitle, items, className = '' } = Astro.props;
 <section class={`section-padding ${className}`}>
   <div class="container-custom">
     <!-- Header -->
-    <div class="text-center mb-16">
-      <h2 class="heading-2 mb-4">{title}</h2>
+    <div class="text-center mb-20">
+      <h2 class="heading-2 mb-4 text-text-primary">{title}</h2>
       {subtitle && (
         <p class="body-text-lg text-text-secondary max-w-2xl mx-auto">
           {subtitle}
@@ -29,44 +29,269 @@ const { title, subtitle, items, className = '' } = Astro.props;
     </div>
     
     <!-- Timeline -->
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-6xl mx-auto">
       <div class="relative">
-        <!-- Main timeline line -->
-        <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-accent-pink/30"></div>
+        <!-- Animated timeline line -->
+        <div class="timeline-line absolute left-1/2 transform -translate-x-1/2 top-0 w-1 bg-accent-pink/40" style="height: 0;"></div>
         
         <!-- Timeline items -->
-        <div class="space-y-12">
+        <div class="space-y-32">
           {items.map((item, index) => (
-            <div class="timeline-item group">
+            <div class={`timeline-item opacity-0 translate-y-16 group relative ${index % 2 === 0 ? '' : 'timeline-item-right'}`} data-index={index}>
               <!-- Icon circle -->
-              <div class="absolute left-0 top-0 w-16 h-16 rounded-full bg-accent-pink flex items-center justify-center shadow-glow-pink group-hover:shadow-glow-pink group-hover:scale-110 transition-all duration-300">
+              <div class="absolute left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full bg-accent-pink flex items-center justify-center shadow-xl z-20 timeline-icon scale-75">
                 {item.icon ? (
-                  <span class="text-2xl">{item.icon}</span>
+                  <span class="text-3xl">{item.icon}</span>
                 ) : (
-                  <span class="text-text-primary font-bold text-lg">{index + 1}</span>
+                  <span class="text-text-primary font-bold text-xl">{index + 1}</span>
                 )}
               </div>
               
-              <!-- Content -->
-              <div class="ml-24">
-                <div class="bg-background-primary border border-accent-pink/20 rounded-card p-6 group-hover:border-accent-pink/40 group-hover:shadow-card-hover transition-all duration-300">
-                  <div class="flex items-start justify-between mb-3">
-                    <h3 class="heading-4 text-text-primary">{item.title}</h3>
-                    {item.date && (
-                      <span class="caption-text text-accent-pink bg-accent-pink/10 px-3 py-1 rounded-full">
-                        {item.date}
-                      </span>
-                    )}
+              <!-- Content Card - Right side for even indexes -->
+              {index % 2 === 0 && (
+                <div class="w-1/2 ml-auto pl-16">
+                  <div class="bg-background-primary/90 backdrop-blur-sm border border-accent-pink/30 rounded-2xl p-8 group-hover:border-accent-pink/60 group-hover:shadow-2xl group-hover:shadow-accent-pink/20 transition-all duration-500">
+                    <div class="flex items-start justify-between mb-4">
+                      <h3 class="heading-3 text-text-primary font-semibold">{item.title}</h3>
+                      {item.date && (
+                        <span class="caption-text text-accent-pink bg-accent-pink/20 px-4 py-2 rounded-full border border-accent-pink/40 font-medium">
+                          {item.date}
+                        </span>
+                      )}
+                    </div>
+                    <p class="body-text-lg text-text-secondary leading-relaxed">
+                      {item.description}
+                    </p>
                   </div>
-                  <p class="body-text text-text-secondary">
-                    {item.description}
-                  </p>
                 </div>
-              </div>
+              )}
+              
+              <!-- Content Card - Left side for odd indexes -->
+              {index % 2 === 1 && (
+                <div class="w-1/2 pr-16">
+                  <div class="bg-background-primary/90 backdrop-blur-sm border border-accent-pink/30 rounded-2xl p-8 group-hover:border-accent-pink/60 group-hover:shadow-2xl group-hover:shadow-accent-pink/20 transition-all duration-500">
+                    <div class="flex items-start justify-between mb-4">
+                      <h3 class="heading-3 text-text-primary font-semibold text-right">{item.title}</h3>
+                      {item.date && (
+                        <span class="caption-text text-accent-pink bg-accent-pink/20 px-4 py-2 rounded-full border border-accent-pink/40 font-medium order-first">
+                          {item.date}
+                        </span>
+                      )}
+                    </div>
+                    <p class="body-text-lg text-text-secondary leading-relaxed text-right">
+                      {item.description}
+                    </p>
+                  </div>
+                </div>
+              )}
             </div>
           ))}
         </div>
       </div>
     </div>
   </div>
-</section> 
+</section>
+
+<script>
+  // Progressive reveal timeline animation
+  function initTimelineAnimation() {
+    const timelineItems = document.querySelectorAll('.timeline-item');
+    const timelineIcons = document.querySelectorAll('.timeline-icon');
+    const timelineLine = document.querySelector('.timeline-line') as HTMLElement;
+    
+    if (!timelineItems.length || !timelineLine) return;
+    
+    // Show first item initially with smoother timing
+    if (timelineItems[0]) {
+      setTimeout(() => {
+        timelineItems[0].classList.add('revealed');
+        // Start with line to first item
+        timelineLine.style.height = '160px';
+      }, 300);
+      
+      setTimeout(() => {
+        timelineIcons[0]?.classList.add('revealed');
+      }, 500);
+    }
+    
+    let animationFrame: number;
+    
+    function handleScroll() {
+      // Cancel previous animation frame for smoother performance
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+      
+      animationFrame = requestAnimationFrame(() => {
+        let maxRevealedIndex = 0;
+        
+        timelineItems.forEach((item, index) => {
+          const rect = item.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          // More responsive trigger - when item is 70% visible
+          if (rect.top < windowHeight * 0.7 && !item.classList.contains('revealed')) {
+            maxRevealedIndex = Math.max(maxRevealedIndex, index);
+            
+            // Reveal item with smoother staggered timing
+            setTimeout(() => {
+              item.classList.add('revealed');
+            }, index * 100 + 150);
+            
+            // Reveal icon with refined delay
+            setTimeout(() => {
+              timelineIcons[index]?.classList.add('revealed');
+            }, index * 100 + 300);
+          }
+          
+          if (item.classList.contains('revealed')) {
+            maxRevealedIndex = Math.max(maxRevealedIndex, index);
+          }
+        });
+        
+        // Smoother line height calculation with easing
+        const targetHeight = (maxRevealedIndex + 1) * 320 + 80;
+        
+        // Adjust for mobile layout
+        const isMobile = window.innerWidth <= 768;
+        const mobileHeight = isMobile ? (maxRevealedIndex + 1) * 280 + 60 : targetHeight;
+        
+        timelineLine.style.height = `${mobileHeight}px`;
+      });
+    }
+    
+    // Throttled scroll listener for smoother performance
+    let scrollTimeout: ReturnType<typeof setTimeout>;
+    function throttledScroll() {
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+      scrollTimeout = setTimeout(handleScroll, 10);
+    }
+    
+    window.addEventListener('scroll', throttledScroll, { passive: true });
+    
+    // Initial check
+    handleScroll();
+    
+    // Cleanup
+    return () => {
+      window.removeEventListener('scroll', throttledScroll);
+      if (animationFrame) {
+        cancelAnimationFrame(animationFrame);
+      }
+      if (scrollTimeout) {
+        clearTimeout(scrollTimeout);
+      }
+    };
+  }
+  
+  // Initialize when DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initTimelineAnimation);
+  } else {
+    initTimelineAnimation();
+  }
+</script>
+
+<style>
+  .timeline-line {
+    transition: height 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 1;
+  }
+  
+  .timeline-item {
+    transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+  }
+  
+  .timeline-item.revealed {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+  }
+  
+  .timeline-icon {
+    transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+    will-change: transform;
+  }
+  
+  .timeline-icon.revealed {
+    transform: translateX(-50%) scale(1) !important;
+  }
+  
+  /* Smoother hover transitions */
+  .timeline-item .bg-background-primary\/90 {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  
+  /* Ensure no duplicate lines */
+  .timeline-item::before,
+  .timeline-item::after {
+    display: none;
+  }
+  
+  /* Enhanced performance with will-change */
+  .timeline-line,
+  .timeline-item,
+  .timeline-icon {
+    will-change: transform, opacity;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .timeline-line {
+      left: 3rem;
+      transform: translateX(0);
+    }
+    
+    .timeline-item {
+      margin: 0 !important;
+    }
+    
+    .timeline-item .timeline-icon {
+      left: 3rem;
+      transform: translateX(-50%);
+    }
+    
+    .timeline-item.revealed .timeline-icon {
+      transform: translateX(-50%) scale(1) !important;
+    }
+    
+    .timeline-item .w-1\/2 {
+      width: calc(100% - 5rem);
+      margin-left: 5rem;
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .timeline-item .pl-16,
+    .timeline-item .pr-16 {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+    .timeline-item h3,
+    .timeline-item p {
+      text-align: left !important;
+    }
+    
+    .timeline-item .flex {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    
+    .timeline-item .order-first {
+      order: 0;
+      margin-bottom: 0.5rem;
+    }
+  }
+  
+  /* Reduce motion for users who prefer it */
+  @media (prefers-reduced-motion: reduce) {
+    .timeline-line,
+    .timeline-item,
+    .timeline-icon {
+      transition: none !important;
+    }
+  }
+</style> 

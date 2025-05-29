@@ -1,16 +1,14 @@
+# netlify.toml
+
 [build]
-  command   = "npm ci && npm run build"
+  # Install & build your Astro site
+  command = "npm ci && npm run build"
+  publish = "dist"
 
-[context.production.environment]
-# Who receives the contact form messages
-CONTACT_EMAIL=Contact@castaway.studio
-
-# How to send them (your SMTP server)
-# If you’re using your own domain’s mail server, ask your host for these.
-# Example values if your DNS MX is handled by castaway.studio’s mail:
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-
-# The credentials to log into that SMTP server
-SMTP_USER=Contact@castaway.studio
-SMTP_PASS=Castaway@123
+[build.environment]
+  # Environment variables for your contact API
+  CONTACT_EMAIL = "Contact@castaway.studio"
+  SMTP_HOST     = "smtp.castaway.studio"
+  SMTP_PORT     = "587"
+  SMTP_USER     = "Contact@castaway.studio"
+  SMTP_PASS     = "Castaway@123"

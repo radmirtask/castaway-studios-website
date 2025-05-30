@@ -43,7 +43,7 @@ const timelineItems = [
     <!-- Multi-Video Background - Desktop -->
     <div class="video-background absolute inset-0 z-0">
       <!-- Desktop Layout: 3 videos side by side -->
-      <div class="hidden md:flex h-full">
+      <div class="hidden md:flex h-full video-container-3d">
         <!-- First video (left third) -->
         <div class="video-segment flex-1 relative">
           <video 
@@ -70,14 +70,14 @@ const timelineItems = [
         </div>
 
         <!-- Second video (middle third) -->
-        <div class="video-segment flex-1 relative">
+        <div class="video-segment video-segment-middle flex-1 relative">
           <video 
             autoplay 
             muted 
             loop 
             playsinline
             preload="auto"
-            class="w-full h-full object-cover"
+            class="w-full h-full object-cover middle-video-3d"
             style="transform: translateZ(0);"
             onloadstart="console.log('Video 2 loading started')"
             onloadeddata="console.log('Video 2 loaded')"
@@ -87,6 +87,9 @@ const timelineItems = [
             <source src="/videos/gameplay.mp4#t=30" type="video/mp4">
             Your browser does not support the video tag.
           </video>
+          
+          <!-- Enhanced glowing frame for middle video -->
+          <div class="middle-video-frame absolute inset-0 pointer-events-none z-20"></div>
           
           <!-- Hibiscus Pink vertical separator bar -->
           <div class="separator-bar absolute top-0 right-0 h-full w-2 z-10" 
@@ -152,11 +155,15 @@ const timelineItems = [
     <!-- Content Layer -->
     <div class="content-layer container-custom relative z-40">
       <div class="text-center max-w-5xl mx-auto">
-        <!-- Company Title -->
-        <h1 class="text-4xl md:text-7xl font-bold mb-6 animate-fade-in">
-          <span style="color: #B316D5;">CASTAWAY</span>
-          <span class="block" style="color: #F5F5F5;">STUDIOS</span>
-        </h1>
+        <!-- Company Logo -->
+        <div class="mb-8 animate-fade-in">
+          <img 
+            src="/ddAsset 3.svg" 
+            alt="Castaway Studios" 
+            class="h-20 md:h-32 w-auto mx-auto transition-all duration-300 hover:scale-110"
+            style="filter: brightness(0) saturate(100%) invert(100%);"
+          />
+        </div>
         
         <!-- Yellow accent strip separator -->
         <div class="relative mb-8 animate-slide-up">
@@ -165,24 +172,24 @@ const timelineItems = [
         </div>
         
         <!-- Main Title -->
-        <h2 class="heading-1 mb-8 text-gradient-violet-pink animate-slide-up">
+        <h2 class="heading-1 mb-8 text-gradient-violet-pink animate-slide-up hero-title-3d">
           VISIONS OF TOMORROW
         </h2>
         
         <!-- Description -->
-        <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto animate-slide-up" style="color: #CD2373;">
+        <p class="text-xl md:text-2xl mb-12 max-w-2xl mx-auto animate-slide-up hero-description-3d" style="color: #CD2373;">
           Crafting immersive gaming experiences that push the boundaries of creativity and innovation.
         </p>
         
         <!-- Action Buttons -->
         <div class="flex flex-col md:flex-row gap-4 justify-center animate-fade-in">
           <a href="/games" 
-             class="px-8 py-3 font-semibold rounded-lg hover:scale-105 transition-all duration-300"
+             class="px-8 py-3 font-semibold rounded-lg hover:scale-105 transition-all duration-300 hero-button-3d"
              style="background-color: #FFEE34; color: #1B031B;">
             View Our Games
           </a>
           <a href="/careers" 
-             class="px-8 py-3 border-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105"
+             class="px-8 py-3 border-2 font-semibold rounded-lg transition-all duration-300 hover:scale-105 hero-button-3d-outline"
              style="border-color: #CD2373; color: #CD2373;"
              onmouseenter="this.style.backgroundColor='#CD2373'; this.style.color='#1B031B';"
              onmouseleave="this.style.backgroundColor='transparent'; this.style.color='#CD2373';">
@@ -254,12 +261,6 @@ const timelineItems = [
 
   <!-- Call to Action Section -->
   <section class="section-padding bg-gradient-violet-pink relative overflow-hidden">
-    <!-- Background decoration -->
-    <div class="absolute inset-0 opacity-10">
-      <div class="absolute top-0 left-0 w-64 h-64 bg-accent-yellow rounded-full blur-3xl animate-float"></div>
-      <div class="absolute bottom-0 right-0 w-96 h-96 bg-text-primary rounded-full blur-3xl animate-float" style="animation-delay: -1s;"></div>
-    </div>
-    
     <div class="container-custom relative z-10">
       <div class="text-center max-w-4xl mx-auto">
         <h2 class="heading-2 mb-6 text-text-primary">Ready to Create Something Amazing?</h2>
@@ -346,35 +347,11 @@ const timelineItems = [
   // Parallax effect for horizontal video segments
   function handleParallax() {
     const scrolled = window.pageYOffset;
-    const videoSegments = document.querySelectorAll('.video-segment') as NodeListOf<HTMLElement>;
-    const separatorBars = document.querySelectorAll('.separator-bar') as NodeListOf<HTMLElement>;
-    const accentBars = document.querySelectorAll('.accent-bar') as NodeListOf<HTMLElement>;
     const contentLayer = document.querySelector('.content-layer') as HTMLElement;
     
-    if (videoSegments.length > 0 && contentLayer) {
-      // Different parallax speeds for each video segment
-      videoSegments.forEach((segment, index) => {
-        const speed = 0.2 + (index * 0.1); // Different speeds: 0.2, 0.3, 0.4
-        const videoSpeed = scrolled * speed;
-        segment.style.transform = `translateY(${videoSpeed}px)`;
-      });
-
-      // Vertical separator bars move at different speed
-      separatorBars.forEach((bar, index) => {
-        const speed = 0.15 + (index * 0.05);
-        const barSpeed = scrolled * speed;
-        bar.style.transform = `translateY(${barSpeed}px)`;
-      });
-
-      // Vertical accent bars with slight movement
-      accentBars.forEach((bar, index) => {
-        const speed = 0.1 + (index * 0.02);
-        const accentSpeed = scrolled * speed;
-        bar.style.transform = `translateY(${accentSpeed}px)`;
-      });
-      
-      // Content moves at normal speed but with slight offset for depth
-      const contentSpeed = scrolled * 0.1;
+    // Only apply parallax to the content layer (text) - videos stay static
+    if (contentLayer) {
+      const contentSpeed = scrolled * 0.4;
       contentLayer.style.transform = `translateY(${-contentSpeed}px)`;
     }
   }
@@ -414,17 +391,91 @@ const timelineItems = [
     opacity: 0;
   }
 
+  /* Hero 3D Text Effects */
+  .hero-title-3d {
+    text-shadow: 
+      0 1px 0 rgba(179, 22, 213, 0.8),
+      0 2px 0 rgba(179, 22, 213, 0.7),
+      0 3px 0 rgba(179, 22, 213, 0.6),
+      0 4px 0 rgba(179, 22, 213, 0.5),
+      0 5px 0 rgba(179, 22, 213, 0.4),
+      0 6px 0 rgba(179, 22, 213, 0.3),
+      0 7px 0 rgba(179, 22, 213, 0.2),
+      0 8px 0 rgba(179, 22, 213, 0.1),
+      0 12px 20px rgba(0, 0, 0, 0.4),
+      0 16px 30px rgba(0, 0, 0, 0.3);
+    transform: perspective(1000px) rotateX(5deg);
+    letter-spacing: 0.1em;
+    filter: drop-shadow(0 0 20px rgba(179, 22, 213, 0.3));
+  }
+
+  .hero-description-3d {
+    text-shadow: 
+      0 1px 0 rgba(205, 35, 115, 0.6),
+      0 2px 0 rgba(205, 35, 115, 0.5),
+      0 3px 0 rgba(205, 35, 115, 0.4),
+      0 4px 0 rgba(205, 35, 115, 0.3),
+      0 6px 15px rgba(0, 0, 0, 0.3),
+      0 8px 25px rgba(0, 0, 0, 0.2);
+    transform: perspective(800px) rotateX(3deg);
+    letter-spacing: 0.05em;
+    filter: drop-shadow(0 0 15px rgba(205, 35, 115, 0.2));
+  }
+
+  .hero-button-3d {
+    text-shadow: 
+      0 1px 0 rgba(27, 3, 27, 0.8),
+      0 2px 0 rgba(27, 3, 27, 0.6),
+      0 3px 0 rgba(27, 3, 27, 0.4),
+      0 4px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+      0 4px 0 rgba(255, 238, 52, 0.8),
+      0 8px 15px rgba(0, 0, 0, 0.3),
+      0 12px 25px rgba(0, 0, 0, 0.2);
+    transform: perspective(500px) rotateX(2deg);
+    letter-spacing: 0.03em;
+  }
+
+  .hero-button-3d:hover {
+    transform: perspective(500px) rotateX(2deg) translateY(-2px);
+    box-shadow: 
+      0 6px 0 rgba(255, 238, 52, 0.8),
+      0 12px 20px rgba(0, 0, 0, 0.4),
+      0 16px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .hero-button-3d-outline {
+    text-shadow: 
+      0 1px 0 rgba(205, 35, 115, 0.6),
+      0 2px 0 rgba(205, 35, 115, 0.4),
+      0 3px 8px rgba(0, 0, 0, 0.3);
+    box-shadow: 
+      0 4px 0 rgba(205, 35, 115, 0.6),
+      0 8px 15px rgba(0, 0, 0, 0.3),
+      0 12px 25px rgba(0, 0, 0, 0.2);
+    transform: perspective(500px) rotateX(2deg);
+    letter-spacing: 0.03em;
+  }
+
+  .hero-button-3d-outline:hover {
+    transform: perspective(500px) rotateX(2deg) translateY(-2px);
+    box-shadow: 
+      0 6px 0 rgba(205, 35, 115, 0.8),
+      0 12px 20px rgba(0, 0, 0, 0.4),
+      0 16px 30px rgba(0, 0, 0, 0.3);
+  }
+
   /* Ensure video segments cover their areas */
   .video-segment {
-    will-change: transform;
+    /* Static positioning - no movement effects */
   }
   
   .separator-bar {
-    will-change: transform;
+    /* Static positioning - no movement effects */
   }
 
   .accent-bar {
-    will-change: transform;
+    /* Static positioning - no movement effects */
   }
   
   .content-layer {
@@ -445,5 +496,131 @@ const timelineItems = [
 
   .animate-pulse {
     animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  /* 3D Effect for Middle Video */
+  .video-container-3d {
+    perspective: 1200px;
+    perspective-origin: center center;
+    transform-style: preserve-3d;
+  }
+
+  .video-segment-middle {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    z-index: 30;
+  }
+
+  .middle-video-3d {
+    transform: perspective(1000px) rotateY(0deg) translateZ(50px) scale(1.05);
+    box-shadow: 
+      0 25px 50px rgba(0, 0, 0, 0.6),
+      0 15px 30px rgba(179, 22, 213, 0.3),
+      0 10px 20px rgba(205, 35, 115, 0.2),
+      inset 0 0 0 2px rgba(255, 238, 52, 0.1);
+    border-radius: 8px;
+    transition: all 0.5s ease;
+    filter: 
+      brightness(1.1) 
+      contrast(1.1) 
+      saturate(1.1)
+      drop-shadow(0 0 30px rgba(179, 22, 213, 0.4));
+  }
+
+  .middle-video-3d:hover {
+    transform: perspective(1000px) rotateY(2deg) translateZ(70px) scale(1.08);
+    box-shadow: 
+      0 35px 70px rgba(0, 0, 0, 0.8),
+      0 20px 40px rgba(179, 22, 213, 0.5),
+      0 15px 30px rgba(205, 35, 115, 0.3),
+      inset 0 0 0 3px rgba(255, 238, 52, 0.2);
+    filter: 
+      brightness(1.2) 
+      contrast(1.15) 
+      saturate(1.2)
+      drop-shadow(0 0 40px rgba(179, 22, 213, 0.6));
+  }
+
+  .middle-video-frame {
+    background: linear-gradient(45deg, 
+      rgba(179, 22, 213, 0.3) 0%, 
+      rgba(205, 35, 115, 0.3) 25%, 
+      rgba(255, 238, 52, 0.2) 50%, 
+      rgba(205, 35, 115, 0.3) 75%, 
+      rgba(179, 22, 213, 0.3) 100%);
+    background-size: 400% 400%;
+    animation: gradientFrameFlow 4s ease-in-out infinite;
+    border-radius: 8px;
+    box-shadow: 
+      inset 0 0 30px rgba(179, 22, 213, 0.3),
+      inset 0 0 20px rgba(205, 35, 115, 0.2),
+      0 0 50px rgba(179, 22, 213, 0.3);
+  }
+
+  @keyframes gradientFrameFlow {
+    0% {
+      background-position: 0% 50%;
+      box-shadow: 
+        inset 0 0 30px rgba(179, 22, 213, 0.3),
+        inset 0 0 20px rgba(205, 35, 115, 0.2),
+        0 0 50px rgba(179, 22, 213, 0.3);
+    }
+    25% {
+      background-position: 100% 0%;
+      box-shadow: 
+        inset 0 0 30px rgba(205, 35, 115, 0.4),
+        inset 0 0 20px rgba(255, 238, 52, 0.2),
+        0 0 60px rgba(205, 35, 115, 0.4);
+    }
+    50% {
+      background-position: 100% 100%;
+      box-shadow: 
+        inset 0 0 30px rgba(255, 238, 52, 0.3),
+        inset 0 0 20px rgba(179, 22, 213, 0.2),
+        0 0 50px rgba(255, 238, 52, 0.3);
+    }
+    75% {
+      background-position: 0% 100%;
+      box-shadow: 
+        inset 0 0 30px rgba(205, 35, 115, 0.4),
+        inset 0 0 20px rgba(179, 22, 213, 0.2),
+        0 0 60px rgba(205, 35, 115, 0.4);
+    }
+    100% {
+      background-position: 0% 50%;
+      box-shadow: 
+        inset 0 0 30px rgba(179, 22, 213, 0.3),
+        inset 0 0 20px rgba(205, 35, 115, 0.2),
+        0 0 50px rgba(179, 22, 213, 0.3);
+    }
+  }
+
+  /* Adjust other video segments to be slightly receded */
+  .video-segment:not(.video-segment-middle) {
+    transform: translateZ(-10px);
+    filter: brightness(0.9) contrast(0.95);
+    transition: all 0.3s ease;
+  }
+
+  .video-segment:not(.video-segment-middle):hover {
+    transform: translateZ(0px);
+    filter: brightness(1) contrast(1);
+  }
+
+  /* Ensure middle video maintains higher z-index */
+  .video-segment-middle {
+    position: relative;
+    z-index: 30;
+  }
+
+  /* Responsive adjustments for 3D effect */
+  @media (max-width: 768px) {
+    .middle-video-3d {
+      transform: perspective(800px) rotateY(0deg) translateZ(20px) scale(1.02);
+    }
+    
+    .middle-video-3d:hover {
+      transform: perspective(800px) rotateY(1deg) translateZ(30px) scale(1.04);
+    }
   }
 </style>

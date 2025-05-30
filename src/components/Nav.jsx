@@ -308,92 +308,8 @@ export default function Nav() {
             </div>
           </div>
 
-          {/* Large Tablet layout - Logo and navigation (1024px-1279px) */}
-          <div className="hidden lg:flex xl:hidden items-center justify-between">
-            {/* Logo on the left */}
-            <a href="/" className="flex items-center group">
-              <div className="relative">
-                <img 
-                  src="/ddAsset 3.svg" 
-                  alt="Castaway Studios" 
-                  className="h-10 w-auto transition-all duration-300 group-hover:scale-110"
-                  style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
-                />
-              </div>
-            </a>
-
-            {/* Navigation tabs on the right */}
-            <div className="flex space-x-2">
-              {links.map(({ href, label }, index) => {
-                const linkClasses = [
-                  'nav-link-home',
-                  'nav-link-games', 
-                  'nav-link-team',
-                  'nav-link-careers',
-                  'nav-link-contact'
-                ];
-                
-                const isActive = isActiveLink(href);
-                
-                return (
-                  <a
-                    key={href}
-                    href={href}
-                    className={`relative px-3 py-2 font-medium transition-all duration-300 rounded-lg border border-transparent text-sm ${linkClasses[index]} ${isActive ? 'active' : ''}`}
-                    style={{ color: '#F5F5F5' }}
-                  >
-                    <span className="relative z-10">{label}</span>
-                    <div className="bg-overlay absolute inset-0 rounded-lg opacity-0 transition-all duration-300"></div>
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Medium Tablet layout - Logo and compact navigation (768px-1023px) */}
-          <div className="hidden md:flex lg:hidden items-center justify-between">
-            {/* Logo on the left */}
-            <a href="/" className="flex items-center group">
-              <div className="relative">
-                <img 
-                  src="/ddAsset 3.svg" 
-                  alt="Castaway Studios" 
-                  className="h-9 w-auto transition-all duration-300 group-hover:scale-110"
-                  style={{ filter: 'brightness(0) saturate(100%) invert(100%)' }}
-                />
-              </div>
-            </a>
-
-            {/* Navigation tabs on the right - more compact */}
-            <div className="flex space-x-1">
-              {links.map(({ href, label }, index) => {
-                const linkClasses = [
-                  'nav-link-home',
-                  'nav-link-games', 
-                  'nav-link-team',
-                  'nav-link-careers',
-                  'nav-link-contact'
-                ];
-                
-                const isActive = isActiveLink(href);
-                
-                return (
-                  <a
-                    key={href}
-                    href={href}
-                    className={`relative px-2 py-2 font-medium transition-all duration-300 rounded-lg border border-transparent text-xs ${linkClasses[index]} ${isActive ? 'active' : ''}`}
-                    style={{ color: '#F5F5F5' }}
-                  >
-                    <span className="relative z-10">{label}</span>
-                    <div className="bg-overlay absolute inset-0 rounded-lg opacity-0 transition-all duration-300"></div>
-                  </a>
-                );
-              })}
-            </div>
-          </div>
-
-          {/* Mobile layout - Logo and hamburger on same level */}
-          <div className="md:hidden flex items-center justify-between">
+          {/* Mobile/Tablet layout - Logo and hamburger menu (below 1280px) */}
+          <div className="xl:hidden flex items-center justify-between">
             {/* Logo on the left */}
             <a href="/" className="flex items-center group">
               <div className="relative">
@@ -433,7 +349,7 @@ export default function Nav() {
 
         {/* Mobile menu (only when open) */}
         {open && (
-          <div className="md:hidden shadow-md border-t" style={{ backgroundColor: 'rgba(27, 3, 27, 0.85)', borderColor: '#B316D5' }}>
+          <div className="xl:hidden shadow-md border-t" style={{ backgroundColor: 'rgba(27, 3, 27, 0.85)', borderColor: '#B316D5' }}>
             <div className="flex flex-col space-y-2 p-4">
               {/* Mobile navigation links */}
               {links.map(({ href, label }, index) => {

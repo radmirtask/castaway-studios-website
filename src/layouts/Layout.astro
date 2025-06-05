@@ -1,0 +1,16 @@
+---
+import '../styles/global.css';
+const { title = 'Castaway Studios' } = Astro.props;
+---
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>{title}</title>
+    <link rel="icon" href="/favicon.svg" />
+  </head>
+  <body class="antialiased bg-white text-black">
+    <slot />
+  </body>
+</html>

@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import Nav from '../components/Nav.jsx';
+import Footer from '../components/Footer.jsx';
 const { title = 'Castaway Studios' } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -10,7 +12,9 @@ const { title = 'Castaway Studios' } = Astro.props;
     <title>{title}</title>
     <link rel="icon" href="/favicon.svg" />
   </head>
-  <body class="antialiased bg-white text-black">
+  <body class="antialiased bg-violet-500 text-white">
+    <Nav />
     <slot />
+    <Footer />
   </body>
 </html>

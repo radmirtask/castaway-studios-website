@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html, body {
+    background: #CF31ED;
+  }
+  body {
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+  
+  /* Custom font for navigation */
+  .font-bahnschrift {
+    font-family: 'Bahnschrift', system-ui, sans-serif;
+  }
+}

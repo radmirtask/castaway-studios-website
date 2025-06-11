@@ -8,6 +8,11 @@ import game2Src from '../../../public/home/games/game2.png';
 import game3Src from '../../../public/home/games/game3.png';
 import arrowSrc from '../../../public/home/games/arrow.png';
 import rectangleSrc from '../../../public/home/games/rectangle below arrow.png';
+import arrowsBgSrc from '../../../public/home/statsAbout/arrows.jpg';
+import stat1Src from '../../../public/home/statsAbout/1. Active Projects.png';
+import stat2Src from '../../../public/home/statsAbout/2. Years Experience.png';
+import stat3Src from '../../../public/home/statsAbout/3. Team Members.png';
+import aboutBgSrc from '../../../public/home/who/BG.png';
 import './home.css';
 ---
 
@@ -49,7 +54,7 @@ import './home.css';
             <h3 class="game-card__title">VISIONS OF TOMORROW</h3>
           </div>
           
-          <div class="game-card"> 
+          <div class="game-card">
             <img src={game2Src.src} alt="Dynozaur Eater" class="game-card__image" draggable="false"/>
             <h3 class="game-card__title">DYNOZAUR EATER</h3>
           </div>
@@ -70,14 +75,45 @@ import './home.css';
       </div>
     </section>
     
+    <!-- Stats About Section -->
+    <section class="stats-about">
+      <div class="stats-about__bg"></div>
+      <div class="stats-about__container">
+        <div class="stats-about__items">
+          <div class="stats-about__item">
+            <div class="stats-about__content">
+              <span class="stats-about__number">10+</span>
+              <span class="stats-about__label">ACTIVE PROJECTS</span>
+            </div>
+          </div>
+          <div class="stats-about__item">
+            <div class="stats-about__content">
+              <span class="stats-about__number">10+</span>
+              <span class="stats-about__label">YEARS EXPERIENCE</span>
+            </div>
+          </div>
+          <div class="stats-about__item">
+            <div class="stats-about__content">
+              <span class="stats-about__number">10+</span>
+              <span class="stats-about__label">TEAM MEMBERS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
     <!-- Who Are We Section -->
     <section class="about">
-      <h2 class="section-title">Who Are We?</h2>
-      <p class="about__description">
-        <!-- Content from Figma would go here -->
-        A studio dedicated to creating fun, engaging games with a pirate twist.
-      </p>
-      <!-- Additional content based on Figma design -->
+      <div class="about__bg" style={`background-image: url(${aboutBgSrc.src});`}></div>
+      <div class="about__container">
+        <div class="about__content">
+          <h2 class="about__title">WHO ARE WE?</h2>
+          <div class="about__text">
+            <p>Castaway Studiosooned on the island of game development and loving every minute of it. We craft games with attitude, humor, and a healthy disregard for the rules. Whether you're here for epic adventures, questionable jokes, or just to see what happens when you mix rum with code, you're in the right place.</p>
+            <p class="about__highlight">We don't just make games—we throw a party on every screen.</p>
+          </div>
+        </div>
+      </div>
     </section>
     
     <!-- Development Path Section -->

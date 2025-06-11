@@ -1,0 +1,8 @@
+[build]
+  command = "npm run build"      # or "yarn build"
+  publish = "dist"               # Astro’s default output dir
+
+[dev]
+  # (optional) if you want `netlify dev` locally
+  command = "npm run dev"
+  port = 3000

@@ -15,5 +15,8 @@
     "astro": "^5.9.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "@astrojs/netlify": "^6.3.4"
   }
 }

@@ -1,0 +1,101 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import captainSrc from '../../../public/home/hero/Captain_Bootycall.png';
+import bgSrc from '../../../public/home/hero/BG.png';
+import ctaSrc from '../../../public/home/hero/Business_button.png';
+import './home.css';
+---
+
+<Layout title="Home — Castaway Studios">
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <img 
+        src={bgSrc.src} 
+        alt="background effect" 
+        class="hero__boom-image" 
+        draggable="false" 
+      />
+      <img 
+        src={ctaSrc.src} 
+        alt="light effect" 
+        class="hero__redlight-image" 
+        draggable="false" 
+      />
+      <div class="hero__content">
+        <h1 class="hero__title">
+          Crafting Fun,<br />Pirate Style.
+        </h1>
+        <div class="hero__emoji-button-container">
+          <span class="hero__emoji">🦜🏴‍☠️</span>
+          <div class="hero__button-wrapper">
+            <a href="#contact" class="hero__button">
+              <span class="hero__button-text">TALK BUSINESS</span>
+            </a>
+          </div>
+        </div>
+        <p class="hero__description">
+          Our games are built for grown-ups who refuse to grow up—packed with sharp wit, bold worlds, and just the right amount of trouble.
+        </p>
+      </div>
+      <img 
+        src={captainSrc.src} 
+        alt="Captain Bootycall character" 
+        class="hero__pirate-image" 
+        draggable="false" 
+      />
+    </section>
+    
+    <!-- Game Collection Section -->
+    <section class="game-collection">
+      <h2 class="section-title">Our Collection</h2>
+      <div class="game-grid">
+        <!-- Game cards would go here based on Figma design -->
+        <!-- Placeholder for game cards -->
+        <div class="game-card">Game 1</div>
+        <div class="game-card">Game 2</div>
+        <div class="game-card">Game 3</div>
+      </div>
+    </section>
+    
+    <!-- Who Are We Section -->
+    <section class="about">
+      <h2 class="section-title">Who Are We?</h2>
+      <p class="about__description">
+        <!-- Content from Figma would go here -->
+        A studio dedicated to creating fun, engaging games with a pirate twist.
+      </p>
+      <!-- Additional content based on Figma design -->
+    </section>
+    
+    <!-- Development Path Section -->
+    <section class="dev-path">
+      <h2 class="section-title">Our Development Path</h2>
+      <div class="timeline">
+        <!-- Timeline items from Figma -->
+        <div class="timeline-item">
+          <h3>Concept & Design</h3>
+          <!-- Content from Figma -->
+        </div>
+        <div class="timeline-item">
+          <h3>Development</h3>
+          <!-- Content from Figma -->
+        </div>
+        <div class="timeline-item">
+          <h3>Testing & Polish</h3>
+          <!-- Content from Figma -->
+        </div>
+        <div class="timeline-item">
+          <h3>Launch</h3>
+          <!-- Content from Figma -->
+        </div>
+      </div>
+    </section>
+    
+    <!-- Ready to Create Section -->
+    <section class="cta">
+      <h2 class="section-title">Ready to Create Something?</h2>
+      <a href="#contact" class="cta-button">Get in Touch</a>
+    </section>
+  </main>
+</Layout> 

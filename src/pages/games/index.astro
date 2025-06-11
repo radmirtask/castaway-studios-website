@@ -1,68 +1,80 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import './games.css';
+
+const games = [
+  {
+    id: 'elarion',
+    title: 'ELARION',
+    subtitle: 'Beat zombies and escape Dungeons',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    tags: ['Action RPG', 'Skill Tree', 'Procedural Maps'],
+    appStoreUrl: null
+  },
+  {
+    id: 'arenaquest',
+    title: 'ARENA QUEST',
+    subtitle: 'Defeat Enemis, Endless Action',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    tags: ['Action RPG', 'Skill Tree', 'Procedural Maps'],
+    appStoreUrl: 'https://apps.apple.com/tr/app/realms-of-shadow-arena-quest/id6463578863'
+  },
+  {
+    id: 'puppycollector',
+    title: 'PUPPY COLLECTOR',
+    subtitle: 'Collect Cute Puppies',
+    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
+    tags: ['Action RPG', 'Skill Tree', 'Procedural Maps'],
+    appStoreUrl: 'https://apps.apple.com/tr/app/puppy-collector/id6503171564'
+  }
+];
 ---
 
 <Layout title="Games — Castaway Studios">
   <main class="games-page">
-    <section class="hero-games">
-      <div class="hero-games__content">
-        <h1 class="hero-games__title">Our Game Collection</h1>
-        <p class="hero-games__description">
-          Dive into our unique worlds filled with adventure, humor, and unforgettable characters.
-        </p>
+    <section class="hero">
+      <div class="hero__content">
+        <h1 class="hero__title">FUTURE OF<br>MOBILE GAMES</h1>
       </div>
     </section>
 
-    <section class="games-grid">
-      <div class="games-grid__container">
-        <div class="game-item featured">
-          <div class="game-item__image">
-            <div class="game-placeholder">Game Image</div>
+    <section class="games-section">
+      <div class="games-container">
+        {games.map((game) => (
+          <div class="game-card">
+            <div class="game-card__bg-image" style={`background-image: url('/games/${game.id}/BG.png')`}></div>
+            <div class="game-card__phone">
+              <img src={`/games/${game.id}/GameScreen.png`} alt={`${game.title} Screenshot`} class="game-card__phone-image" />
+            </div>
+            <div class="game-card__content">
+              <h2 class="game-card__title">{game.title}</h2>
+              <h3 class="game-card__subtitle">{game.subtitle}</h3>
+              <p class="game-card__description">{game.description}</p>
+              <div class="game-card__tags">
+                {game.tags.map((tag) => (
+                  <span class="game-card__tag">{tag}</span>
+                ))}
+              </div>
+                             <div class="game-card__button">
+                 {game.appStoreUrl ? (
+                   <a href={game.appStoreUrl} target="_blank" rel="noopener noreferrer">
+                     <img src="/games/app_store.png" alt="Download on App Store" class="app-store-button" />
+                   </a>
+                 ) : (
+                   <img src="/games/app_store.png" alt="Coming Soon" class="app-store-button" />
+                 )}
+               </div>
+            </div>
           </div>
-          <div class="game-item__content">
-            <h3 class="game-item__title">Visions of Tomorrow</h3>
-            <p class="game-item__description">
-              A futuristic adventure that explores the boundaries of imagination and reality.
-            </p>
-            <div class="game-item__status">Coming Soon</div>
-          </div>
-        </div>
-
-        <div class="game-item">
-          <div class="game-item__image">
-            <div class="game-placeholder">Game Image</div>
-          </div>
-          <div class="game-item__content">
-            <h3 class="game-item__title">Dynozaur Eater</h3>
-            <p class="game-item__description">
-              An epic journey through prehistoric worlds with modern twists.
-            </p>
-            <div class="game-item__status">In Development</div>
-          </div>
-        </div>
-
-        <div class="game-item">
-          <div class="game-item__image">
-            <div class="game-placeholder">Game Image</div>
-          </div>
-          <div class="game-item__content">
-            <h3 class="game-item__title">Master of Shitting</h3>
-            <p class="game-item__description">
-              A hilariously irreverent adventure that doesn't take itself too seriously.
-            </p>
-            <div class="game-item__status">Concept Phase</div>
-          </div>
-        </div>
+        ))}
       </div>
     </section>
 
-    <section class="development-philosophy">
-      <div class="philosophy__container">
-        <h2 class="philosophy__title">Our Game Development Philosophy</h2>
-        <p class="philosophy__description">
-          We believe in creating games that challenge conventions, embrace humor, and deliver experiences that stay with players long after they've put down the controller.
-        </p>
+    <section class="cta-banner">
+      <div class="cta-banner__bg-image"></div>
+      <div class="cta-banner__content">
+        <h2 class="cta-banner__title">READY TO CREATE<br>SOMETHING?</h2>
+        <a href="/careers" class="cta-banner__button">View Open Positions</a>
       </div>
     </section>
   </main>

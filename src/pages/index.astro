@@ -1,8 +1,154 @@
 ---
-// Root index.astro - redirects to home page
+import Layout from '../layouts/Layout.astro';
+import captainSrc from '../../public/home/hero/Captain_Bootycall.png';
+import bgSrc from '../../public/home/hero/BG.png';
+import ctaSrc from '../../public/home/hero/Business_button.png';
+import game1Src from '../../public/home/games/game1.png';
+import game2Src from '../../public/home/games/game2.png';
+import game3Src from '../../public/home/games/game3.png';
+import arrowSrc from '../../public/home/games/arrow.png';
+import rectangleSrc from '../../public/home/games/rectangle below arrow.png';
+import arrowsBgSrc from '../../public/home/statsAbout/arrows.jpg';
+import stat1Src from '../../public/home/statsAbout/1. Active Projects.png';
+import stat2Src from '../../public/home/statsAbout/2. Years Experience.png';
+import stat3Src from '../../public/home/statsAbout/3. Team Members.png';
+import aboutBgSrc from '../../public/home/who/BG.png';
+import '../pages/home/home.css'; 
 ---
 
-<meta http-equiv="refresh" content="0;url=/home" />
-<script>
-  window.location.href = "/home";
-</script> 
+<Layout title="Home — Castaway Studios">
+  <main>
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero__bg" style={`background-image: url(${bgSrc.src});`}></div>
+      
+      <!-- Button positioned absolutely to align with background text -->
+      <a href="/contactUs" class="hero__button-link">
+        <img 
+          src={ctaSrc.src} 
+          alt="TALK BUSINESS" 
+          class="hero__business-button" 
+          draggable="false" 
+        />
+      </a>
+      
+      <p class="hero__description">
+        Our games are built for grown-ups who refuse to grow up—packed with sharp wit, bold worlds, and just the right amount of trouble.
+      </p>
+      
+      <!-- Pirate character image -->
+      <img 
+        src={captainSrc.src} 
+        alt="Captain Bootycall character" 
+        class="hero__pirate-image" 
+        draggable="false" 
+      />
+    </section>
+    
+    <!-- Game Collection Section -->
+    <section class="game-collection">
+      <div class="game-collection__container">
+        <div class="game-collection__cards">
+          <div class="game-card">
+            <img src={game1Src.src} alt="Visions of Tomorrow" class="game-card__image" draggable="false"/>
+            <h3 class="game-card__title">VISIONS OF TOMORROW</h3>
+          </div>
+          
+          <div class="game-card">
+            <img src={game2Src.src} alt="Dynozaur Eater" class="game-card__image" draggable="false"/>
+            <h3 class="game-card__title">DYNOZAUR EATER</h3>
+          </div>
+          
+          <div class="game-card">
+            <img src={game3Src.src} alt="Master of Shitting" class="game-card__image" draggable="false"/>
+            <h3 class="game-card__title">MASTER OF SHITTING</h3>
+          </div>
+        </div>
+        
+        <div class="game-collection__info">
+          <img src={arrowSrc.src} alt="" class="game-collection__arrow" draggable="false"/>
+          <div class="game-collection__box">
+            <h2 class="game-collection__title">GAME<br/>COLLECTION</h2>
+            <p class="game-collection__subtitle">we are cool as fuck, so check<br/>it out on your own!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Stats About Section -->
+    <section class="stats-about">
+      <div class="stats-about__bg"></div>
+      <div class="stats-about__container">
+        <div class="stats-about__items">
+          <div class="stats-about__item">
+            <div class="stats-about__content">
+              <span class="stats-about__number">10+</span>
+              <span class="stats-about__label">ACTIVE PROJECTS</span>
+            </div>
+          </div>
+          <div class="stats-about__item">
+            <div class="stats-about__content">
+              <span class="stats-about__number">10+</span>
+              <span class="stats-about__label">YEARS EXPERIENCE</span>
+            </div>
+          </div>
+          <div class="stats-about__item">
+            <div class="stats-about__content">
+              <span class="stats-about__number">10+</span>
+              <span class="stats-about__label">TEAM MEMBERS</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Who Are We Section -->
+    <section class="about">
+      <img 
+        src={aboutBgSrc.src} 
+        alt="Pirate ship sailing" 
+        class="about__bg-image" 
+        draggable="false"
+      />
+      <div class="about__content-wrapper">
+        <div class="about__content">
+          <h2 class="about__title">WHO ARE WE?</h2>
+          <div class="about__text">
+            <p>Castaway Studiosooned on the island of game development and loving every minute of it. We craft games with attitude, humor, and a healthy disregard for the rules. Whether you're here for epic adventures, questionable jokes, or just to see what happens when you mix rum with code, you're in the right place.</p>
+            <p class="about__highlight">We don't just make games—we throw a party on every screen.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    
+    <!-- Development Path Section -->
+    <section class="dev-path">
+      <h2 class="section-title">Our Development Path</h2>
+      <div class="timeline">
+        <!-- Timeline items from Figma -->
+        <div class="timeline-item">
+          <h3>Concept & Design</h3>
+          <!-- Content from Figma -->
+        </div>
+        <div class="timeline-item">
+          <h3>Development</h3>
+          <!-- Content from Figma -->
+        </div>
+        <div class="timeline-item">
+          <h3>Testing & Polish</h3>
+          <!-- Content from Figma -->
+        </div>
+        <div class="timeline-item">
+          <h3>Launch</h3>
+          <!-- Content from Figma -->
+        </div>
+      </div>
+    </section>
+    
+    <!-- Ready to Create Section -->
+    <section class="cta">
+      <h2 class="section-title">Ready to Create Something?</h2>
+      <a href="/contactUs" class="cta-button">Get in Touch</a>
+    </section>
+  </main>
+</Layout> 

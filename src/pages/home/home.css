@@ -556,38 +556,34 @@ section {
 /* About Section */
 .about {
   position: relative;
-  min-height: 80vh;
-  padding: 0;
+  width: 100%;
   overflow: hidden;
+  background-color: #cc30ec;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
-.about__bg {
-  position: absolute;
-  bottom: 0;
-  left: 0;
+.about__bg-image {
   width: 100%;
-  height: 80%;
-  background-size: cover;
-  background-position: bottom;
-  background-repeat: no-repeat;
+  display: block;
+  margin-top: 20%; /* Push down the image */
+  position: relative;
   z-index: 1;
 }
 
-.about__container {
-  position: relative;
+.about__content-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
   z-index: 2;
-  max-width: 1200px;
-  margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  height: 100%;
-  padding: 4rem 1rem;
+  padding: 4rem 2rem;
 }
 
 .about__content {
   max-width: 650px;
-  padding: 2rem;
 }
 
 .about__title {
@@ -609,6 +605,7 @@ section {
 
 .about__text p {
   margin-bottom: 1.5rem;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); /* Add slight shadow for readability */
 }
 
 .about__highlight {
@@ -616,30 +613,32 @@ section {
   font-weight: 600;
   margin-top: 2rem;
   color: white;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* Mobile first - stacked layout */
 @media (max-width: 767px) {
-  .about__bg {
-    width: 100%;
-    height: 50%;
-    background-position: bottom center;
-  }
-  
   .about {
     min-height: 100vh;
+  }
+  
+  .about__bg-image {
+    margin-top: 50%; /* Push down more on mobile */
+  }
+  
+  .about__content-wrapper {
+    padding: 2rem 1rem;
   }
 }
 
 /* Tablet Breakpoint (768px) */
 @media (min-width: 768px) {
-  .about__container {
+  .about__content-wrapper {
     padding: 5rem 2rem;
   }
   
-  .about__bg {
-    width: 60%;
-    background-position: bottom right;
+  .about__bg-image {
+    margin-top: 30%;
   }
   
   .about__title {
@@ -657,20 +656,15 @@ section {
 
 /* Desktop Breakpoint (1024px) */
 @media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-  }
-  
-  .about__bg {
-    width: 50%;
-  }
-  
-  .about__container {
+  .about__content-wrapper {
     padding: 6rem 2rem;
   }
   
+  .about__bg-image {
+    margin-top: 15%;
+  }
+  
   .about__content {
-    padding: 3rem;
     width: 50%;
   }
   

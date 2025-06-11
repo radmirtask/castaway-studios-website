@@ -23,7 +23,7 @@ import './home.css';
       <div class="hero__bg" style={`background-image: url(${bgSrc.src});`}></div>
       
       <!-- Button positioned absolutely to align with background text -->
-      <a href="#contact" class="hero__button-link">
+      <a href="/contactUs" class="hero__button-link">
         <img 
           src={ctaSrc.src} 
           alt="TALK BUSINESS" 
@@ -104,8 +104,13 @@ import './home.css';
     
     <!-- Who Are We Section -->
     <section class="about">
-      <div class="about__bg" style={`background-image: url(${aboutBgSrc.src});`}></div>
-      <div class="about__container">
+      <img 
+        src={aboutBgSrc.src} 
+        alt="Pirate ship sailing" 
+        class="about__bg-image" 
+        draggable="false"
+      />
+      <div class="about__content-wrapper">
         <div class="about__content">
           <h2 class="about__title">WHO ARE WE?</h2>
           <div class="about__text">
@@ -143,7 +148,7 @@ import './home.css';
     <!-- Ready to Create Section -->
     <section class="cta">
       <h2 class="section-title">Ready to Create Something?</h2>
-      <a href="#contact" class="cta-button">Get in Touch</a>
+      <a href="/contactUs" class="cta-button">Get in Touch</a>
     </section>
   </main>
 </Layout> 

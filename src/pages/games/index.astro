@@ -1,0 +1,69 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import './games.css';
+---
+
+<Layout title="Games — Castaway Studios">
+  <main class="games-page">
+    <section class="hero-games">
+      <div class="hero-games__content">
+        <h1 class="hero-games__title">Our Game Collection</h1>
+        <p class="hero-games__description">
+          Dive into our unique worlds filled with adventure, humor, and unforgettable characters.
+        </p>
+      </div>
+    </section>
+
+    <section class="games-grid">
+      <div class="games-grid__container">
+        <div class="game-item featured">
+          <div class="game-item__image">
+            <div class="game-placeholder">Game Image</div>
+          </div>
+          <div class="game-item__content">
+            <h3 class="game-item__title">Visions of Tomorrow</h3>
+            <p class="game-item__description">
+              A futuristic adventure that explores the boundaries of imagination and reality.
+            </p>
+            <div class="game-item__status">Coming Soon</div>
+          </div>
+        </div>
+
+        <div class="game-item">
+          <div class="game-item__image">
+            <div class="game-placeholder">Game Image</div>
+          </div>
+          <div class="game-item__content">
+            <h3 class="game-item__title">Dynozaur Eater</h3>
+            <p class="game-item__description">
+              An epic journey through prehistoric worlds with modern twists.
+            </p>
+            <div class="game-item__status">In Development</div>
+          </div>
+        </div>
+
+        <div class="game-item">
+          <div class="game-item__image">
+            <div class="game-placeholder">Game Image</div>
+          </div>
+          <div class="game-item__content">
+            <h3 class="game-item__title">Master of Shitting</h3>
+            <p class="game-item__description">
+              A hilariously irreverent adventure that doesn't take itself too seriously.
+            </p>
+            <div class="game-item__status">Concept Phase</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="development-philosophy">
+      <div class="philosophy__container">
+        <h2 class="philosophy__title">Our Game Development Philosophy</h2>
+        <p class="philosophy__description">
+          We believe in creating games that challenge conventions, embrace humor, and deliver experiences that stay with players long after they've put down the controller.
+        </p>
+      </div>
+    </section>
+  </main>
+</Layout>

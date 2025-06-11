@@ -1,11 +1,17 @@
 import { useState, useEffect, useRef } from 'react';
 import './BurgerMenu.css';
 
-export default function BurgerMenu() {
+export default function BurgerMenu({ currentPath = '/' }) {
   const [isOpen, setIsOpen] = useState(false);
-  const [activeTab, setActiveTab] = useState('home');
   const menuRef = useRef(null);
   const buttonRef = useRef(null);
+  
+  // Function to check if nav item is active
+  const isActive = (path) => {
+    if (path === '/home' && currentPath === '/') return true;
+    if (path === '/home' && currentPath === '/home') return true;
+    return currentPath === path;
+  };
 
   useEffect(() => {
     const handleClickOutside = (event) => {
@@ -38,19 +44,18 @@ export default function BurgerMenu() {
   }, [isOpen]);
 
   const navItems = [
-    { name: 'home', href: '/' },
+    { name: 'home', href: '/home' },
     { name: 'games', href: '/games' },
     { name: 'team', href: '/team' },
     { name: 'careers', href: '/careers' },
-    { name: 'about us', href: '/about' }
+    { name: 'about us', href: '/aboutUs' }
   ];
 
   const highlightItems = [
-    { name: 'contact us', href: '/contact', highlight: true }
+    { name: 'contact us', href: '/contactUs', highlight: true }
   ];
 
-  const handleNavClick = (item) => {
-    setActiveTab(item.name);
+  const handleNavClick = () => {
     setIsOpen(false);
   };
 
@@ -73,8 +78,8 @@ export default function BurgerMenu() {
             <a
               key={item.name}
               href={item.href}
-              className={`burger-nav-item ${activeTab === item.name ? 'active' : ''}`}
-              onClick={() => handleNavClick(item)}
+              className={`burger-nav-item ${isActive(item.href) ? 'active' : ''}`}
+              onClick={handleNavClick}
             >
               {item.name}
             </a>
@@ -84,8 +89,8 @@ export default function BurgerMenu() {
             <a
               key={item.name}
               href={item.href}
-              className={`burger-nav-item highlight ${activeTab === item.name ? 'active' : ''}`}
-              onClick={() => handleNavClick(item)}
+              className={`burger-nav-item highlight ${isActive(item.href) ? 'active' : ''}`}
+              onClick={handleNavClick}
             >
               {item.name}
             </a>

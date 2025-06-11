@@ -1,39 +1,39 @@
-.games-page {
+.team-page {
   min-height: 100vh;
 }
 
-.hero-games {
+.hero-team {
   background: linear-gradient(135deg, var(--color-violet) 0%, #2a0a2a 100%);
   color: var(--color-white);
   padding: 4rem 2rem;
   text-align: center;
 }
 
-.hero-games__content {
+.hero-team__content {
   max-width: 800px;
   margin: 0 auto;
 }
 
-.hero-games__title {
+.hero-team__title {
   font-size: 3rem;
   font-weight: 900;
   margin-bottom: 1.5rem;
   font-family: var(--font-bahnschrift);
 }
 
-.hero-games__description {
+.hero-team__description {
   font-size: 1.25rem;
   font-weight: 400;
   line-height: 1.6;
   opacity: 0.9;
 }
 
-.games-grid {
+.team-grid {
   padding: 4rem 2rem;
   background: var(--color-white);
 }
 
-.games-grid__container {
+.team-grid__container {
   max-width: 1200px;
   margin: 0 auto;
   display: grid;
@@ -41,7 +41,7 @@
   gap: 2rem;
 }
 
-.game-item {
+.team-member {
   background: var(--color-white);
   border-radius: 12px;
   overflow: hidden;
@@ -49,131 +49,143 @@
   transition: all 0.3s ease;
 }
 
-.game-item:hover {
+.team-member:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
-.game-item.featured {
-  grid-column: 1 / -1;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-}
-
-.game-item__image {
-  aspect-ratio: 16/9;
-  background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+.member__image {
+  height: 200px;
+  background: linear-gradient(45deg, var(--color-violet), #2a0a2a);
   display: flex;
   align-items: center;
   justify-content: center;
+  position: relative;
+  overflow: hidden;
 }
 
-.game-placeholder {
-  color: #999;
+.member-placeholder {
+  color: var(--color-white);
   font-size: 1.2rem;
   font-weight: 600;
+  opacity: 0.7;
 }
 
-.game-item__content {
+.member__content {
   padding: 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
 }
 
-.game-item__title {
+.member__name {
   font-size: 1.5rem;
   font-weight: 700;
   color: var(--color-dark);
+  margin-bottom: 0.5rem;
   font-family: var(--font-bahnschrift);
 }
 
-.game-item__description {
+.member__role {
+  color: var(--color-violet);
+  font-weight: 600;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 1rem;
+}
+
+.member__description {
   color: var(--color-dark);
   line-height: 1.6;
   opacity: 0.8;
+  font-size: 0.95rem;
 }
 
-.game-item__status {
-  display: inline-block;
-  padding: 0.5rem 1rem;
-  background: var(--color-violet);
-  color: var(--color-white);
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  align-self: flex-start;
-}
-
-.development-philosophy {
+.join-crew {
   background: var(--color-light-gray);
   padding: 4rem 2rem;
   text-align: center;
 }
 
-.philosophy__container {
-  max-width: 800px;
+.join-crew__container {
+  max-width: 600px;
   margin: 0 auto;
 }
 
-.philosophy__title {
+.join-crew__title {
   font-size: 2.5rem;
   font-weight: 700;
   color: var(--color-dark);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
   font-family: var(--font-bahnschrift);
 }
 
-.philosophy__description {
+.join-crew__description {
   font-size: 1.125rem;
-  line-height: 1.8;
+  line-height: 1.6;
   color: var(--color-dark);
   opacity: 0.8;
+  margin-bottom: 2rem;
+}
+
+.join-crew__button {
+  display: inline-block;
+  background: var(--color-violet);
+  color: var(--color-white);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.join-crew__button:hover {
+  background: #1a0a1a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(27, 3, 27, 0.3);
 }
 
 @media (max-width: 1023px) {
-  .hero-games__title {
+  .hero-team__title {
     font-size: 2.5rem;
   }
   
-  .games-grid__container {
-    grid-template-columns: 1fr;
+  .team-grid__container {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   }
   
-  .game-item.featured {
-    grid-template-columns: 1fr;
-  }
-  
-  .philosophy__title {
+  .join-crew__title {
     font-size: 2rem;
   }
 }
 
 @media (max-width: 767px) {
-  .hero-games {
+  .hero-team {
     padding: 3rem 1rem;
   }
   
-  .hero-games__title {
+  .hero-team__title {
     font-size: 2rem;
   }
   
-  .hero-games__description {
+  .hero-team__description {
     font-size: 1.1rem;
   }
   
-  .games-grid {
+  .team-grid {
     padding: 3rem 1rem;
   }
   
-  .development-philosophy {
+  .team-grid__container {
+    grid-template-columns: 1fr;
+  }
+  
+  .join-crew {
     padding: 3rem 1rem;
   }
   
-  .philosophy__title {
+  .join-crew__title {
     font-size: 1.75rem;
   }
-}
+} 

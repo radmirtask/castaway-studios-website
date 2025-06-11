@@ -3,6 +3,16 @@ import '../styles/global.css';
 import './Layout.css';
 import BurgerMenu from '../components/BurgerMenu/BurgerMenu.jsx';
 const { title = 'Castaway Studios' } = Astro.props;
+
+// Get current path for active navigation state
+const currentPath = Astro.url.pathname;
+
+// Function to check if nav item is active
+function isActive(path: string): boolean {
+  if (path === '/home' && currentPath === '/') return true;
+  if (path === '/home' && currentPath === '/home') return true;
+  return currentPath === path;
+}
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -15,15 +25,15 @@ const { title = 'Castaway Studios' } = Astro.props;
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
     <title>{title}</title>
   </head>
-  <body>
+  <body class="page-wrapper">
     <header class="header">
       <nav class="nav">
         <div class="nav-left">
-          <a href="/" class="nav-item active">home</a>
-          <a href="/games" class="nav-item">games</a>
-          <a href="/team" class="nav-item">team</a>
-          <a href="/careers" class="nav-item">careers</a>
-          <a href="/about" class="nav-item">about us</a>
+          <a href="/home" class={`nav-item ${isActive('/home') ? 'active' : ''}`}>home</a>
+          <a href="/games" class={`nav-item ${isActive('/games') ? 'active' : ''}`}>games</a>
+          <a href="/team" class={`nav-item ${isActive('/team') ? 'active' : ''}`}>team</a>
+          <a href="/careers" class={`nav-item ${isActive('/careers') ? 'active' : ''}`}>careers</a>
+          <a href="/aboutUs" class={`nav-item ${isActive('/aboutUs') ? 'active' : ''}`}>about us</a>
         </div>
 
         <div class="nav-center">
@@ -44,13 +54,13 @@ const { title = 'Castaway Studios' } = Astro.props;
               <img src="/global/mdi_linkedin.svg" alt="LinkedIn" />
             </a>
           </div>
-          <a href="/contact" class="nav-item highlight">Contact Us</a>
-          <BurgerMenu client:load />
+          <a href="/contactUs" class={`nav-item highlight ${isActive('/contactUs') ? 'active' : ''}`}>Contact Us</a>
+          <BurgerMenu client:load currentPath={currentPath} />
         </div>
       </nav>
     </header>
 
-    <main class="body-offset">
+    <main class="main-content body-offset">
       <slot />
     </main>
 

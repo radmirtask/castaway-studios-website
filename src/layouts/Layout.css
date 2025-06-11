@@ -84,7 +84,6 @@
 }
 
 .nav-item:not(.highlight):hover {
-  transform: translateY(-2px);
 }
 
 .nav-item:not(.highlight).active::before {
@@ -105,7 +104,6 @@
 .nav-item.highlight:hover {
   background: rgba(255, 255, 255, 0.25);
   border-color: rgba(255, 255, 255, 0.5);
-  transform: translateY(-2px);
   color: var(--color-white);
 }
 
@@ -129,7 +127,6 @@
 
 .social-icon:hover {
   background: rgba(255, 255, 255, 0.2);
-  transform: translateY(-2px);
 }
 
 .social-icon img {

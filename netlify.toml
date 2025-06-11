@@ -1,16 +1,23 @@
 [build]
-  command = "npm run build"      # or "yarn build"
-  publish = "dist"               # Astro's default output dir
+  command = "npm run build"
+  publish = "dist"
 
 [dev]
-  # (optional) if you want `netlify dev` locally
   command = "npm run dev"
-  port = 3000
+  port    = 3000
 
+# use Netlify's default functions dir:
+[functions]
+  directory = ".netlify/functions"
+
+# SSR catch-all
 [[redirects]]
-  from = "/*"
-  to = "/.netlify/functions/entry"
+  from   = "/*"
+  to     = "/.netlify/functions/entry"
   status = 200
 
-[functions]
-  directory = ".netlify/functions-internal"
+# optional: a pretty “/ → /home” redirect
+[[redirects]]
+  from   = "/"
+  to     = "/home"
+  status = 302

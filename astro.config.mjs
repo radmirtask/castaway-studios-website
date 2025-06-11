@@ -7,9 +7,5 @@ import netlify from '@astrojs/netlify';
 export default defineConfig({
   integrations: [react()],
   output: 'server',
-  adapter: netlify(),           // ← defaults to `.netlify/functions/`
-  // optional: if you still want `/` → `/home` at build time:
-  redirects: {
-    '/': '/home',
-  },
+  adapter: netlify()
 });

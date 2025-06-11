@@ -1,17 +1,86 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* Global CSS Variables */
+:root {
+  /* Colors */
+  --color-violet: #CF31ED;
+  --color-pink: #EC509E;
+  --color-pumpkin: #FFEE34;
+  --color-electric: #B316D5;
+  --color-hibiscus: #CD2373;
+  --color-dark: #1B031B;
+  --color-white: #FFFFFF;
+  --color-black: #000000;
+  --color-bg-cream: #FFEFE5;
 
-@layer base {
-  html, body {
-    background: #CF31ED;
-  }
-  body {
-    font-family: 'Inter', system-ui, sans-serif;
-  }
-  
-  /* Custom font for navigation */
-  .font-bahnschrift {
-    font-family: 'Bahnschrift', system-ui, sans-serif;
-  }
+  /* Typography */
+  --font-sans: 'Inter', system-ui, sans-serif;
+  --font-bahnschrift: 'Bahnschrift', system-ui, sans-serif;
+  --font-montserrat: 'Montserrat', sans-serif;
+}
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  background: var(--color-violet);
+  font-family: var(--font-sans);
+  color: var(--color-white);
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* Utility Classes */
+.container {
+  width: 100%;
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.z-10 {
+  z-index: 10;
+}
+
+.z-20 {
+  z-index: 20;
+}
+
+/* Font Helpers */
+.font-bahnschrift {
+  font-family: var(--font-bahnschrift);
+}
+
+.font-montserrat {
+  font-family: var(--font-montserrat);
 }

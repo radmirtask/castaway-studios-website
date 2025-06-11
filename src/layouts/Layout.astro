@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import './Layout.css';
+import BurgerMenu from '../components/BurgerMenu/BurgerMenu.jsx';
 const { title = 'Castaway Studios' } = Astro.props;
 ---
 <!DOCTYPE html>
@@ -14,8 +16,90 @@ const { title = 'Castaway Studios' } = Astro.props;
     <title>{title}</title>
   </head>
   <body>
-    <!-- nav -->
-    <slot />
-    <!-- footer -->
+    <header class="header">
+      <nav class="nav">
+        <div class="nav-left">
+          <a href="/" class="nav-item active">home</a>
+          <a href="/games" class="nav-item">games</a>
+          <a href="/team" class="nav-item">team</a>
+          <a href="/careers" class="nav-item">careers</a>
+          <a href="/about" class="nav-item">about us</a>
+        </div>
+
+        <div class="nav-center">
+          <a href="/">
+            <img src="/global/logo.svg" alt="Castaway Studios" class="nav-logo" />
+          </a>
+        </div>
+
+        <div class="nav-right">
+          <div class="social-icons">
+            <a href="#" class="social-icon">
+              <img src="/global/uil_facebook.svg" alt="Facebook" />
+            </a>
+            <a href="#" class="social-icon">
+              <img src="/global/material-symbols_mail.svg" alt="Email" />
+            </a>
+            <a href="#" class="social-icon">
+              <img src="/global/mdi_linkedin.svg" alt="LinkedIn" />
+            </a>
+          </div>
+          <a href="/contact" class="nav-item highlight">Contact Us</a>
+          <BurgerMenu client:load />
+        </div>
+      </nav>
+    </header>
+
+    <main class="body-offset">
+      <slot />
+    </main>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-section footer-brand">
+          <img src="/global/logo.svg" alt="Castaway Studios" class="footer-logo" />
+          <a href="mailto:support@castaway.studio" class="footer-email">support@castaway.studio</a>
+        </div>
+
+        <div class="footer-section footer-customer">
+          <h3 class="footer-title">Customer Service</h3>
+          <ul class="footer-links">
+            <li><a href="/contact" class="footer-link">Contact us</a></li>
+            <li><a href="/support" class="footer-link">Support</a></li>
+            <li><a href="/faq" class="footer-link">FAQ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section footer-info">
+          <h3 class="footer-title">Information</h3>
+          <ul class="footer-links">
+            <li><a href="/terms" class="footer-link">Terms & conditions</a></li>
+            <li><a href="/privacy" class="footer-link">Privacy policy</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-section footer-social">
+          <div class="footer-social-icons">
+            <a href="#" class="footer-social-icon">
+              <img src="/global/uil_facebook.svg" alt="Facebook" />
+            </a>
+            <a href="#" class="footer-social-icon">
+              <img src="/global/mdi_linkedin.svg" alt="LinkedIn" />
+            </a>
+            <a href="#" class="footer-social-icon">
+              <img src="/global/material-symbols_mail.svg" alt="Email" />
+            </a>
+          </div>
+          <a href="mailto:support@castaway.studio" class="footer-email footer-email-tablet">support@castaway.studio</a>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p class="footer-copyright">© 2025 Castaway Studios. All Rights Reserved.</p>
+        <div class="footer-lang">
+          <span class="lang-active">EN</span>/<span class="lang-inactive">FR</span>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>

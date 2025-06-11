@@ -3,6 +3,11 @@ import Layout from '../../layouts/Layout.astro';
 import captainSrc from '../../../public/home/hero/Captain_Bootycall.png';
 import bgSrc from '../../../public/home/hero/BG.png';
 import ctaSrc from '../../../public/home/hero/Business_button.png';
+import game1Src from '../../../public/home/games/game1.png';
+import game2Src from '../../../public/home/games/game2.png';
+import game3Src from '../../../public/home/games/game3.png';
+import arrowSrc from '../../../public/home/games/arrow.png';
+import rectangleSrc from '../../../public/home/games/rectangle below arrow.png';
 import './home.css';
 ---
 
@@ -37,13 +42,31 @@ import './home.css';
     
     <!-- Game Collection Section -->
     <section class="game-collection">
-      <h2 class="section-title">Our Collection</h2>
-      <div class="game-grid">
-        <!-- Game cards would go here based on Figma design -->
-        <!-- Placeholder for game cards -->
-        <div class="game-card">Game 1</div>
-        <div class="game-card">Game 2</div>
-        <div class="game-card">Game 3</div>
+      <div class="game-collection__container">
+        <div class="game-collection__cards">
+          <div class="game-card">
+            <img src={game1Src.src} alt="Visions of Tomorrow" class="game-card__image" draggable="false"/>
+            <h3 class="game-card__title">VISIONS OF TOMORROW</h3>
+          </div>
+          
+          <div class="game-card"> 
+            <img src={game2Src.src} alt="Dynozaur Eater" class="game-card__image" draggable="false"/>
+            <h3 class="game-card__title">DYNOZAUR EATER</h3>
+          </div>
+          
+          <div class="game-card">
+            <img src={game3Src.src} alt="Master of Shitting" class="game-card__image" draggable="false"/>
+            <h3 class="game-card__title">MASTER OF SHITTING</h3>
+          </div>
+        </div>
+        
+        <div class="game-collection__info">
+          <img src={arrowSrc.src} alt="" class="game-collection__arrow" draggable="false"/>
+          <div class="game-collection__box">
+            <h2 class="game-collection__title">GAME<br/>COLLECTION</h2>
+            <p class="game-collection__subtitle">we are cool as fuck, so check<br/>it out on your own!</p>
+          </div>
+        </div>
       </div>
     </section>
     

@@ -2,6 +2,6 @@
 
 [build]
   # Install & build your Astro site
-  command = "npm install --legacy-peer-deps && npm run build"
+  command = "npm install && npm run build"
   publish = "dist"
 

@@ -8,12 +8,12 @@
 
 # use Netlify's default functions dir:
 [functions]
-  directory = ".netlify/functions"
+  directory = ".netlify/functions-internal"
 
 # SSR catch-all
 [[redirects]]
   from   = "/*"
-  to     = "/.netlify/functions/entry"
+  to     = "/.netlify/functions-internal/entry"
   status = 200
 
 # optional: a pretty "/ → /home" redirect

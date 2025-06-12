@@ -15,9 +15,3 @@
   from   = "/*"
   to     = "/.netlify/functions-internal/entry"
   status = 200
-
-# optional: a pretty "/ → /home" redirect
-[[redirects]]
-  from   = "/"
-  to     = "/home"
-  status = 302

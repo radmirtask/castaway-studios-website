@@ -1,8 +1,10 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import captainSrc from '../../public/home/hero/Captain_Bootycall.png';
+import captainMobileSrc from '../../public/home/hero/Captain_BootycallMobile.png';
 import bgSrc from '../../public/home/hero/BG.png';
 import ctaSrc from '../../public/home/hero/Business_button.png';
+import ctaMobileSrc from '../../public/home/hero/Business_buttonMobile.png';
 import game1Src from '../../public/home/games/game1.png';
 import game2Src from '../../public/home/games/game2.png';
 import game3Src from '../../public/home/games/game3.png';
@@ -21,28 +23,35 @@ import './home/home.css';
     <!-- Hero Section -->
     <section class="hero">
       <div class="hero__bg" style={`background-image: url(${bgSrc.src});`}></div>
-      
-      <!-- Button positioned absolutely to align with background text -->
-      <a href="/contactUs" class="hero__button-link">
-        <img 
-          src={ctaSrc.src} 
-          alt="TALK BUSINESS" 
-          class="hero__business-button" 
-          draggable="false" 
-        />
-      </a>
-      
-      <p class="hero__description">
-        Our games are built for grown-ups who refuse to grow up—packed with sharp wit, bold worlds, and just the right amount of trouble.
-      </p>
-      
-      <!-- Pirate character image -->
-      <img 
-        src={captainSrc.src} 
-        alt="Captain Bootycall character" 
-        class="hero__pirate-image" 
-        draggable="false" 
-      />
+      <div class="hero__content">
+        <div class="hero__text">
+          <h1 class="hero__headline">CRAFTING FUN, PIRATE STYLE.</h1>
+          <a href="/contactUs" class="hero__button-link">
+            <picture>
+              <source srcset={ctaSrc.src} media="(min-width: 1024px)" />
+              <img 
+                src={ctaMobileSrc.src} 
+                alt="TALK BUSINESS" 
+                class="hero__business-button" 
+                draggable="false" 
+              />
+            </picture>
+          </a>
+          <p class="hero__description">
+            Our games are built for grown-ups who refuse to grow up—packed with sharp wit, bold worlds, and just the right amount of trouble.
+          </p>
+        </div>
+        <picture>
+          <source srcset={captainMobileSrc.src} media="(max-width: 767px)" />
+          <img 
+            src={captainSrc.src} 
+            alt="Captain Bootycall character" 
+            class="hero__pirate-image" 
+            draggable="false" 
+          />
+        </picture>
+      </div>
+      <div></div>
     </section>
     
     <!-- Game Collection Section -->

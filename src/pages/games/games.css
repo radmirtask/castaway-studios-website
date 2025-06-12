@@ -353,7 +353,7 @@
   background: var(--color-white);
   color: #EC509E;
   padding: 1rem 2.5rem;
-  border-radius: 8px;
+  border-radius: 0px;
   font-size: 1.1rem;
   font-weight: 700;
   text-decoration: none;

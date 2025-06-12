@@ -1,20 +1,110 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import './careers.css';
 ---
 
 <Layout title="Careers — Castaway Studios">
-  <main style="padding: 2rem; max-width: 800px; margin: 0 auto;">
-    <section style="text-align: center; margin-bottom: 3rem;">
-      <h1 style="font-size: 2.5rem; color: var(--color-violet); margin-bottom: 1rem;">Join Our Crew</h1>
-      <p>We're always looking for talented people to join our team.</p>
+  <main class="careers-page">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero__content">
+        <div class="hero__text">
+          <p class="hero__description">We make games with love and passion</p>
+          <a href="#positions" class="hero__cta">View Open Positions</a>
+        </div>
+        <div class="hero__pirate">
+          <img src="/careers/pirate_saying_pc.png" alt="Pirate with speech bubble" class="hero__pirate-image" />
+        </div>
+      </div>
     </section>
-    
-    <section>
-      <h2 style="color: var(--color-dark); margin: 2rem 0 1rem 0;">Current Openings</h2>
-      <p style="color: var(--color-dark); opacity: 0.8;">No current openings, but feel free to reach out!</p>
-      
-      <h2 style="color: var(--color-dark); margin: 2rem 0 1rem 0;">Get in Touch</h2>
-      <p style="color: var(--color-dark); opacity: 0.8;">Send us your portfolio at careers@castaway.studio</p>
+
+    <!-- Benefits Section -->
+    <section class="benefits">
+      <div class="benefits__container">
+        <h2 class="benefits__title">WHY YOU WILL<br>LOVE OUR TEAM?</h2>
+        
+        <div class="benefits__cards">
+          <div class="benefits__card benefits__card--yellow">
+            <div class="benefits__card-inner">
+              <h3 class="benefits__card-title">WORK FOR<br>10 HOURS</h3>
+            </div>
+            <p class="benefits__card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          
+          <div class="benefits__card benefits__card--white">
+            <div class="benefits__card-inner">
+              <h3 class="benefits__card-title">NO SALARY</h3>
+            </div>
+            <p class="benefits__card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+          
+          <div class="benefits__card benefits__card--blue">
+            <div class="benefits__card-inner">
+              <h3 class="benefits__card-title">RACISM</h3>
+            </div>
+            <p class="benefits__card-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hiring Section -->
+    <section class="hiring" id="positions">
+      <div class="hiring__container">
+        <h2 class="hiring__title">WE ARE HIRING</h2>
+        
+        <div class="hiring__cards">
+          <div class="hiring__card">
+            <h3 class="hiring__card-title">3D Artist</h3>
+            <p class="hiring__card-category">Art</p>
+            <div class="hiring__card-details">
+              <p class="hiring__card-type">Remote/Hybrid</p>
+              <p class="hiring__card-time">Full Time</p>
+            </div>
+            <button class="hiring__card-button">Apply</button>
+          </div>
+          
+          <div class="hiring__card">
+            <h3 class="hiring__card-title">Game Designer</h3>
+            <p class="hiring__card-category">Design</p>
+            <div class="hiring__card-details">
+              <p class="hiring__card-type">Remote/Hybrid</p>
+              <p class="hiring__card-time">Full Time</p>
+            </div>
+            <button class="hiring__card-button">Apply</button>
+          </div>
+          
+          <div class="hiring__card">
+            <h3 class="hiring__card-title">Software Engineer</h3>
+            <p class="hiring__card-category">Engineer</p>
+            <div class="hiring__card-details">
+              <p class="hiring__card-type">Remote/Hybrid</p>
+              <p class="hiring__card-time">Full Time</p>
+            </div>
+            <button class="hiring__card-button">Apply</button>
+          </div>
+          
+          <div class="hiring__card">
+            <h3 class="hiring__card-title">3D Artist</h3>
+            <p class="hiring__card-category">Art</p>
+            <div class="hiring__card-details">
+              <p class="hiring__card-type">Remote/Hybrid</p>
+              <p class="hiring__card-time">Full Time</p>
+            </div>
+            <button class="hiring__card-button">Apply</button>
+          </div>
+          
+          <div class="hiring__card">
+            <h3 class="hiring__card-title">Game Designer</h3>
+            <p class="hiring__card-category">Design</p>
+            <div class="hiring__card-details">
+              <p class="hiring__card-type">Remote/Hybrid</p>
+              <p class="hiring__card-time">Full Time</p>
+            </div>
+            <button class="hiring__card-button">Apply</button>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 </Layout>

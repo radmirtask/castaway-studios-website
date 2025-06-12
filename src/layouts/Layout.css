@@ -83,9 +83,6 @@
   width: 80%;
 }
 
-.nav-item:not(.highlight):hover {
-}
-
 .nav-item:not(.highlight).active::before {
   width: 80%;
 }
@@ -99,12 +96,21 @@
   border: 1px solid rgba(255, 255, 255, 0.3);
   backdrop-filter: blur(10px);
   transition: all 0.3s ease;
+  text-transform: capitalize;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .nav-item.highlight:hover {
   background: rgba(255, 255, 255, 0.25);
   border-color: rgba(255, 255, 255, 0.5);
   color: var(--color-white);
+}
+
+.nav-item.highlight.active {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: rgba(255, 255, 255, 0.6);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.2);
 }
 
 .social-icons {

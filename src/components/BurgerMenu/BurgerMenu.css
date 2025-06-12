@@ -113,6 +113,12 @@
   padding: 1rem 1.5rem;
 }
 
+.burger-nav-item.highlight.active {
+  background: linear-gradient(135deg, var(--color-pink) 0%, var(--color-hibiscus) 100%);
+  box-shadow: 0 4px 15px rgba(207, 49, 237, 0.4);
+  transform: translateY(-1px);
+}
+
 .burger-social {
   display: flex;
   gap: 1.5rem;

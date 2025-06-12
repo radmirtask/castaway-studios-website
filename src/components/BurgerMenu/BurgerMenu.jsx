@@ -44,7 +44,7 @@ export default function BurgerMenu({ currentPath = '/' }) {
   }, [isOpen]);
 
   const navItems = [
-    { name: 'home', href: '/home' },
+    { name: 'home', href: '/' },
     { name: 'games', href: '/games' },
     { name: 'team', href: '/team' },
     { name: 'careers', href: '/careers' },

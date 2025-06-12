@@ -9,8 +9,7 @@ const currentPath = Astro.url.pathname;
 
 // Function to check if nav item is active
 function isActive(path: string): boolean {
-  if (path === '/home' && currentPath === '/') return true;
-  if (path === '/home' && currentPath === '/home') return true;
+  if (path === '/' && (currentPath === '/' || currentPath === '/home')) return true;
   return currentPath === path;
 }
 ---
@@ -29,7 +28,7 @@ function isActive(path: string): boolean {
     <header class="header">
       <nav class="nav">
         <div class="nav-left">
-          <a href="/home" class={`nav-item ${isActive('/home') ? 'active' : ''}`}>home</a>
+          <a href="/" class={`nav-item ${isActive('/') ? 'active' : ''}`}>home</a>
           <a href="/games" class={`nav-item ${isActive('/games') ? 'active' : ''}`}>games</a>
           <a href="/team" class={`nav-item ${isActive('/team') ? 'active' : ''}`}>team</a>
           <a href="/careers" class={`nav-item ${isActive('/careers') ? 'active' : ''}`}>careers</a>

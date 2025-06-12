@@ -1,0 +1,14 @@
+---
+// Redirect from /home to / 
+export const prerender = false;
+
+const redirectTarget = '/';
+
+if (Astro.request.method === 'GET') {
+  return Astro.redirect(redirectTarget);
+}
+---
+<meta http-equiv="refresh" content={`0;url=${redirectTarget}`} />
+<script>
+  window.location.href = '/';
+</script> 

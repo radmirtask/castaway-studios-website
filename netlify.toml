@@ -1,17 +1,7 @@
+# netlify.toml
+
 [build]
-  command = "npm run build"
+  # Install & build your Astro site
+  command = "npm ci && npm run build"
   publish = "dist"
 
-[dev]
-  command = "npm run dev"
-  port    = 3000
-
-# use Netlify's default functions dir:
-[functions]
-  directory = ".netlify/functions-internal"
-
-# SSR catch-all
-[[redirects]]
-  from   = "/*"
-  to     = "/.netlify/functions-internal/entry"
-  status = 200

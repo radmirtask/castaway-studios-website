@@ -1,0 +1,437 @@
+.careers-page {
+  min-height: 100vh;
+}
+
+/* Hero Section */
+.hero {
+  background: #55ACEE;
+  background-image: url('/careers/SteeringWheel.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding: 2rem;
+}
+
+.hero__content {
+  max-width: 1440px;
+  width: 100%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0;
+  position: relative;
+}
+
+.hero__text {
+  color: var(--color-dark);
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  position: absolute;
+  top: 65%;
+  left: 5%;
+  z-index: 2;
+}
+
+.hero__pirate {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  order: 2;
+}
+
+.hero__pirate-image {
+  max-width: 95%;
+  width: 95%;
+  height: auto;
+  max-height: 80vh;
+  object-fit: contain;
+  object-position: center;
+  aspect-ratio: auto;
+}
+
+.hero__description {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 1.4;
+  margin-bottom: 2rem;
+  font-family: var(--font-bahnschrift);
+  color: var(--color-dark);
+}
+
+.hero__cta {
+  display: inline-block;
+  background: #FFC700;
+  color: var(--color-dark);
+  padding: 0.875rem 2rem;
+  border-radius: 0;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.3s ease;
+  font-family: var(--font-bahnschrift);
+}
+
+.hero__cta:hover {
+  background: #E6B400;
+  transform: translateY(-2px);
+}
+
+/* Benefits Section */
+.benefits {
+  background: #E3408B;
+  background-image: url('/careers/PatternArrows.png');
+  background-size: cover;
+  background-position: center;
+  padding: 6rem 2rem;
+  position: relative;
+}
+
+.benefits__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.benefits__title {
+  color: white;
+  font-size: 3rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 4rem;
+  font-family: var(--font-bahnschrift);
+  text-transform: uppercase;
+}
+
+.benefits__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 3rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.benefits__card {
+  text-align: center;
+  transition: transform 0.3s ease;
+}
+
+.benefits__card:hover {
+  transform: translateY(-5px);
+}
+
+.benefits__card-inner {
+  padding: 2.5rem 2rem;
+  border-radius: 0;
+  margin-bottom: 1rem;
+}
+
+.benefits__card--yellow .benefits__card-inner {
+  background: #FFC700;
+}
+
+.benefits__card--white .benefits__card-inner {
+  background: white;
+}
+
+.benefits__card--blue .benefits__card-inner {
+  background: #55ACEE;
+}
+
+.benefits__card-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 0;
+  font-family: var(--font-bahnschrift);
+  text-transform: uppercase;
+  color: var(--color-dark);
+}
+
+.benefits__card--blue .benefits__card-title {
+  color: white;
+}
+
+.benefits__card-description {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: white;
+  text-align: center;
+}
+
+/* Hiring Section */
+.hiring {
+  background: linear-gradient(to bottom, #3B59B7 0%, #CF31ED 100%);
+  padding: 6rem 2rem;
+}
+
+.hiring__container {
+  max-width: 1440px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.hiring__title {
+  color: white;
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 4rem;
+  font-family: var(--font-bahnschrift);
+  text-transform: uppercase;
+}
+
+.hiring__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.hiring__card {
+  background: #E3408B;
+  border: none;
+  border-radius: 0;
+  padding: 2rem;
+  text-align: left;
+  transition: all 0.3s ease;
+}
+
+.hiring__card:hover {
+  background: #D1326F;
+  transform: translateY(-5px);
+}
+
+.hiring__card-title {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  font-family: var(--font-bahnschrift);
+}
+
+.hiring__card-category {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.hiring__card-details {
+  margin-bottom: 2rem;
+}
+
+.hiring__card-type,
+.hiring__card-time {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.9rem;
+  margin-bottom: 0.25rem;
+}
+
+.hiring__card-button {
+  background: #FFC700;
+  color: var(--color-dark);
+  border: none;
+  padding: 0.75rem 2rem;
+  border-radius: 0;
+  font-weight: 700;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: var(--font-bahnschrift);
+  width: 100%;
+}
+
+.hiring__card-button:hover {
+  background: #E6B400;
+  transform: translateY(-2px);
+}
+
+/* Tablet Responsive */
+@media (max-width: 1023px) {
+  .hero__content {
+    max-width: 1000px;
+  }
+
+  .hero__text {
+    top: 60%;
+    left: 8%;
+    max-width: 400px;
+  }
+
+  .hero__pirate-image {
+    width: 80%;
+    max-width: 500px;
+    height: auto;
+    max-height: 65vh;
+    object-fit: contain;
+    object-position: center;
+    aspect-ratio: auto;
+  }
+
+  .hero__description {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    line-height: 1.3;
+    margin-bottom: 1.3rem;
+  }
+
+  .hero__cta {
+    padding: 0.8rem 2rem;
+    font-size: 0.95rem;
+  }
+
+  .benefits__title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .benefits__cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .hiring__title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+
+  .hiring__cards {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+/* Mobile Responsive */
+@media (max-width: 767px) {
+  .hero {
+    padding: 1rem;
+  }
+
+  .hero__content {
+    max-width: 700px;
+  }
+
+  .hero__text {
+    top: 55%;
+    left: 10%;
+    max-width: 300px;
+  }
+
+  .hero__pirate-image {
+    width: 90%;
+    max-width: 400px;
+    height: auto;
+    max-height: 55vh;
+    object-fit: contain;
+    object-position: center;
+    aspect-ratio: auto;
+  }
+
+  .hero__description {
+    font-size: 1rem;
+    line-height: 1.4;
+    margin-bottom: 1.3rem;
+  }
+
+  .hero__cta {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.85rem;
+  }
+
+  .benefits {
+    padding: 4rem 1rem;
+  }
+
+  .benefits__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .benefits__card {
+    padding: 2rem 1.5rem;
+  }
+
+  .benefits__card-title {
+    font-size: 1.25rem;
+  }
+
+  .hiring {
+    padding: 4rem 1rem;
+  }
+
+  .hiring__title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .hiring__cards {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .hiring__card {
+    padding: 1.5rem;
+  }
+
+  .hiring__card-title {
+    font-size: 1.25rem;
+  }
+}
+
+/* Extra small mobile */
+@media (max-width: 480px) {
+  .hero__content {
+    max-width: 500px;
+  }
+
+  .hero__text {
+    top: 50%;
+    left: 12%;
+    max-width: 250px;
+  }
+
+  .hero__pirate-image {
+    width: 95%;
+    max-width: 320px;
+    height: auto;
+    max-height: 50vh;
+    object-fit: contain;
+    object-position: center;
+    aspect-ratio: auto;
+  }
+
+  .hero__description {
+    font-size: 0.8rem;
+    line-height: 1.3;
+    margin-bottom: 1rem;
+  }
+
+  .hero__cta {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.8rem;
+  }
+
+  .benefits__title {
+    font-size: 1.75rem;
+  }
+
+  .benefits__card-title {
+    font-size: 1.125rem;
+  }
+
+  .hiring__title {
+    font-size: 1.75rem;
+  }
+
+  .hiring__card-title {
+    font-size: 1.125rem;
+  }
+}

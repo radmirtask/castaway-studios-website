@@ -12,8 +12,8 @@
   --color-bg-cream: #FFEFE5;
 
   /* Typography */
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-bahnschrift: 'Bahnschrift', system-ui, sans-serif;
+  --font-sans: 'Montserrat', sans-serif;
+  --font-bahnschrift: 'Montserrat', sans-serif;
   --font-montserrat: 'Montserrat', sans-serif;
 }
 

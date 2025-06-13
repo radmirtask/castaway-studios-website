@@ -4,18 +4,77 @@ import './about.css';
 ---
 
 <Layout title="About Us — Castaway Studios">
-  <main class="about-page">
-    <section class="about-hero">
-      <h1>About Castaway Studios</h1>
-      <p>We create games for grown-ups who refuse to grow up.</p>
-    </section>
-    
-    <section class="about-content">
-      <h2>Our Story</h2>
-      <p>Founded with a passion for creating unique gaming experiences that blend humor, adventure, and unforgettable characters.</p>
-      
-      <h2>Our Mission</h2>
-      <p>To develop games that challenge conventions and deliver experiences that stay with players long after they've finished playing.</p>
-    </section>
-  </main>
+  <main class="about">
+      <!-- Hero -->
+      <section class="hero-section">
+        <div class="hero-content">
+          <h1>READY<br />FOR ADVENTURE</h1>
+        </div>
+      </section>
+
+      <!-- Company Info -->
+      <section class="company-info">
+        <div class="watermark">
+          <img src="/about/Layer_2.svg" alt="" />
+        </div>
+        <div class="company-content">
+          <img src="/global/logo.svg" alt="Castaway Studios" class="company-logo" />
+          <p class="company-description">
+            <span class="highlight">Made with love in Toronto.</span> Castaway Studios is a joint stock company (A.S.) founded in 2022 with a vision to revolutionize mobile gaming. We combine cutting-edge technology with creative storytelling to deliver immersive gaming experiences that push the boundaries of what's possible on mobile devices.
+            <span class="highlight">Our mission is simple: to bring console-quality clarity to mobile-native play.</span>
+          </p>
+        </div>
+      </section>
+
+      <!-- Stats -->
+      <section class="stats-section" aria-label="Company Stats">
+        <div class="stats-bg"></div>
+        <div class="stats-container">
+          <div class="stats-grid">
+            <div class="stat-item">
+              <div class="stat-number">3+</div>
+              <div class="stat-label">Games<br>in Development</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">5</div>
+              <div class="stat-label">Team<br>Members</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">3</div>
+              <div class="stat-label">Years<br>Experience</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-number">20K</div>
+              <div class="stat-label">Players<br>Worldwide</div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Timeline -->
+      <section class="timeline-section">
+        <div class="timeline-container">
+          <h2 class="timeline-title">OUR STORY</h2>
+          <div class="timeline">
+            <!-- Repeat timeline-item for each year -->
+            <div class="timeline-item">
+              <div class="timeline-year">2022</div>
+              <div class="timeline-content">
+                <h3 class="timeline-heading">FOUNDATION</h3>
+                <p class="timeline-text">Castaway Studios was founded in 2022...</p>
+              </div>
+            </div>
+            <!-- Continue with 2023, 2024, 2025 -->
+          </div>
+        </div>
+      </section>
+
+      <!-- CTA -->
+      <section class="cta-section">
+        <div class="cta-container">
+          <h2 class="cta-title">READY TO CREATE<br />SOMETHING?</h2>
+          <a href="/careers" class="cta-button">View Open Positions</a>
+        </div>
+      </section>
+    </main>
 </Layout> 

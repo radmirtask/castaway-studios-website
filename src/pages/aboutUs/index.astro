@@ -1,6 +1,40 @@
 ---
 import Layout from '../../layouts/Layout.astro';
+import Timeline from '../../components/Timeline/Timeline.jsx';
+import TimelineItem from '../../components/Timeline/TimelineItem.jsx';
 import './about.css';
+
+const timelineData = [
+  {
+    year: "2022",
+    title: "Foundation",
+    text: "Castaway Studios was founded in 2022 in Istanbul – not in a boardroom, but in a late-night call between two friends who shared a belief: Mobile games deserved more. Not just more content – but more care, more depth, and more design made for the device, not just on it. We didn't want to follow trends. We wanted to define what mobile-native gameplay should feel like – fast, fluid, intuitive, and emotionally rewarding. So we started building.\n\nWhat began as a small project quickly turned into a shared obsession: creating vertical RPGs that belong on mobile – not scaled down from somewhere else, but designed from the ground up for the way people actually play.",
+    image: "/about/foundation.png",
+    imageAlt: "Foundation of Castaway Studios - two founders working late at night"
+  },
+  {
+    year: "2023",
+    title: "Creating",
+    text: "By 2023, we had released two games, tested multiple prototypes, and refined our design philosophy. We embraced mobile as a creative advantage – focusing on one-hand control, vertical orientation, and feedback that respects the player's time and attention.",
+    image: "/about/creating.png",
+    imageAlt: "Game development process showing mobile-first design principles"
+  },
+  {
+    year: "2024",
+    title: "Expanding",
+    text: "In 2024, Castaway Studios expanded globally. We set up production in Toronto, bringing our vision to a new level. We assembled a lean, international team across Turkey, Canada, Ukraine, and Kazakhstan – developers, artists, and storytellers.",
+    image: "/about/expanding.png",
+    imageAlt: "Global expansion map showing team locations across multiple countries"
+  },
+  {
+    year: "2025",
+    title: "Magnum Opus",
+    text: "Now, we're building our biggest title yet: a vertical, action-RPG with console-level clarity – designed from scratch to deliver depth, polish, and replayability on the device players use most.",
+    image: "/about/magnum_opus.png",
+    imageAlt: "Preview of upcoming action-RPG game showing console-quality graphics"
+  }
+];
+
 ---
 
 <Layout title="About Us — Castaway Studios">
@@ -51,30 +85,68 @@ import './about.css';
         </div>
       </section>
 
-      <!-- Timeline -->
-      <section class="timeline-section">
-        <div class="timeline-container">
-          <h2 class="timeline-title">OUR STORY</h2>
-          <div class="timeline">
-            <!-- Repeat timeline-item for each year -->
-            <div class="timeline-item">
-              <div class="timeline-year">2022</div>
-              <div class="timeline-content">
-                <h3 class="timeline-heading">FOUNDATION</h3>
-                <p class="timeline-text">Castaway Studios was founded in 2022...</p>
-              </div>
-            </div>
-            <!-- Continue with 2023, 2024, 2025 -->
-          </div>
-        </div>
-      </section>
+      <!-- Our Story Timeline -->
+    <Timeline client:load>
+      <TimelineItem
+        year="2022"
+        title="FOUNDATION"
+        text="Castaway Studios was founded in 2022 in Istanbul – not in a boardroom, but in a late-night call between two friends who shared a belief: Mobile games deserved more. Not just more content – but more care, more depth, and more design made for the device, not just on it. We didn't want to follow trends. We wanted to define what mobile-native gameplay should feel like – fast, fluid, intuitive, and emotionally rewarding. So we started building.\n\nWhat began as a small project quickly turned into a shared obsession: creating vertical RPGs that belong on mobile – not scaled down from somewhere else, but designed from the ground up for the way people actually play."
+        image="/about/foundation.png"
+        index={0}
+      />
+      <TimelineItem
+        year="2023"
+        title="CREATING"
+        text="By 2023, we had released two games, tested multiple prototypes, and refined our design philosophy. We embraced mobile as a creative advantage – focusing on one-hand control, vertical orientation, and feedback that respects the player's time and attention."
+        image="/about/creating.png"
+        index={1}
+      />
+      <TimelineItem
+        year="2024"
+        title="EXPANDING"
+        text="In 2025, Castaway Studios expanded globally. We set up production in Toronto, bringing our vision to a new level. We assembled a lean, international team across Turkey, Canada, Ukraine, and Kazakhstan – developers, artists, and storytellers."
+        image="/about/expanding.png"
+        index={2}
+      />
+      <TimelineItem
+        year="2025"
+        title="MAGNUM OPUS"
+        text="Now, we're building our biggest title yet: a vertical, action-RPG with console-level clarity – designed from scratch to deliver depth, polish, and replayability on the device players use most."
+        image="/about/magnum_opus.png"
+        index={3}
+      />
+    </Timeline>
 
-      <!-- CTA -->
-      <section class="cta-section">
-        <div class="cta-container">
-          <h2 class="cta-title">READY TO CREATE<br />SOMETHING?</h2>
-          <a href="/careers" class="cta-button">View Open Positions</a>
-        </div>
-      </section>
-    </main>
-</Layout> 
+
+   <!-- CTA -->
+   <section class="cta-section">
+    <div class="cta-container">
+      <h2 class="cta-title">Ready to Create<br />Something?</h2>
+      <a 
+        href="/careers" 
+        class="cta-button"
+        aria-describedby="cta-description"
+      >
+        View Open Positions
+      </a>
+      <p id="cta-description" class="sr-only">
+        Explore career opportunities at Castaway Studios
+      </p>
+    </div>
+  </section>
+</main>
+</Layout>
+
+<style>
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+</style>

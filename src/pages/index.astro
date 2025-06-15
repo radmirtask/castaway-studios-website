@@ -16,6 +16,7 @@ import stat2Src from '../../public/home/statsAbout/2. Years Experience.png';
 import stat3Src from '../../public/home/statsAbout/3. Team Members.png';
 import aboutBgSrc from '../../public/home/who/BG.png';
 import './home/home.css'; 
+import DevelopmentPath from '../components/DevelopmentPath/DevelopmentPath.jsx';
 ---
 
 <Layout title="Home — Castaway Studios">
@@ -130,29 +131,7 @@ import './home/home.css';
       </div>
     </section>
     
-    <!-- Development Path Section -->
-    <section class="dev-path">
-      <h2 class="section-title">Our Development Path</h2>
-      <div class="timeline">
-        <!-- Timeline items from Figma -->
-        <div class="timeline-item">
-          <h3>Concept & Design</h3>
-          <!-- Content from Figma -->
-        </div>
-        <div class="timeline-item">
-          <h3>Development</h3>
-          <!-- Content from Figma -->
-        </div>
-        <div class="timeline-item">
-          <h3>Testing & Polish</h3>
-          <!-- Content from Figma -->
-        </div>
-        <div class="timeline-item">
-          <h3>Launch</h3>
-          <!-- Content from Figma -->
-        </div>
-      </div>
-    </section>
+    <DevelopmentPath client:load />
     
     <!-- Ready to Create Section -->
     <section class="cta">

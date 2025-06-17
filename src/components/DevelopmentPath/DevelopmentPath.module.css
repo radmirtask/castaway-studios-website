@@ -8,7 +8,7 @@
     align-items: center;
 
     /* make room for your 400px-tall image */
-    padding-bottom: 400px;
+    padding-bottom: 100px;
 
     /* prevent the 100vw trick from adding a horizontal scrollbar */
     overflow: hidden;
@@ -49,7 +49,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 0;              /* start “un-elongated” */
+    height: 0;              /* start "un-elongated" */
     background-color: #FFF;
     border-radius: 2px;
     transition: height 0.2s ease-out; /* optional smoothing */
@@ -192,10 +192,9 @@
     line-height: 40px;
     top: 16px;
   }
-  .development-path__timeline {
-    width: 4px;
-    min-width: 4px;
-    max-width: 4px;
+  .development-path__timeline,
+  .development-path__scrollline {
+    display: none;
   }
   .development-path__items {
     gap: 40px;

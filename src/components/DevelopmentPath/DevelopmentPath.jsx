@@ -102,11 +102,11 @@ export default function DevelopmentPath() {
           <TimelineItem key={i} {...item} align={i % 2 === 0 ? 'right' : 'left'} />
         ))}
       </div>
-      <img
+      {/* <img
     src="/home/roadmap/bottom.svg"
     aria-hidden="true"
     className={styles['development-path__bottom-img']}
-  />
+  /> */}
     </section>
   );
 } 

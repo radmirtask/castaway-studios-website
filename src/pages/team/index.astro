@@ -1,109 +1,95 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import './team.css';
+import Kirill from '../../../public/team/Kiryl-Mladenets-portrait.jpg';
+import Can from '../../../public/team/Can.png';
+import Alimzhan from '../../../public/team/Alimzhan.png';
+import Maks from  '../../../public/team/Maks.jpeg';
+import Radmir from  '../../../public/team/Radmir.jpg';
+import Team from '../../../public/team/ChatGPTteam.png';
+
+import captainSrc from '../../../public/home/hero/Captain_Bootycall-v1.png';
 ---
 
 <Layout title="Team — Castaway Studios">
   <main class="team-page">
-    <section class="hero-team">
-      <div class="hero-team__content">
-        <h1 class="hero-team__title">Meet Our Crew</h1>
-        <p class="hero-team__description">
-          The creative minds behind Castaway Studios - a diverse team of developers, artists, and storytellers united by our passion for creating unforgettable gaming experiences.
-        </p>
+    <section class="hero-section">
+      <h1 class="hero-title">MEET OUR CREW</h1>
+      <img src={Team.src} alt="Our Amazing Team" class="hero-image">
+      <p class="hero-description">
+          Our incredible team brings together diverse talents and boundless creativity to deliver exceptional results. Each member contributes their unique expertise and passion to drive our shared vision forward.
+      </p>
+  </section>
+
+  <!-- Splitter Section -->
+  <section class="team-splitter">
+    <img src="/global/Pink_Arrow_BG.png" alt="Decorative arrow pattern" class="team-splitter__image">
+  </section>
+
+  <!-- Team Grid Section -->
+  <section class="team-grid-section">
+      <div class="team-grid">
+          <div class="team-member">
+              <img src={Can.src} alt="Can" class="member-image">
+              <h3 class="member-name">Can Cankat</h3>
+              <p class="member-role">Founder</p>
+              <p class="member-description">
+                Driven by a visionary spirit, Can blends entrepreneurial acumen with strategic foresight to steer our mission forward. With an uncanny ability to spot market opportunities and assemble high-performing teams, he catalyzes innovations that define industry trends.
+              </p>
+          </div>
+
+          <div class="team-member">
+              <img src={Kirill.src} alt="Kirill" class="member-image">
+              <h3 class="member-name">Kirill Mladenets</h3>
+              <p class="member-role">UI/UX Designer</p>
+              <p class="member-description">
+                Kirill crafts digital experiences that feel both intuitive and delightful. His meticulous attention to detail, paired with deep empathy for end users, ensures every interface not only looks stunning but anticipates users’ needs before they know they have them.                  
+              </p>
+          </div>
+
+          <div class="team-member">
+              <img src={Maks.src} alt="Maksym" class="member-image">
+              <h3 class="member-name">Maksym Ostanin</h3>
+              <p class="member-role">Developer</p>
+              <p class="member-description">
+                Maksym engineers scalable, reliable applications using cutting-edge technologies. He thrives on tackling complex challenges, writing clean, maintainable code and squeezing out every last drop of performance—so our products run smoothly at any scale.              </p>
+          </div>
+
+          <div class="team-member">
+              <img src={Alimzhan.src} alt="Alimzhan" class="member-image">
+              <h3 class="member-name">Alimzhan Zhumabaiuly</h3>
+              <p class="member-role">Level Designer</p>
+              <p class="member-description">
+                Alimzhan breathes life into virtual worlds, crafting intricately layered environments that balance narrative, exploration, and challenge. With a painter’s eye for immersive detail and a strategist’s mind for pacing, he ensures every corridor, platform, and puzzle advances the story while thrilling the senses. Collaborating closely with artists, writers, and engineers, he weaves lighting, sound, and lore into cohesive experiences that resonate emotionally. 
+              </div>
+
+          <div class="team-member">
+              <img src={Radmir.src} alt="Radmir" class="member-image">
+              <h3 class="member-name">Radmir Taskynbayev</h3>
+              <p class="member-role">Developer</p>
+              <p class="member-description">
+                Radmir blends razor-sharp logic with boundless curiosity, architecting solutions that are as elegant as they are resilient. He dissects complex problems with a designer’s eye, then weaves together clean, maintainable code that scales effortlessly. A natural collaborator, Radmir elevates the team by sharing insights, mentoring peers, and constantly pushing the envelope of what our technology can achieve.
+              </p>
+          </div>
+
+          <div class="team-member">
+              <img src={captainSrc.src} alt="Someone" class="member-image">
+              <h3 class="member-name">Here could be your name</h3>
+              <p class="member-role">Your Future Role</p>
+              <p class="member-description">
+                Step aboard and join a fearless crew sailing the high seas of innovation. As part of our team, you’ll battle bugs, unearth hidden treasures of creativity, and navigate the shifting tides of development. Whether you're charting new territory or defending the ship from storms of chaos, your skills will shape the journey—and your legend will grow with every voyage. This isn’t just a job—it’s a call to adventure.
+              </p>
+          </div>
       </div>
-    </section>
+  </section>
 
-    <section class="team-grid">
-      <div class="team-grid__container">
-        <div class="team-member">
-          <div class="member__image">
-            <div class="member-placeholder">Photo</div>
-          </div>
-          <div class="member__content">
-            <h3 class="member__name">Captain Morgan</h3>
-            <p class="member__role">Studio Director & Lead Designer</p>
-            <p class="member__description">
-              With over 10 years in the gaming industry, Captain Morgan steers our ship toward uncharted creative waters.
-            </p>
-          </div>
-        </div>
-
-        <div class="team-member">
-          <div class="member__image">
-            <div class="member-placeholder">Photo</div>
-          </div>
-          <div class="member__content">
-            <h3 class="member__name">Sarah "Seadog" Chen</h3>
-            <p class="member__role">Lead Developer</p>
-            <p class="member__description">
-              Our coding wizard who transforms wild ideas into playable realities with clean, efficient code.
-            </p>
-          </div>
-        </div>
-
-        <div class="team-member">
-          <div class="member__image">
-            <div class="member-placeholder">Photo</div>
-          </div>
-          <div class="member__content">
-            <h3 class="member__name">Marcus "Blackbeard" Johnson</h3>
-            <p class="member__role">Art Director</p>
-            <p class="member__description">
-              Creates the stunning visuals that bring our game worlds to life with his unique artistic vision.
-            </p>
-          </div>
-        </div>
-
-        <div class="team-member">
-          <div class="member__image">
-            <div class="member-placeholder">Photo</div>
-          </div>
-          <div class="member__content">
-            <h3 class="member__name">Luna "Stormcaller" Rodriguez</h3>
-            <p class="member__role">Game Designer</p>
-            <p class="member__description">
-              Crafts engaging gameplay mechanics and experiences that keep players coming back for more.
-            </p>
-          </div>
-        </div>
-
-        <div class="team-member">
-          <div class="member__image">
-            <div class="member-placeholder">Photo</div>
-          </div>
-          <div class="member__content">
-            <h3 class="member__name">Jake "Parrot" Wilson</h3>
-            <p class="member__role">Sound Designer</p>
-            <p class="member__description">
-              Creates immersive audio landscapes that enhance every moment of our gaming adventures.
-            </p>
-          </div>
-        </div>
-
-        <div class="team-member">
-          <div class="member__image">
-            <div class="member-placeholder">Photo</div>
-          </div>
-          <div class="member__content">
-            <h3 class="member__name">Emma "Navigator" Thompson</h3>
-            <p class="member__role">Producer</p>
-            <p class="member__description">
-              Keeps our projects on course and ensures smooth sailing from concept to launch.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <section class="join-crew">
-      <div class="join-crew__container">
-        <h2 class="join-crew__title">Want to Join Our Crew?</h2>
-        <p class="join-crew__description">
-          We're always looking for talented individuals who share our passion for creating amazing games.
-        </p>
-        <a href="/careers" class="join-crew__button">View Open Positions</a>
-      </div>
-    </section>
+  <!-- CTA Section -->
+  <section class="cta-banner">
+    <div class="cta-banner__bg-image"></div>
+    <div class="cta-banner__content">
+      <h2 class="cta-banner__title">READY TO CREATE<br>SOMETHING?</h2>
+      <a href="/careers" class="cta-banner__button">View Open Positions</a>
+    </div>
+  </section>
   </main>
 </Layout> 

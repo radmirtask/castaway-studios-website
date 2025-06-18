@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    
     /* make room for your 400px-tall image */
     padding-bottom: 100px;
 
@@ -49,7 +49,7 @@
     top: 0;
     left: 0;
     width: 100%;
-    height: 0;              /* start "un-elongated" */
+    height: 0;              /* start “un-elongated” */
     background-color: #FFF;
     border-radius: 2px;
     transition: height 0.2s ease-out; /* optional smoothing */
@@ -192,7 +192,11 @@
     line-height: 40px;
     top: 16px;
   }
-  .development-path__timeline,
+  .development-path__timeline {
+    width: 4px;
+    min-width: 4px;
+    max-width: 4px;
+  }
   .development-path__scrollline {
     display: none;
   }

@@ -5,9 +5,10 @@ import captainMobileSrc from '../../public/home/hero/Captain_BootycallMobile.png
 import bgSrc from '../../public/home/hero/BG.png';
 import ctaSrc from '../../public/home/hero/Business_button.png';
 import ctaMobileSrc from '../../public/home/hero/Business_buttonMobile.png';
-import game1Src from '../../public/home/games/game1.png';
-import game2Src from '../../public/home/games/game2.png';
-import game3Src from '../../public/home/games/game3.png';
+import game1Src from '../../public/home/games/Elarion.mp4';
+import game3Src from '../../public/home/games/Elarion2.mp4';
+import game4Src from '../../public/home/games/Elarion3.mp4';
+import game5Src from '../../public/home/games/RealmsOfShadowArenaQuestTrailer.mp4';
 import arrowSrc from '../../public/home/games/arrow.png';
 import rectangleSrc from '../../public/home/games/rectangle below arrow.png';
 import arrowsBgSrc from '../../public/home/statsAbout/arrows.jpg';
@@ -17,6 +18,8 @@ import stat3Src from '../../public/home/statsAbout/3. Team Members.png';
 import aboutBgSrc from '../../public/home/who/BG.png';
 import './home/home.css'; 
 import DevelopmentPath from '../components/DevelopmentPath/DevelopmentPath.jsx';
+import GameCarousel from '../components/Carusel/GameCarousel.jsx';
+
 ---
 
 <Layout title="Home — Castaway Studios">
@@ -57,37 +60,455 @@ import DevelopmentPath from '../components/DevelopmentPath/DevelopmentPath.jsx';
     
     <!-- Game Collection Section -->
     <section class="game-collection">
-      <div class="game-collection__container">
-        <div class="game-collection__cards">
-          <div class="game-card">
-            <img src={game1Src.src} alt="Visions of Tomorrow" class="game-card__image" draggable="false"/>
-            <h3 class="game-card__title">VISIONS OF TOMORROW</h3>
-          </div>
-          
-          <div class="game-card">
-            <img src={game2Src.src} alt="Dynozaur Eater" class="game-card__image" draggable="false"/>
-            <h3 class="game-card__title">DYNOZAUR EATER</h3>
-          </div>
-          
-          <div class="game-card">
-            <img src={game3Src.src} alt="Master of Shitting" class="game-card__image" draggable="false"/>
-            <h3 class="game-card__title">MASTER OF SHITTING</h3>
-          </div>
+      <div class="floating-particles" id="particles"></div>
+    
+    <div class="carousel-container">
+        <div class="carousel-header">
+            <h1 class="carousel-title">Our Game Collection</h1>
+            <p class="carousel-subtitle">Immersive experiences that refuse to grow up—packed with sharp wit, bold worlds, and just the right amount of trouble.</p>
         </div>
-        
-        <div class="game-collection__info">
-          <img src={arrowSrc.src} alt="" class="game-collection__arrow" draggable="false"/>
-          <div class="game-collection__box">
-            <h2 class="game-collection__title">GAME<br/>COLLECTION</h2>
-            <p class="game-collection__subtitle">we are cool as fuck, so check<br/>it out on your own!</p>
-          </div>
+
+        <div class="carousel-wrapper">
+            <div class="carousel-track" id="carouselTrack">
+                <!-- Game Card 1 -->
+                <div class="game-card">
+                    <div class="card-video-container">
+                        <video class="card-video" muted loop>
+                            <source src={game1Src} type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <div class="play-button"></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">ELARION</h3>
+                        <p class="card-description">Step into a magical world where you're discovering locations and fighting all the different creatures of this world</p>
+                        <div class="card-tags">
+                            <span class="tag">Open World</span>
+                            <span class="tag">Adventure</span>
+                            <span class="tag">RPG</span>
+                        </div>
+                        <button class="card-button">Play Now</button>
+                    </div>
+                </div>
+
+                <!-- Game Card 2 -->
+                <div class="game-card">
+                  <div class="card-video-container">
+                      <video class="card-video" muted loop>
+                          <source src="https://via.placeholder.com/400x600/7c2d12/ffffff.mp4" type="video/mp4">
+                      </video>
+                      <div class="video-overlay">
+                          <div class="play-button"></div>
+                      </div>
+                  </div>
+                  <div class="card-content">
+                      <h3 class="card-title">Puppy Collector</h3>
+                      <p class="card-description">Collect Cute Puppies and relax </p>
+                      <div class="card-tags">
+                          <span class="tag">Casual</span>
+                          <span class="tag">Puzzle</span>
+                          <span class="tag">Relaxing</span>
+                      </div>
+                      <button class="card-button">Play Now</button>
+                  </div>
+              </div>
+
+                <!-- Game Card 3 -->
+                <div class="game-card">
+                  <div class="card-video-container">
+                      <video class="card-video" muted loop>
+                          <source src={game3Src} type="video/mp4">
+                      </video>
+                      <div class="video-overlay">
+                          <div class="play-button"></div>
+                      </div>
+                  </div>
+                  <div class="card-content">
+                    <h3 class="card-title">ELARION</h3>
+                    <p class="card-description">Step into a magical world where you're discovering locations and fighting all the different creatures of this world</p>
+                    <div class="card-tags">
+                        <span class="tag">Open World</span>
+                        <span class="tag">Adventure</span>
+                        <span class="tag">RPG</span>
+                    </div>
+                      <button class="card-button">Play Now</button>
+                  </div>
+              </div>
+                <!-- Game Card 4 -->
+                <div class="game-card">
+                    <div class="card-video-container">
+                        <video class="card-video" muted loop>
+                            <source src={game4Src} type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <div class="play-button"></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                      <h3 class="card-title">ELARION</h3>
+                      <p class="card-description">Step into a magical world where you're discovering locations and fighting all the different creatures of this world</p>
+                      <div class="card-tags">
+                          <span class="tag">Open World</span>
+                          <span class="tag">Adventure</span>
+                          <span class="tag">RPG</span>
+                      </div>
+                        <button class="card-button">Play Now</button>
+                    </div>
+                </div>
+
+                <!-- Game Card 5 -->
+                <div class="game-card">
+                    <div class="card-video-container">
+                        <video class="card-video" muted loop>
+                            <source src={game5Src} type="video/mp4">
+                        </video>
+                        <div class="video-overlay">
+                            <div class="play-button"></div>
+                        </div>
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Stellar Odyssey</h3>
+                        <p class="card-description">Command your starship through the vast cosmos in this epic space exploration RPG.</p>
+                        <div class="card-tags">
+                            <span class="tag">RPG</span>
+                            <span class="tag">Space</span>
+                            <span class="tag">Exploration</span>
+                        </div>
+                        <button class="card-button">Play Now</button>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
+
+        <div class="carousel-controls">
+            <button class="control-button" id="prevBtn">‹</button>
+            <button class="control-button" id="nextBtn">›</button>
+        </div>
+
+        <div class="carousel-indicators" id="indicators"></div>
+    </div>
+    <script>
+      class GameCarousel {
+          constructor() {
+              this.track = document.getElementById('carouselTrack');
+              this.cards = document.querySelectorAll('.game-card');
+              this.prevBtn = document.getElementById('prevBtn');
+              this.nextBtn = document.getElementById('nextBtn');
+              this.indicators = document.getElementById('indicators');
+              
+              this.currentIndex = 0;
+              this.cardsPerView = this.getCardsPerView();
+              this.totalCards = this.cards.length;
+              this.maxIndex = Math.max(0, this.totalCards - this.cardsPerView);
+              
+              this.init();
+          }
+
+          init() {
+              this.createIndicators();
+              this.updateCarousel();
+              this.bindEvents();
+              this.createFloatingParticles();
+              this.autoPlayVideos();
+              this.setupVideoHandlers();
+              
+              // Responsive handling
+              window.addEventListener('resize', () => {
+                  this.cardsPerView = this.getCardsPerView();
+                  this.maxIndex = Math.max(0, this.totalCards - this.cardsPerView);
+                  this.currentIndex = Math.min(this.currentIndex, this.maxIndex);
+                  this.updateCarousel();
+              });
+          }
+
+          getCardsPerView() {
+              if (window.innerWidth <= 768) return 1;
+              if (window.innerWidth <= 1024) return 2;
+              return 3;
+          }
+
+          createIndicators() {
+              this.indicators.innerHTML = '';
+              const totalSlides = this.maxIndex + 1;
+              
+              for (let i = 0; i < totalSlides; i++) {
+                  const indicator = document.createElement('div');
+                  indicator.classList.add('indicator');
+                  if (i === 0) indicator.classList.add('active');
+                  indicator.addEventListener('click', () => this.goToSlide(i));
+                  this.indicators.appendChild(indicator);
+              }
+          }
+
+          bindEvents() {
+              this.prevBtn.addEventListener('click', () => this.prevSlide());
+              this.nextBtn.addEventListener('click', () => this.nextSlide());
+              
+              // Touch/swipe support
+              let startX = 0;
+              let isDragging = false;
+              
+              this.track.addEventListener('touchstart', (e) => {
+                  startX = e.touches[0].clientX;
+                  isDragging = true;
+              });
+              
+              this.track.addEventListener('touchmove', (e) => {
+                  if (!isDragging) return;
+                  e.preventDefault();
+              });
+              
+              this.track.addEventListener('touchend', (e) => {
+                  if (!isDragging) return;
+                  isDragging = false;
+                  
+                  const endX = e.changedTouches[0].clientX;
+                  const diff = startX - endX;
+                  
+                  if (Math.abs(diff) > 50) {
+                      if (diff > 0) {
+                          this.nextSlide();
+                      } else {
+                          this.prevSlide();
+                      }
+                  }
+              });
+
+              // Keyboard navigation
+              document.addEventListener('keydown', (e) => {
+                  if (e.key === 'ArrowLeft') this.prevSlide();
+                  if (e.key === 'ArrowRight') this.nextSlide();
+              });
+          }
+
+          prevSlide() {
+              if (this.currentIndex > 0) {
+                  this.currentIndex--;
+                  this.updateCarousel();
+              }
+          }
+
+          nextSlide() {
+              if (this.currentIndex < this.maxIndex) {
+                  this.currentIndex++;
+                  this.updateCarousel();
+              }
+          }
+
+          goToSlide(index) {
+              this.currentIndex = Math.max(0, Math.min(index, this.maxIndex));
+              this.updateCarousel();
+          }
+
+          updateCarousel() {
+              const cardWidth = this.cards[0].offsetWidth + 30; // including gap
+              const offset = -this.currentIndex * cardWidth;
+              
+              this.track.style.transform = `translateX(${offset}px)`;
+              
+              // Update buttons
+              this.prevBtn.disabled = this.currentIndex === 0;
+              this.nextBtn.disabled = this.currentIndex === this.maxIndex;
+              
+              // Update indicators
+              document.querySelectorAll('.indicator').forEach((indicator, index) => {
+                  indicator.classList.toggle('active', index === this.currentIndex);
+              });
+          }
+
+          autoPlayVideos() {
+              this.cards.forEach(card => {
+                  const video = card.querySelector('.card-video');
+                  if (video) {
+                      video.addEventListener('loadeddata', () => {
+                          video.play().catch(() => {
+                              // Fallback for browsers that don't allow autoplay
+                              console.log('Autoplay prevented');
+                          });
+                      });
+                  }
+              });
+          }
+
+          createFloatingParticles() {
+              const particlesContainer = document.getElementById('particles');
+              if (!particlesContainer) return;
+              
+              const particleCount = 20;
+              
+              for (let i = 0; i < particleCount; i++) {
+                  const particle = document.createElement('div');
+                  particle.classList.add('particle');
+                  
+                  // Random size and position
+                  const size = Math.random() * 6 + 2;
+                  particle.style.width = `${size}px`;
+                  particle.style.height = `${size}px`;
+                  particle.style.left = `${Math.random() * 100}%`;
+                  particle.style.top = `${Math.random() * 100}%`;
+                  particle.style.animationDelay = `${Math.random() * 6}s`;
+                  particle.style.animationDuration = `${6 + Math.random() * 4}s`;
+                  
+                  particlesContainer.appendChild(particle);
+              }
+          }
+
+          setupVideoHandlers() {
+              const isMobile = window.innerWidth <= 768;
+              
+              document.querySelectorAll('.card-video-container').forEach(container => {
+                  const video = container.querySelector('.card-video');
+                  if (!video) return;
+                  
+                  container.style.cursor = 'pointer';
+                  container.addEventListener('click', () => {
+                      if (isMobile) {
+                          this.openVideoFullscreen(video);
+                      } else {
+                          this.openVideoModal(video);
+                      }
+                  });
+              });
+          }
+
+          openVideoFullscreen(video) {
+              if (video.requestFullscreen) {
+                  video.requestFullscreen();
+              } else if (video.webkitRequestFullscreen) {
+                  video.webkitRequestFullscreen();
+              } else if (video.msRequestFullscreen) {
+                  video.msRequestFullscreen();
+              }
+              video.play();
+          }
+
+          openVideoModal(video) {
+              const modal = document.createElement('div');
+              modal.className = 'video-modal';
+              modal.innerHTML = `
+                  <div class="video-modal-overlay">
+                      <div class="video-modal-content">
+                          <button class="video-modal-close">&times;</button>
+                          <video class="video-modal-player" controls autoplay>
+                              <source src="${video.querySelector('source').src}" type="video/mp4">
+                          </video>
+                      </div>
+                  </div>
+              `;
+              
+              document.body.appendChild(modal);
+              document.body.style.overflow = 'hidden';
+              
+              const closeModal = () => {
+                  document.body.removeChild(modal);
+                  document.body.style.overflow = '';
+              };
+              
+              modal.querySelector('.video-modal-close').addEventListener('click', closeModal);
+              modal.querySelector('.video-modal-overlay').addEventListener('click', (e) => {
+                  if (e.target === e.currentTarget) closeModal();
+              });
+              
+              document.addEventListener('keydown', function escapeHandler(e) {
+                  if (e.key === 'Escape') {
+                      closeModal();
+                      document.removeEventListener('keydown', escapeHandler);
+                  }
+              });
+          }
+      }
+
+      // Initialize carousel when DOM is loaded
+      document.addEventListener('DOMContentLoaded', () => {
+          new GameCarousel();
+      });
+
+      // Enhanced hover effects
+      document.querySelectorAll('.game-card').forEach(card => {
+          card.addEventListener('mouseenter', () => {
+              const video = card.querySelector('.card-video');
+              if (video) {
+                  video.play().catch(() => {});
+              }
+          });
+
+          card.addEventListener('mouseleave', () => {
+              const video = card.querySelector('.card-video');
+              if (video) {
+                  video.pause();
+              }
+          });
+      });
+  </script>
+  
+  <style>
+    .video-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 10000;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .video-modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .video-modal-content {
+        position: relative;
+        max-width: 90vw;
+        max-height: 90vh;
+        background: #000;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .video-modal-close {
+        position: absolute;
+        top: -40px;
+        right: 0;
+        background: none;
+        border: none;
+        color: white;
+        font-size: 32px;
+        cursor: pointer;
+        z-index: 10001;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .video-modal-close:hover {
+        opacity: 0.7;
+    }
+
+    .video-modal-player {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+  </style>
     </section>
     
     <!-- Stats About Section -->
     <section class="stats-about">
-      <div class="stats-about__bg"></div>
+      <!-- <div class="stats-about__bg"></div> -->
+      <img src={arrowsBgSrc.src} alt="arrows" class="stats-about__bg" draggable="false" />
       <div class="stats-about__container">
         <div class="stats-about__items">
           <div class="stats-about__item">
@@ -128,7 +549,7 @@ import DevelopmentPath from '../components/DevelopmentPath/DevelopmentPath.jsx';
             <p class="about__highlight">We don't just make games—we throw a party on every screen.</p>
           </div>
         </div>
-      </div>
+    </div>
     </section>
     
     <DevelopmentPath client:load />
@@ -139,4 +560,4 @@ import DevelopmentPath from '../components/DevelopmentPath/DevelopmentPath.jsx';
       <a href="/contactUs" class="cta-button">Get in Touch</a>
     </section>
   </main>
-</Layout> 
+</Layout>

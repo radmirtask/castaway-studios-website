@@ -1,4 +1,5 @@
 import { memo, useRef, useEffect, useState } from 'react';
+import styles from './timeline.module.css';
 
 const TimelineItem = memo(function TimelineItem({ year, title, text, image, index = 0, imageAlt = "" }) {
   const ref = useRef(null);
@@ -6,37 +7,48 @@ const TimelineItem = memo(function TimelineItem({ year, title, text, image, inde
 
   useEffect(() => {
     if (!ref.current) return;
+    
     const observer = new window.IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !inView) {
           setInView(true);
           observer.disconnect();
         }
       },
-      { threshold: 0.05, rootMargin: '0px 0px -20% 0px' }
+      { 
+        threshold: 0.3, 
+        rootMargin: '0px 0px 0px 0px' 
+      }
     );
+    
     observer.observe(ref.current);
     return () => observer.disconnect();
-  }, []);
+  }, [inView]);
 
   return (
     <article
       ref={ref}
-      className={`our-story__item${inView ? ' in-view' : ''}`}
-      style={{ transitionDelay: `${index * 0.12}s` }}
+      className={`${styles.timelineItem} ${inView ? styles.timelineItemInView : ''}`}
+      style={{ 
+        transitionDelay: `${index * 0.15}s`
+      }}
       aria-labelledby={`timeline-title-${year}`}
     >
-      <div className="our-story__item-year-wrapper">
-        <time className="our-story__year" dateTime={year}>{year}</time>
+      <div className={styles.itemYearWrapper}>
+        <time className={styles.itemYear} dateTime={year}>{year}</time>
       </div>
-      <div className="our-story__item-line">
-        <div className="our-story__line" />
-        <div className="our-story__dot" />
-      </div>
-      <div className="our-story__item-content" style={{ minWidth: 0 }}>
-        <h3 id={`timeline-title-${year}`} className="our-story__item-title">{title}</h3>
-        <div className="our-story__item-text" role="text">{text}</div>
-        <img src={image} alt={imageAlt || `${title} milestone image`} className="our-story__image" loading="lazy" decoding="async" />
+      <div className={styles.itemContent}>
+        {title && <h3 id={`timeline-title-${year}`} className={styles.itemTitle}>{title}</h3>}
+        <div className={styles.itemText} role="text">{text}</div>
+        {image && (
+          <img 
+            src={image} 
+            alt={imageAlt || `${title} milestone image`} 
+            className={styles.itemImage} 
+            loading="lazy" 
+            decoding="async" 
+          />
+        )}
       </div>
     </article>
   );

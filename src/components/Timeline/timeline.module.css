@@ -1,0 +1,357 @@
+/* CSS Custom Properties for Timeline */
+:root {
+  --timeline-gradient: linear-gradient(180deg, #6EC6FF 0%, #CF31ED 100%);
+  --timeline-dot-size: 28px;
+  --timeline-dot-border: 6px;
+  --timeline-gap: 3rem;
+}
+
+.ourStory {
+  width: 100%;
+  background: linear-gradient(0deg, #CF31ED 0%, #206BA1 100%);
+  padding: 6rem 0 4rem 0;
+  position: relative;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.ourStoryTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 900;
+  text-transform: uppercase;
+  color: #fff;
+  text-align: center;
+  font-size: clamp(48px, 8vw, 96px);
+  letter-spacing: 2px;
+  margin-bottom: 4rem;
+  opacity: 0;
+  transform: translate3d(0, 20px, 0);
+  transition: all 1s ease-out;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  backface-visibility: hidden;
+}
+
+.ourStoryTitleVisible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.timelineWrapper {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  position: relative;
+  opacity: 0;
+  transform: translate3d(0, 15px, 0);
+  transition: all 0.8s ease-out 0.3s;
+}
+
+.timelineWrapperVisible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.timelineContainer {
+  position: relative;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.timelineScrollLine {
+  position: absolute;
+  left: 3rem;
+  top: 0;
+  width: 4px;
+  height: 0;
+  background: linear-gradient(180deg, #6EC6FF 0%, #CF31ED 100%);
+  border-radius: 2px;
+  transition: height 0.2s ease-out;
+  z-index: 1;
+}
+
+.timelineItems {
+  display: flex;
+  flex-direction: column;
+  gap: var(--timeline-gap);
+  min-width: 0;
+  position: relative;
+  z-index: 2;
+  margin-left: 2rem;
+  padding-bottom: 2rem;
+}
+
+.timelineItem {
+  display: flex;
+  align-items: flex-start;
+  min-height: 120px;
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+  position: relative;
+  padding-left: 3rem;
+  margin-bottom: 1rem;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  backface-visibility: hidden;
+}
+
+.timelineItem::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.5rem;
+  width: 4px;
+  height: calc(100% + 2rem);
+  background: var(--timeline-gradient);
+  border-radius: 2px;
+  z-index: 1;
+  opacity: 0;
+  transition: opacity 0.6s ease-out 0.2s;
+}
+
+.timelineItem::after {
+  content: '';
+  position: absolute;
+  left: -10px;
+  top: 0.5rem;
+  width: 24px;
+  height: 24px;
+  background: #fff;
+  border: 4px solid #6EC6FF;
+  border-radius: 50%;
+  z-index: 3;
+  opacity: 0;
+  transition: opacity 0.5s ease-out 0.4s;
+}
+
+.timelineItemInView {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+.timelineItemInView::before {
+  opacity: 1;
+}
+
+.timelineItemInView::after {
+  opacity: 1;
+}
+
+.itemYearWrapper {
+  min-width: 80px;
+  margin-right: 2rem;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding-top: 0.2em;
+  position: relative;
+  z-index: 2;
+  flex-shrink: 0;
+}
+
+.itemYear {
+  font-family: 'Montserrat', sans-serif;
+  font-size: clamp(1.1rem, 2vw, 1.4rem);
+  white-space: nowrap;
+  color: #fff;
+  margin: 0;
+  text-align: left;
+  line-height: 1.1;
+  font-weight: 900;
+  opacity: 0.8;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: opacity 0.6s ease-out 0.1s;
+}
+
+.timelineItemInView .itemYear {
+  opacity: 1;
+}
+
+.itemContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  z-index: 2;
+  position: relative;
+  min-width: 0;
+}
+
+.itemTitle {
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 700;
+  color: #fff;
+  font-size: clamp(18px, 2.5vw, 22px);
+  margin-bottom: 0.5rem;
+  opacity: 0.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: opacity 0.6s ease-out 0.2s;
+}
+
+.timelineItemInView .itemTitle {
+  opacity: 1;
+}
+
+.itemText {
+  overflow-wrap: break-word;
+  word-break: break-word;
+  z-index: 2;
+  font-family: 'Bahnschrift', Arial, sans-serif;
+  font-weight: 300;
+  color: #fff;
+  font-size: clamp(14px, 2vw, 18px);
+  line-height: 1.6;
+  opacity: 0.6;
+  white-space: pre-line;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  transition: opacity 0.6s ease-out 0.3s;
+}
+
+.timelineItemInView .itemText {
+  opacity: 0.95;
+}
+
+.itemImage {
+  z-index: 1;
+  position: absolute;
+  top: 0;
+  right: -1rem;
+  width: 200px;
+  height: 200px;
+  object-fit: cover;
+  opacity: 1;
+  transition: opacity 0.8s ease-out 0.4s;
+  pointer-events: none;
+  border-radius: 12px;
+}
+
+.timelineItemInView .itemImage {
+  opacity: 0.9;
+}
+
+/* Remove the old line and dot classes since we're using pseudo-elements */
+.itemLine,
+.itemLineInner,
+.itemDot {
+  display: none;
+}
+
+/* Enhanced hover effects - no scale animation for images */
+.timelineItem:hover .itemImage {
+  opacity: 1;
+}
+
+.timelineItem:hover::after {
+  border-color: #CF31ED;
+  transition: border-color 0.3s ease-out;
+}
+
+.timelineItem:hover .itemTitle {
+  opacity: 1;
+}
+
+.timelineItem:hover .itemText {
+  opacity: 1;
+}
+
+@media (max-width: 767px) {
+  .ourStory {
+    padding: 3rem 0 2.5rem 0;
+  }
+  
+  .ourStoryTitle {
+    transform: translate3d(0, 15px, 0);
+  }
+  
+  .timelineContainer {
+    padding: 0 1rem;
+  }
+  
+  .timelineScrollLine {
+    left: 1.5rem;
+    width: 3px;
+  }
+  
+  .timelineItems {
+    margin-left: 1rem;
+    gap: 2rem;
+    padding-bottom: 1rem;
+  }
+  
+  .timelineItem {
+    flex-direction: column;
+    padding-left: 2rem;
+    min-height: 100px;
+  }
+  
+  .timelineItem::before {
+    left: 0;
+    width: 3px;
+    height: calc(100% + 1rem);
+  }
+  
+  .timelineItem::after {
+    left: -7.5px;
+    width: 18px;
+    height: 18px;
+    border: 3px solid #6EC6FF;
+  }
+  
+  .itemYearWrapper {
+    min-width: 60px;
+    margin-right: 1rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .itemContent {
+    min-width: 0;
+    max-width: 100%;
+  }
+  
+  .itemText {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  
+  .itemImage {
+    width: 140px;
+    height: 140px;
+    right: 0;
+    border-radius: 8px;
+  }
+} 
+
+/* Performance optimization for reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .ourStoryTitle,
+  .timelineWrapper,
+  .timelineItem,
+  .itemYear,
+  .itemTitle,
+  .itemText,
+  .itemImage,
+  .timelineItem::before,
+  .timelineItem::after {
+    transition: none;
+    animation: none;
+  }
+  
+  .ourStoryTitleVisible,
+  .timelineWrapperVisible,
+  .timelineItemInView {
+    opacity: 1;
+    transform: none;
+  }
+} 

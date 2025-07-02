@@ -150,6 +150,44 @@
   color: #fff;
   max-width: 540px;
 }
+
+@media (max-width: 1424px) {  
+  .development-path__heading {
+    font-size: 48px;
+    line-height: 58px;
+  }
+  .timeline-item__title {
+    font-size: 48px;
+    line-height: 58px;
+  }
+  .timeline-item__desc {
+    font-size: 18px;
+    line-height: 22px;
+  }
+  .timeline-item__badge, .timeline-item__icon {
+    width: 120px;
+    height: 120px;
+    margin: 0 14px;
+  }
+  .timeline-item_left .timeline-item__badge {
+    margin: 0 0 0 14px;
+  }
+  
+  .development-path__items {
+    max-width: 1400px;
+    padding: 0 40px 120px 40px;
+  }
+  .timeline-item_right {
+    left: 55%;
+    padding-right: 55%;
+  }
+  .timeline-item_left {
+    right: 55%;
+    padding-left: 55%;
+  }
+}
+
+
 @media (max-width: 1023px) {
   .development-path__heading {
     font-size: 48px;

@@ -103,6 +103,13 @@
   text-shadow: 0 4px 8px rgba(0,0,0,0.12);
 }
 
+@media (max-width: 1424px) {
+  .hero__text {
+    padding-left: 2.5%;
+  } 
+}
+
+
 @media (max-width: 1023px) {
   .hero__content {
     flex-direction: column;
@@ -857,6 +864,8 @@ section {
     font-size: 28px;
   }
 }
+
+
 
 /* Desktop Breakpoint (1024px) */
 @media (min-width: 1024px) {

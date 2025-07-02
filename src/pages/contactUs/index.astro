@@ -48,6 +48,7 @@ import './contact.css';
             <label for="subject" class="form-label">Subject</label>
             <select id="subject" name="subject" class="form-input" required>
               <option value="">Select a topic...</option>
+              <option value="job-application">Job Application</option>
               <option value="partnership">Partnership Inquiry</option>
               <option value="support">Game Support</option>
               <option value="feedback">Feedback</option>
@@ -68,4 +69,41 @@ import './contact.css';
       </div>
     </section>
   </main>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const position = urlParams.get('position');
+      
+      if (position) {
+        // Pre-fill subject with Job Application
+        const subjectSelect = document.getElementById('subject') as HTMLSelectElement;
+        if (subjectSelect) {
+          subjectSelect.value = 'job-application';
+        }
+        
+        // Create position-specific messages
+        const positionMessages: Record<string, string> = {
+          'unity-developer': 'Hello Castaway Studios team,\n\nI am interested in applying for the Unity Developer position. I have experience with Unity game development, C# programming, and creating engaging gameplay mechanics. I would love to contribute to your pirate-themed games and bring my technical skills to your creative team.\n\nI look forward to discussing how I can help create amazing gaming experiences with you.\n\nBest regards,',
+          
+          '3d-environment-artist': 'Hello Castaway Studios team,\n\nI am excited to apply for the 3D Environment Artist position. I have strong skills in 3D modeling, texturing, and creating immersive game environments. Your pirate-themed games look incredible, and I would love to help craft the visual worlds where players embark on their adventures.\n\nI believe my artistic vision and technical skills would be a great fit for your team.\n\nBest regards,',
+          
+          'game-designer': 'Hello Castaway Studios team,\n\nI am writing to express my interest in the Game Designer position. I have experience in game mechanics design, level design, and creating engaging player experiences. I admire your approach to games with "sharp wit, bold worlds, and just the right amount of trouble."\n\nI would love to contribute creative ideas and help design unforgettable gaming experiences.\n\nBest regards,',
+          
+          'ui-ux-designer': 'Hello Castaway Studios team,\n\nI am interested in applying for the UI/UX Designer position. I specialize in creating intuitive and visually appealing game interfaces that enhance the player experience. Your games have such unique character, and I would love to help design user interfaces that match that creative energy.\n\nI am excited about the opportunity to work part-time with your team.\n\nBest regards,',
+          
+          'qa-tester': 'Hello Castaway Studios team,\n\nI would like to apply for the QA Tester position. I have experience in game testing, bug reporting, and ensuring quality gameplay experiences. I understand the importance of thorough testing in delivering polished games that players will love.\n\nI am available for contract work and would be excited to help ensure your games meet the highest quality standards.\n\nBest regards,'
+        };
+        
+        // Pre-fill message based on position
+        const messageTextarea = document.getElementById('message') as HTMLTextAreaElement;
+        if (messageTextarea && positionMessages[position]) {
+          messageTextarea.value = positionMessages[position];
+          // Position cursor at the end for easy editing
+          messageTextarea.focus();
+          messageTextarea.setSelectionRange(messageTextarea.value.length, messageTextarea.value.length);
+        }
+      }
+    });
+  </script>
 </Layout> 

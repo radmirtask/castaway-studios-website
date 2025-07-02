@@ -70,7 +70,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  opacity: 0.15;
+  opacity: 0.7;
   pointer-events: none;
 }
 
@@ -176,6 +176,10 @@
 /* CTA Section */
 .cta-section {
   background: linear-gradient(135deg, #F472B6 0%, #EC4899 50%, #DB2777 100%);
+  background-image: url('/global/Pink_Arrow_BG.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   padding: 80px 0;
   text-align: center;
   color: white;
@@ -203,7 +207,7 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 1.1rem;
-  border-radius: 5px;
+  border-radius: 0;
   text-transform: uppercase;
   letter-spacing: 0.5px;
   transition: all 0.3s var(--animation-easing);

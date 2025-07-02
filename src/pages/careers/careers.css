@@ -336,9 +336,7 @@
   }
 
   .hero__description {
-    font-size: 1rem;
-    line-height: 1.4;
-    margin-bottom: 1.3rem;
+    display: none;
   }
 
   .hero__cta {
@@ -409,14 +407,11 @@
   }
 
   .hero__description {
-    font-size: 0.8rem;
-    line-height: 1.3;
-    margin-bottom: 1rem;
+    display: none;
   }
 
   .hero__cta {
-    padding: 0.6rem 1.2rem;
-    font-size: 0.8rem;
+    display: none;
   }
 
   .benefits__title {

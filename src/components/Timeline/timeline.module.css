@@ -65,10 +65,11 @@
   position: absolute;
   left: 3rem;
   top: 0;
-  width: 4px;
+  width: 6px;
   height: 0;
   background: linear-gradient(180deg, #6EC6FF 0%, #CF31ED 100%);
-  border-radius: 2px;
+  border-radius: 3px;
+  box-shadow: 0 0 10px rgba(110, 198, 255, 0.5);
   transition: height 0.2s ease-out;
   z-index: 1;
 }
@@ -76,7 +77,7 @@
 .timelineItems {
   display: flex;
   flex-direction: column;
-  gap: var(--timeline-gap);
+  gap: 5rem;
   min-width: 0;
   position: relative;
   z-index: 2;
@@ -87,7 +88,7 @@
 .timelineItem {
   display: flex;
   align-items: flex-start;
-  min-height: 120px;
+  min-height: 150px;
   opacity: 1;
   transform: translate3d(0, 0, 0);
   transition: opacity 0.8s ease-out, transform 0.8s ease-out;
@@ -105,10 +106,11 @@
   position: absolute;
   left: 0;
   top: 0.5rem;
-  width: 4px;
+  width: 6px;
   height: calc(100% + 2rem);
   background: var(--timeline-gradient);
-  border-radius: 2px;
+  border-radius: 3px;
+  box-shadow: 0 0 8px rgba(110, 198, 255, 0.3);
   z-index: 1;
   opacity: 0;
   transition: opacity 0.6s ease-out 0.2s;
@@ -117,13 +119,14 @@
 .timelineItem::after {
   content: '';
   position: absolute;
-  left: -10px;
+  left: -12px;
   top: 0.5rem;
-  width: 24px;
-  height: 24px;
+  width: 30px;
+  height: 30px;
   background: #fff;
-  border: 4px solid #6EC6FF;
+  border: 5px solid #6EC6FF;
   border-radius: 50%;
+  box-shadow: 0 0 15px rgba(110, 198, 255, 0.6), 0 0 30px rgba(110, 198, 255, 0.3);
   z-index: 3;
   opacity: 0;
   transition: opacity 0.5s ease-out 0.4s;
@@ -163,15 +166,11 @@
   text-align: left;
   line-height: 1.1;
   font-weight: 900;
-  opacity: 0.8;
+  opacity: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   transition: opacity 0.6s ease-out 0.1s;
-}
-
-.timelineItemInView .itemYear {
-  opacity: 1;
 }
 
 .itemContent {
@@ -191,15 +190,11 @@
   color: #fff;
   font-size: clamp(18px, 2.5vw, 22px);
   margin-bottom: 0.5rem;
-  opacity: 0.7;
+  opacity: 1;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   transition: opacity 0.6s ease-out 0.2s;
-}
-
-.timelineItemInView .itemTitle {
-  opacity: 1;
 }
 
 .itemText {
@@ -211,7 +206,7 @@
   color: #fff;
   font-size: clamp(14px, 2vw, 18px);
   line-height: 1.6;
-  opacity: 0.6;
+  opacity: 1;
   white-space: pre-line;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -219,22 +214,43 @@
   transition: opacity 0.6s ease-out 0.3s;
 }
 
-.timelineItemInView .itemText {
-  opacity: 0.95;
-}
+
 
 .itemImage {
   z-index: 1;
   position: absolute;
   top: 0;
-  right: -1rem;
-  width: 200px;
-  height: 200px;
+  right: 70%;
   object-fit: cover;
-  opacity: 1;
+  opacity: 0.85;
   transition: opacity 0.8s ease-out 0.4s;
   pointer-events: none;
   border-radius: 12px;
+}
+
+/* Randomized positioning for each timeline item */
+.timelineItem:nth-child(1) .itemImage {
+  right: 75%;
+  top: 10px;
+  transform: translateX(50px);
+}
+
+.timelineItem:nth-child(2) .itemImage {
+  right: 25%;
+  top: -15px;
+  transform: translateX(-30px);
+}
+
+.timelineItem:nth-child(3) .itemImage {
+  right: 70%;
+  top: -100px;
+  transform: translateX(20px);
+}
+
+.timelineItem:nth-child(4) .itemImage {
+  right: 10%;
+  top: -50px;
+  transform: translateX(-15px);
 }
 
 .timelineItemInView .itemImage {
@@ -255,7 +271,8 @@
 
 .timelineItem:hover::after {
   border-color: #CF31ED;
-  transition: border-color 0.3s ease-out;
+  box-shadow: 0 0 20px rgba(207, 49, 237, 0.8), 0 0 40px rgba(207, 49, 237, 0.4);
+  transition: border-color 0.3s ease-out, box-shadow 0.3s ease-out;
 }
 
 .timelineItem:hover .itemTitle {
@@ -264,6 +281,64 @@
 
 .timelineItem:hover .itemText {
   opacity: 1;
+}
+
+@media (max-width: 1023px) {
+  .timelineScrollLine {
+    left: 2.5rem;
+    width: 5px;
+  }
+  
+  .timelineItems {
+    gap: 4rem;
+    margin-left: 1.5rem;
+  }
+  
+  .timelineItem {
+    padding-left: 2.5rem;
+  }
+  
+  .timelineItem::before {
+    width: 5px;
+  }
+  
+  .timelineItem::after {
+    left: -10px;
+    width: 26px;
+    height: 26px;
+    border: 4px solid #6EC6FF;
+  }
+  
+  .itemImage {
+    width: 170px;
+    height: 170px;
+    right: 65%;
+  }
+  
+  /* Tablet positioning adjustments */
+  .timelineItem:nth-child(1) .itemImage {
+    right: 70%;
+    top: 8px;
+    transform: translateX(30px);
+  }
+  
+  .timelineItem:nth-child(2) .itemImage {
+    right: 30%;
+    top: -12px;
+    transform: translateX(-20px);
+  }
+  
+  .timelineItem:nth-child(3) .itemImage {
+    right: 65%;
+    top: -70px;
+    transform: translateX(15px);
+  }
+  
+  .timelineItem:nth-child(4) .itemImage {
+    right: 15%;
+    top: -35px;
+    transform: translateX(-10px);
+  }
 }
 
 @media (max-width: 767px) {
@@ -281,32 +356,33 @@
   
   .timelineScrollLine {
     left: 1.5rem;
-    width: 3px;
+    width: 4px;
   }
   
   .timelineItems {
     margin-left: 1rem;
-    gap: 2rem;
+    gap: 3rem;
     padding-bottom: 1rem;
   }
   
   .timelineItem {
     flex-direction: column;
     padding-left: 2rem;
-    min-height: 100px;
+    min-height: 120px;
   }
   
   .timelineItem::before {
     left: 0;
-    width: 3px;
-    height: calc(100% + 1rem);
+    width: 4px;
+    height: calc(100% + 1.5rem);
   }
   
   .timelineItem::after {
-    left: -7.5px;
-    width: 18px;
-    height: 18px;
+    left: -8px;
+    width: 20px;
+    height: 20px;
     border: 3px solid #6EC6FF;
+    box-shadow: 0 0 10px rgba(110, 198, 255, 0.5);
   }
   
   .itemYearWrapper {
@@ -328,8 +404,33 @@
   .itemImage {
     width: 140px;
     height: 140px;
-    right: 0;
+    right: 50%;
     border-radius: 8px;
+  }
+  
+  /* Adjusted mobile positioning */
+  .timelineItem:nth-child(1) .itemImage {
+    right: 55%;
+    top: 5px;
+    transform: translateX(25px);
+  }
+  
+  .timelineItem:nth-child(2) .itemImage {
+    right: 35%;
+    top: -10px;
+    transform: translateX(-15px);
+  }
+  
+  .timelineItem:nth-child(3) .itemImage {
+    right: 50%;
+    top: -50px;
+    transform: translateX(10px);
+  }
+  
+  .timelineItem:nth-child(4) .itemImage {
+    right: 20%;
+    top: -25px;
+    transform: translateX(-8px);
   }
 } 
 

@@ -87,13 +87,23 @@ const Timeline = memo(function Timeline({ children }) {
           const timelineHeight = timelineRect.height;
           const scrollProgress = Math.min(Math.max((windowHeight - sectionTop) / (windowHeight + sectionHeight), 0), 1);
           
-          // Make the line grow to full timeline height
-          const targetHeight = scrollProgress * (timelineHeight + 40); // +40px for padding
+          // Calculate responsive bottom spacing based on viewport width
+          const viewportWidth = window.innerWidth;
+          let bottomSpacing;
+          if (viewportWidth <= 767) {
+            bottomSpacing = 64; // 4rem for mobile
+          } else {
+            bottomSpacing = 96; // 6rem for desktop/tablet
+          }
+          
+          // Calculate the available height for the timeline line
+          const availableHeight = sectionHeight - bottomSpacing;
+          const targetHeight = scrollProgress * availableHeight;
           
           // Only allow the line to grow, never shrink
           if (targetHeight > maxHeight) {
             maxHeight = targetHeight;
-            line.style.height = `${Math.min(maxHeight, timelineHeight + 40)}px`;
+            line.style.height = `${Math.min(maxHeight, availableHeight)}px`;
           }
           
           // Mark as animated when we reach significant progress

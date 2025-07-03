@@ -150,3 +150,35 @@ const timelineData = [
   border: 0;
 }
 </style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const statItems = document.querySelectorAll('.stat-item') as NodeListOf<HTMLElement>;
+  
+  statItems.forEach(item => {
+    item.addEventListener('mouseenter', function() {
+      (this as HTMLElement).style.transition = 'transform 0.1s ease-out, background 0.4s ease, backdrop-filter 0.4s ease, border 0.4s ease, box-shadow 0.4s ease';
+    });
+    
+    item.addEventListener('mouseleave', function() {
+      (this as HTMLElement).style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+      (this as HTMLElement).style.transform = 'translateY(0) scale(1) rotateX(0deg) rotateY(0deg)';
+    });
+    
+    item.addEventListener('mousemove', function(e: MouseEvent) {
+      const element = this as HTMLElement;
+      const rect = element.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+      
+      const rotateX = (y - centerY) / centerY * -12;
+      const rotateY = (x - centerX) / centerX * 12;
+      
+      element.style.transform = `translateY(-8px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+  });
+});
+</script>

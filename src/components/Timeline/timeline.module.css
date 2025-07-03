@@ -66,7 +66,7 @@
   left: 3rem;
   top: 0;
   width: 6px;
-  height: 0;
+  height: calc(100% - 6rem);
   background: linear-gradient(180deg, #6EC6FF 0%, #CF31ED 100%);
   border-radius: 3px;
   box-shadow: 0 0 10px rgba(110, 198, 255, 0.5);
@@ -287,6 +287,7 @@
   .timelineScrollLine {
     left: 2.5rem;
     width: 5px;
+    height: calc(100% - 6rem);
   }
   
   .timelineItems {
@@ -352,6 +353,7 @@
   .timelineScrollLine {
     left: 1.5rem;
     width: 4px;
+    height: calc(100% - 4rem);
   }
   
   .timelineItems {

@@ -1,4 +1,5 @@
 ---
+export const prerender = true;
 import Layout from '../../layouts/Layout.astro';
 import './contact.css';
 ---
@@ -40,6 +41,12 @@ import './contact.css';
             netlify-honeypot="bot-field"
             class="contact-form"
           >
+          <input type="hidden" name="form-name" value="contact" />
+          <p class="sr-only">
+            <label>Don’t fill this if you’re human: 
+              <input name="bot-field" />
+            </label>
+          </p>
           <div class="form-group">
             <label for="name" class="form-label">Full Name</label>
             <input type="text" id="name" name="name" class="form-input" required>

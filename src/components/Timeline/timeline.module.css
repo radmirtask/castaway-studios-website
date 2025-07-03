@@ -242,7 +242,7 @@
 }
 
 .timelineItem:nth-child(3) .itemImage {
-  right: 70%;
+  right: 80%;
   top: -100px;
   transform: translateX(20px);
 }
@@ -309,27 +309,22 @@
     border: 4px solid #6EC6FF;
   }
   
-  .itemImage {
-    width: 170px;
-    height: 170px;
-    right: 65%;
-  }
-  
   /* Tablet positioning adjustments */
   .timelineItem:nth-child(1) .itemImage {
+    width: 200px;
     right: 70%;
     top: 8px;
     transform: translateX(30px);
   }
   
   .timelineItem:nth-child(2) .itemImage {
+    width: 200px;
     right: 30%;
     top: -12px;
     transform: translateX(-20px);
   }
   
   .timelineItem:nth-child(3) .itemImage {
-    right: 65%;
     top: -70px;
     transform: translateX(15px);
   }
@@ -403,8 +398,6 @@
   
   .itemImage {
     width: 140px;
-    height: 140px;
-    right: 50%;
     border-radius: 8px;
   }
   
@@ -419,12 +412,6 @@
     right: 35%;
     top: -10px;
     transform: translateX(-15px);
-  }
-  
-  .timelineItem:nth-child(3) .itemImage {
-    right: 50%;
-    top: -50px;
-    transform: translateX(10px);
   }
   
   .timelineItem:nth-child(4) .itemImage {

@@ -12,7 +12,6 @@ body {
 
 .hero-section {
   background: linear-gradient(135deg, #e91e63, #9c27b0, #673ab7);
-  min-height: 70vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -149,7 +148,8 @@ body {
 
 .member-image {
   width: 100%;
-  height: 280px;
+  min-height: 300px;
+  max-height: 350px;
   border-radius: 0;
   margin-bottom: 1.5rem;
   box-shadow: 0 10px 25px rgba(0,0,0,0.2);
@@ -294,7 +294,6 @@ body {
 @media (max-width: 768px) {
   .hero-section {
       padding: 3rem 1rem;
-      min-height: 60vh;
   }
 
   .team-grid-section {

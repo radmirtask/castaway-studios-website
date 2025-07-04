@@ -211,36 +211,44 @@
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.stat-item:hover {
-  background: 
-    linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.12) 100%),
-    rgba(255, 255, 255, 0.15);
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  box-shadow: 
-    0 12px 40px rgba(0, 0, 0, 0.2),
-    0 8px 24px rgba(255, 255, 255, 0.15),
-    0 4px 16px rgba(110, 198, 255, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.4),
-    inset 0 -1px 0 rgba(255, 255, 255, 0.1);
-  transform: translateY(-8px) scale(1.05);
+/* Only enable hover effects for devices with precise pointing and hover capability (mouse) */
+@media (hover: hover) and (pointer: fine) {
+  .stat-item:hover {
+    background: 
+      linear-gradient(135deg, rgba(255, 255, 255, 0.18) 0%, rgba(255, 255, 255, 0.12) 100%),
+      rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 
+      0 12px 40px rgba(0, 0, 0, 0.2),
+      0 8px 24px rgba(255, 255, 255, 0.15),
+      0 4px 16px rgba(110, 198, 255, 0.3),
+      inset 0 1px 0 rgba(255, 255, 255, 0.4),
+      inset 0 -1px 0 rgba(255, 255, 255, 0.1);
+    transform: translateY(-8px) scale(1.05);
+  }
+
+  /* Hide the notch when hovering - card pops out of slot */
+  .stat-item:hover::before {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+
+  .stat-item:hover .stat-number {
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    transform: translateZ(10px);
+  }
+
+  .stat-item:hover .stat-label {
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+    transform: translateZ(5px);
+  }
 }
 
-/* Hide the notch when hovering - card pops out of slot */
-.stat-item:hover::before {
-  opacity: 0;
-  transform: scale(0.95);
-}
-
-
-
-.stat-item:hover .stat-number {
-  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-  transform: translateZ(10px);
-}
-
-.stat-item:hover .stat-label {
-  text-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
-  transform: translateZ(5px);
+/* Disable cursor pointer for touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .stat-item {
+    cursor: default !important;
+  }
 }
 
 .stat-number {

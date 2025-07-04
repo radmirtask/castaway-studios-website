@@ -60,6 +60,15 @@ const timelineData = [
         </div>
       </section>
 
+      <!-- Sliding Text Banner -->
+      <section class="sliding-banner">
+        <div class="sliding-text-container">
+          <div class="sliding-text">
+            READY FOR ADVENTURE • READY FOR ADVENTURE • READY FOR ADVENTURE • READY FOR ADVENTURE • READY FOR ADVENTURE • READY FOR ADVENTURE • READY FOR ADVENTURE • READY FOR ADVENTURE • READY FOR ADVENTURE • READY FOR ADVENTURE • READY FOR ADVENTURE • READY FOR ADVENTURE • 
+          </div>
+        </div>
+      </section>
+
       <!-- Stats -->
       <section class="stats-section" aria-label="Company Stats">
         <div class="stats-bg"></div>
@@ -187,6 +196,64 @@ document.addEventListener('DOMContentLoaded', function() {
         element.style.transform = `translateY(-8px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
       });
     });
+  }
+  
+  // Interactive Sliding Banner
+  const slidingBanner = document.querySelector('.sliding-banner') as HTMLElement;
+  const companyInfo = document.querySelector('.company-info') as HTMLElement;
+  const statsSection = document.querySelector('.stats-section') as HTMLElement;
+  
+  if (slidingBanner && companyInfo && statsSection) {
+    let bannerSystem = null;
+    let hasBeenActivated = false;
+    
+    // Create intersection observer for initial trigger
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !hasBeenActivated) {
+          // First time properly seeing the section - start banner system
+          hasBeenActivated = true;
+          startBannerCycle();
+          // Stop observing once activated
+          observer.disconnect();
+        }
+      });
+    }, {
+      threshold: 0.6, // User must see 60% of the section
+      rootMargin: '0px 0px' // No early triggering
+    });
+    
+    function startBannerCycle() {
+      // Wait 5 seconds after user first sees the section, then activate banner
+      setTimeout(() => {
+        slidingBanner.classList.add('active');
+        
+        // Set up recurring cycle synchronized with text animation
+        bannerSystem = setInterval(() => {
+          // Close banner after text completes full cycle
+          slidingBanner.classList.remove('active');
+          
+          // Long cooldown period (60 seconds), then reopen with fresh animation
+          setTimeout(() => {
+            // Reset animation by forcing reflow
+            const slidingText = slidingBanner.querySelector('.sliding-text') as HTMLElement;
+            if (slidingText) {
+              slidingText.style.animation = 'none';
+              slidingText.offsetHeight; // Force reflow
+              slidingText.style.animation = 'slideText 30s linear infinite';
+            }
+            
+            // Activate banner with fresh animation
+            slidingBanner.classList.add('active');
+          }, 60000);
+          
+        }, 90000); // Complete cycle: 30s open + 60s closed = 90s total
+      }, 5000); // 5 second delay after first view
+    }
+    
+    // Observe both company info and stats sections for initial trigger
+    observer.observe(companyInfo);
+    observer.observe(statsSection);
   }
 });
 </script>

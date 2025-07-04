@@ -96,16 +96,129 @@
 }
 
 .company-description {
-  font-size: clamp(16px, 2.5vw, 20px);
-  line-height: 1.6;
+  font-size: clamp(20px, 3.5vw, 28px);
+  line-height: 1.8;
   margin: 0 auto;
+  max-width: 900px;
+  text-align: center;
+  color: rgba(255, 255, 255, 0.95);
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+  padding: 2rem 1rem;
 }
 
 .company-description .highlight {
   color: #FFC300;
-  font-weight: bold;
+  font-weight: 700;
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
+  font-size: clamp(24px, 4vw, 32px);
+  text-shadow: 0 2px 8px rgba(255, 195, 0, 0.3);
+  letter-spacing: 0.5px;
+}
+
+/* Sliding Text Banner */
+.sliding-banner {
+  background: #000;
+  height: 0;
+  overflow: hidden;
+  position: relative;
+  border-top: 0 solid #000;
+  border-bottom: 0 solid #000;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  opacity: 0;
+  transform: scaleY(0);
+  transform-origin: center;
+}
+
+.sliding-banner.active {
+  height: 80px;
+  border-top: 4px solid #000;
+  border-bottom: 4px solid #000;
+  opacity: 1;
+  transform: scaleY(1);
+}
+
+.sliding-text-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  white-space: nowrap;
+}
+
+.sliding-text {
+  font-family: var(--font-bahnschrift);
+  font-size: 2rem;
+  font-weight: 900;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  animation: slideText 30s linear infinite;
+  animation-play-state: paused;
+  display: inline-block;
+  padding-right: 100px;
+  transition: opacity 0.8s ease;
+}
+
+.sliding-banner.active .sliding-text {
+  animation-play-state: running;
+}
+
+@keyframes slideText {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+@media (max-width: 768px) {
+  .sliding-banner.active {
+    height: 60px;
+  }
+  
+  .sliding-text {
+    font-size: 1.5rem;
+    letter-spacing: 2px;
+  }
+  
+  .company-description {
+    padding: 1.75rem 1rem;
+    font-size: clamp(18px, 3.8vw, 24px);
+  }
+  
+  .company-description .highlight {
+    font-size: clamp(22px, 4.5vw, 28px);
+    margin-bottom: 1.75rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .sliding-banner.active {
+    height: 50px;
+  }
+  
+  .sliding-text {
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+  }
+  
+  .company-description {
+    padding: 1.5rem 0.75rem;
+    font-size: clamp(18px, 4vw, 22px);
+    line-height: 1.7;
+  }
+  
+  .company-description .highlight {
+    font-size: clamp(22px, 5vw, 26px);
+    margin-bottom: 1.5rem;
+  }
 }
 
 /* Stats Section */

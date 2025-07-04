@@ -81,13 +81,13 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                             <source src={game1Src} type="video/mp4">
                         </video>
                         <div class="video-overlay">
-                            <h3 class="card-title">ELARION</h3>
-                            <p class="card-description">Step into a magical world where you're discovering locations and fighting all the different creatures of this world</p>
-                            <div class="card-tags">
-                                <span class="tag">Open World</span>
-                                <span class="tag">Adventure</span>
-                                <span class="tag">RPG</span>
-                            </div>
+                        <h3 class="card-title">ELARION</h3>
+                        <p class="card-description">Step into a magical world where you're discovering locations and fighting all the different creatures of this world</p>
+                        <div class="card-tags">
+                            <span class="tag">Open World</span>
+                            <span class="tag">Adventure</span>
+                            <span class="tag">RPG</span>
+                        </div>
                             <button class="card-button">PLAY NOW</button>
                         </div>
                     </div>
@@ -96,22 +96,22 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                 <!-- Game Card 2 -->
                 <div class="game-card">
                     <div class="phone-button-2"></div>
-                    <div class="card-video-container">
+                  <div class="card-video-container">
                         <video class="card-video" muted loop autoplay playsinline>
-                            <source src="https://via.placeholder.com/400x600/7c2d12/ffffff.mp4" type="video/mp4">
-                        </video>
-                        <div class="video-overlay">
+                          <source src="https://via.placeholder.com/400x600/7c2d12/ffffff.mp4" type="video/mp4">
+                      </video>
+                      <div class="video-overlay">
                             <h3 class="card-title">PUPPY COLLECTOR</h3>
                             <p class="card-description">Collect Cute Puppies and relax</p>
-                            <div class="card-tags">
-                                <span class="tag">Casual</span>
-                                <span class="tag">Puzzle</span>
-                                <span class="tag">Relaxing</span>
-                            </div>
+                      <div class="card-tags">
+                          <span class="tag">Casual</span>
+                          <span class="tag">Puzzle</span>
+                          <span class="tag">Relaxing</span>
+                      </div>
                             <button class="card-button">PLAY NOW</button>
                         </div>
-                    </div>
-                </div>
+                  </div>
+              </div>
 
                 <!-- Game Card 3 -->
                 <div class="game-card">
@@ -121,17 +121,17 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                           <source src={game5Src} type="video/mp4">
                       </video>
                       <div class="video-overlay">
-                          <h3 class="card-title">ARENA QUEST</h3>
+                        <h3 class="card-title">ARENA QUEST</h3>
                           <p class="card-description">Defeat Enemies, Endless Action</p>
-                          <div class="card-tags">
-                              <span class="tag">RPG</span>
-                              <span class="tag">Adventure</span>
-                              <span class="tag">Exploration</span>
-                          </div>
+                        <div class="card-tags">
+                            <span class="tag">RPG</span>
+                            <span class="tag">Adventure</span>
+                            <span class="tag">Exploration</span>
+                        </div>
                           <button class="card-button">PLAY NOW</button>
                       </div>
-                  </div>
-              </div>                
+                    </div>
+                </div>
             </div>
         </div>
 
@@ -238,7 +238,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                   // Simple direction detection
                   if (absDiffX > absDiffY && absDiffX > 10) {
                       // Horizontal swipe - prevent page scroll and show live preview
-                      e.preventDefault();
+                  e.preventDefault();
                       const newTransform = initialTransform + diffX;
                       this.track.style.transform = `translateX(${newTransform}px)`;
                   } else if (absDiffY > 10) {

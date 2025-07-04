@@ -1,0 +1,167 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import './privacy.css';
+---
+
+<Layout title="Privacy Policy - Castaway Studios">
+  <main class="privacy-page">
+    <!-- Animated Background Elements -->
+    <div class="bg-elements">
+      <div class="floating-circle circle-1"></div>
+      <div class="floating-circle circle-2"></div>
+      <div class="floating-circle circle-3"></div>
+      <div class="floating-triangle triangle-1"></div>
+      <div class="floating-triangle triangle-2"></div>
+    </div>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+      <div class="hero-content">
+        <div class="hero-icon">🛡️</div>
+        <h1 class="hero-title">Privacy & Protection</h1>
+        <p class="hero-subtitle">Your privacy matters to us. We're committed to transparency and protecting your data across all our gaming experiences.</p>
+        <div class="hero-stats">
+          <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Transparent</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">0</div>
+            <div class="stat-label">Data Sold</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">GDPR</div>
+            <div class="stat-label">Compliant</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Intro -->
+    <section class="intro-section">
+      <div class="container">
+        <div class="intro-card">
+          <div class="intro-icon">🔒</div>
+          <h2>Our Privacy Promise</h2>
+          <p>At Castaway Studios, we believe privacy is a fundamental right. Our policies are designed to be clear, comprehensive, and user-friendly. We collect only what's necessary to provide you with the best gaming experience.</p>
+          <div class="trust-badges">
+            <div class="badge">🌟 Player First</div>
+            <div class="badge">🔐 Secure by Design</div>
+            <div class="badge">📱 Mobile Optimized</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Privacy Policies Grid -->
+    <section class="policies-section">
+      <div class="container">
+        <div class="section-header">
+          <h2>Privacy Policies</h2>
+          <p>Choose the policy that applies to you</p>
+        </div>
+
+        <div class="policies-grid">
+          <!-- General Policy -->
+          <div class="policy-card general-policy">
+            <div class="card-header">
+              <div class="policy-icon">📋</div>
+              <div class="policy-type">General</div>
+            </div>
+            <h3>General Privacy Policy</h3>
+            <p>Our comprehensive privacy policy covering all Castaway Studios services, data practices, and your rights as a user.</p>
+            <ul class="policy-features">
+              <li>✓ Data collection practices</li>
+              <li>✓ Cookie usage</li>
+              <li>✓ Third-party integrations</li>
+              <li>✓ User rights & controls</li>
+            </ul>
+            <a href="#" class="download-btn primary-btn" onclick="alert('PDF download would be implemented here')">
+              <span>Download PDF</span>
+              <div class="btn-icon">📥</div>
+            </a>
+          </div>
+
+          <!-- Game-Specific Policies -->
+          <div class="policy-card game-policy elarion">
+            <div class="card-header">
+              <div class="policy-icon">⚔️</div>
+              <div class="policy-type">Game Policy</div>
+            </div>
+            <h3>Elarion Privacy Policy</h3>
+            <p>Privacy policy for our magical world adventure covering player progress, in-game analytics, and character data.</p>
+            <ul class="policy-features">
+              <li>✓ Character progression data</li>
+              <li>✓ In-game analytics</li>
+              <li>✓ Social features</li>
+              <li>✓ Achievement tracking</li>
+            </ul>
+            <a href="../../../public/privacy/Elarion_Privacy_Policy.pdf" class="download-btn game-btn" target="_blank">
+              <span>Download PDF</span>
+              <div class="btn-icon">📥</div>
+            </a>
+          </div>
+
+          <div class="policy-card game-policy puppy">
+            <div class="card-header">
+              <div class="policy-icon">🐕</div>
+              <div class="policy-type">Game Policy</div>
+            </div>
+            <h3>Puppy Collector Privacy Policy</h3>
+            <p>Privacy policy for our casual puzzle game covering gameplay tracking, collection data, and user interactions.</p>
+            <ul class="policy-features">
+              <li>✓ Collection progress</li>
+              <li>✓ Gameplay analytics</li>
+              <li>✓ Social sharing</li>
+              <li>✓ Purchase history</li>
+            </ul>
+            <a href="../../../public/privacy/Puppy_Collector_Privacy_Policy.pdf" class="download-btn game-btn" target="_blank">
+              <span>Download PDF</span>
+              <div class="btn-icon">📥</div>
+            </a>
+          </div>
+
+          <div class="policy-card game-policy arena">
+            <div class="card-header">
+              <div class="policy-icon">🏟️</div>
+              <div class="policy-type">Game Policy</div>
+            </div>
+            <h3>Arena Quest Privacy Policy</h3>
+            <p>Privacy policy for our action RPG covering combat analytics, player progression, and competitive data.</p>
+            <ul class="policy-features">
+              <li>✓ Combat statistics</li>
+              <li>✓ Leaderboard data</li>
+              <li>✓ Multiplayer interactions</li>
+              <li>✓ Tournament records</li>
+            </ul>
+            <a href="../../../public/privacy/Realms_of_Shadow_Privacy_Policy.pdf" class="download-btn game-btn" target="_blank">
+              <span>Download PDF</span>
+              <div class="btn-icon">📥</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+      <div class="container">
+        <div class="contact-card">
+          <div class="contact-icon">💬</div>
+          <h2>Have Privacy Questions?</h2>
+          <p>Our privacy team is here to help. Reach out with any questions about our data practices or your privacy rights.</p>
+          <div class="contact-buttons">
+            <a href="mailto:privacy@castawaystudios.com" class="contact-btn">
+              <span>Email Privacy Team</span>
+              <div class="btn-icon">📧</div>
+            </a>
+            <a href="/contactUs" class="contact-btn secondary">
+              <span>Contact Form</span>
+              <div class="btn-icon">📝</div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</Layout>

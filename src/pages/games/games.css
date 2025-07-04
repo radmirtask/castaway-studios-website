@@ -3,16 +3,22 @@
 }
 
 .hero {
-  background-image: url('/games/hero/BG.png');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  min-height: 60vh;
+  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
   position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #0f0f23 0%, #1a1a3a 40%, #2d1b69 60%, #2ebd90 100%);
+  background-size: 400% 400%;
+  animation: gradientShift 15s ease infinite;
+}
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
 }
 
 .hero::before {
@@ -22,26 +28,113 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.3);
+  background: radial-gradient(circle at 20% 30%, rgba(74, 85, 104, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 80% 70%, rgba(46, 189, 144, 0.2) 0%, transparent 50%),
+              radial-gradient(circle at 40% 80%, rgba(15, 15, 35, 0.3) 0%, transparent 50%);
   z-index: 1;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: 
+    linear-gradient(45deg, transparent 48%, rgba(255, 255, 255, 0.03) 50%, transparent 52%),
+    linear-gradient(-45deg, transparent 48%, rgba(255, 255, 255, 0.03) 50%, transparent 52%);
+  background-size: 60px 60px;
+  z-index: 2;
+  animation: patternMove 20s linear infinite;
+}
+
+@keyframes patternMove {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(60px) translateY(60px); }
 }
 
 .hero__content {
   position: relative;
-  z-index: 2;
+  z-index: 3;
   padding: 2rem;
 }
 
 .hero__title {
-  font-size: 2.5rem;
+  font-size: clamp(2.5rem, 8vw, 6rem);
   font-weight: 900;
   color: var(--color-white);
   text-transform: uppercase;
   font-family: var(--font-bahnschrift);
-  line-height: 1.1;
+  line-height: 0.9;
   margin: 0;
-  text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  position: relative;
 }
+
+.hero__scroll-arrow {
+  position: absolute;
+  bottom: 20vh;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  z-index: 4;
+  animation: float 3s ease-in-out infinite;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+.hero__scroll-arrow:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateX(-50%) translateY(-5px);
+}
+
+.hero__scroll-arrow:active {
+  transform: translateX(-50%) translateY(-2px) scale(0.95);
+}
+
+@keyframes float {
+  0%, 100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(-10px); }
+}
+
+.hero__scroll-arrow svg {
+  pointer-events: none;
+}
+
+
+
+.hero__title::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 120%;
+  height: 120%;
+  background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.05) 0%, transparent 70%);
+  z-index: -1;
+}
+
+
 
 .games-container {
   margin: 0 auto;
@@ -182,8 +275,22 @@
 }
 
 @media (min-width: 768px) {
+  .hero {
+    min-height: 90vh;
+  }
+  
+  .hero__content {
+    padding: 3rem;
+  }
+  
   .hero__title {
-    font-size: 4rem;
+    line-height: 0.85;
+  }
+  
+  .hero__scroll-arrow {
+    width: 50px;
+    height: 50px;
+    bottom: 10vh;
   }
   
   .game-card {
@@ -224,14 +331,22 @@
 
 @media (min-width: 1024px) {
   .hero {
-    min-height: 70vh;
+    min-height: 80vh;
+  }
+  
+  .hero__content {
+    padding: 4rem;
   }
   
   .hero__title {
-    font-size: 5rem;
+    line-height: 0.8;
   }
   
-
+  .hero__scroll-arrow {
+    width: 70px;
+    height: 70px;
+    bottom: 5vh;
+  }
 
   .game-card {
     min-height: 600px;

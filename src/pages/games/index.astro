@@ -36,6 +36,11 @@ const games = [
       <div class="hero__content">
         <h1 class="hero__title">FUTURE OF<br>MOBILE GAMES</h1>
       </div>
+      <button class="hero__scroll-arrow" aria-label="Scroll to games section">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M12 4V20M12 20L18 14M12 20L6 14" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </section>
 
     <section class="games-section">
@@ -79,3 +84,19 @@ const games = [
     </section>
   </main>
 </Layout>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const scrollArrow = document.querySelector('.hero__scroll-arrow');
+    const gamesSection = document.querySelector('.games-section');
+    
+    if (scrollArrow && gamesSection) {
+      scrollArrow.addEventListener('click', function() {
+        gamesSection.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+      });
+    }
+  });
+</script>

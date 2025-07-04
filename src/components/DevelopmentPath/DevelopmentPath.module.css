@@ -1,14 +1,14 @@
 .development-path {
     position: relative;
     width: 100%;
-    min-height: 1200px;
+    min-height: 900px;
     background: linear-gradient(180deg, #3a8fff 0%, #cc30ec 100%);
     display: flex;
     flex-direction: column;
     align-items: center;
     
     /* make room for your 400px-tall image */
-    padding-bottom: 100px;
+    padding-bottom: 80px;
 
     /* prevent the 100vw trick from adding a horizontal scrollbar */
     overflow: hidden;
@@ -22,8 +22,8 @@
   transform: translateX(-50%);
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
-  font-size: 64px;
-  line-height: 78px;
+  font-size: 48px;
+  line-height: 58px;
   letter-spacing: 0.08em;
   color: #fff;
   z-index: 2;
@@ -58,13 +58,13 @@
 .development-path__items {
   position: relative;
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   margin: 5% auto;
   display: flex;
   flex-direction: column;
-  gap: 120px;
+  gap: 80px;
   z-index: 2;
-  padding: 0 24px 120px 24px;
+  padding: 0 40px 80px 40px;
 }
 
 
@@ -96,38 +96,38 @@
 .timeline-item_right {
   flex-direction: row;
   justify-content: flex-end;
-  left: 30%;
-  padding-left: 48px;
+  left: 25%;
+  padding-left: 24px;
 }
 .timeline-item_left {
   flex-direction: row-reverse;
   justify-content: flex-start;
-  right: 50%;
-  padding-right: 48px;
+  right: 55%;
+  padding-right: 24px;
 }
 .timeline-item__badge {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 90px;
-  height: 90px;
-  margin: 0 32px 0 0;
+  width: 70px;
+  height: 70px;
+  margin: 0 24px 0 0;
   z-index: 3;
 }
 .timeline-item_left .timeline-item__badge {
-  margin: 0 0 0 32px;
+  margin: 0 0 0 24px;
 }
 .timeline-item__icon {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
-  height: 120px;
-  margin: 0 32px;
+  width: 90px;
+  height: 90px;
+  margin: 0 24px;
   z-index: 3;
 }
 .timeline-item__content {
-  max-width: 540px;
+  max-width: 400px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
@@ -135,8 +135,8 @@
 .timeline-item__title {
   font-family: 'Montserrat', sans-serif;
   font-weight: 900;
-  font-size: 64px;
-  line-height: 78px;
+  font-size: 40px;
+  line-height: 48px;
   letter-spacing: 0.08em;
   color: #fff;
   margin-bottom: 16px;
@@ -144,75 +144,80 @@
 .timeline-item__desc {
   font-family: 'Montserrat', sans-serif;
   font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
+  font-size: 16px;
+  line-height: 20px;
   letter-spacing: 0.08em;
   color: #fff;
-  max-width: 540px;
+  max-width: 400px;
 }
 
 @media (max-width: 1424px) {  
   .development-path__heading {
-    font-size: 48px;
-    line-height: 58px;
+    font-size: 36px;
+    line-height: 38px;
   }
   .timeline-item__title {
-    font-size: 48px;
-    line-height: 58px;
+    font-size: 24px;
+    line-height: 28px;
   }
   .timeline-item__desc {
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 12px;
+    line-height: 16px;
   }
   .timeline-item__badge, .timeline-item__icon {
-    width: 120px;
-    height: 120px;
-    margin: 0 14px;
+    width: 48px;
+    height: 48px;
+    margin: 0 12px;
   }
   .timeline-item_left .timeline-item__badge {
-    margin: 0 0 0 14px;
+    margin: 0 0 0 12px;
   }
-  
+  .timeline-item__content {
+    max-width: 240px;
+  }
   .development-path__items {
-    max-width: 1400px;
-    padding: 0 40px 120px 40px;
+    max-width: 800px;
+    padding: 0 20px 60px 20px;
+    gap: 40px;
   }
   .timeline-item_right {
-    left: 55%;
-    padding-right: 55%;
+    left: 15%;
+    padding-left: 16px;
   }
   .timeline-item_left {
     right: 55%;
-    padding-left: 55%;
+    padding-right: 16px;
   }
 }
 
 
 @media (max-width: 1023px) {
   .development-path__heading {
-    font-size: 48px;
-    line-height: 56px;
+    font-size: 36px;
+    line-height: 42px;
     top: 32px;
   }
   .timeline-item__title {
-    font-size: 32px;
-    line-height: 40px;
+    font-size: 28px;
+    line-height: 34px;
   }
   .timeline-item__desc {
-    font-size: 18px;
-    line-height: 22px;
+    font-size: 16px;
+    line-height: 20px;
   }
   .timeline-item__badge, .timeline-item__icon {
-    width: 64px;
-    height: 64px;
-    margin: 0 16px;
+    width: 56px;
+    height: 56px;
+    margin: 0 12px;
   }
   .timeline-item__content {
-    max-width: 90vw;
+    max-width: 280px;
   }
   .development-path__items {
-    gap: 64px;
-    padding-bottom: 64px;
+    gap: 50px;
+    padding-bottom: 50px;
+    padding-left: 16px;
+    padding-right: 16px;
   }
   .development-path__timeline {
     width: 6px;

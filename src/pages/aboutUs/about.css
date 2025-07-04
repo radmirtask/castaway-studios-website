@@ -135,22 +135,21 @@
   max-width: 1200px;
   margin: 0 auto;
   z-index: 2;
-  padding: 3rem 2rem 4rem 2rem;
+  padding: 2rem 1.5rem 3rem 1.5rem;
   overflow: visible;
   contain: layout;
 }
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: 2.5rem;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
   text-align: center;
   align-items: start;
   justify-items: center;
   perspective: 1000px;
   transform-style: preserve-3d;
   height: auto;
-  min-height: 240px;
 }
 
 .stat-item {
@@ -158,16 +157,16 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-width: 0;
-  padding: 2.5rem 2rem;
-  margin: 16px 0;
-  border-radius: 20px;
+  width: 100%;
+  height: 180px;
+  padding: 2rem 1.5rem;
+  margin: 10px 0;
+  border-radius: 0;
   transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   cursor: pointer;
   position: relative;
   transform-style: preserve-3d;
   perspective: 1000px;
-  min-height: 140px;
   isolation: isolate;
   background: rgba(255, 255, 255, 0.05);
   border: 1px solid rgba(255, 255, 255, 0.1);
@@ -188,7 +187,7 @@
   bottom: -3px;
   background: transparent;
   border: 2px solid rgba(0, 0, 0, 0.15);
-  border-radius: 22px;
+  border-radius: 0;
   pointer-events: none;
   z-index: -1;
   box-shadow: 
@@ -234,16 +233,16 @@
 .stat-number {
   color: #fff;
   font-weight: 700;
-  font-size: clamp(28px, 5vw, 40px);
+  font-size: clamp(36px, 6vw, 56px);
   line-height: 1.1;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
   word-break: break-word;
 }
 
 .stat-label {
   color: #fff;
   font-weight: 500;
-  font-size: clamp(0.9rem, 2vw, 1.15rem);
+  font-size: clamp(1.1rem, 2.5vw, 1.4rem);
   line-height: 1.3;
   letter-spacing: 0.01em;
   word-break: break-word;
@@ -317,30 +316,56 @@
   
   .stats-grid {
     grid-template-columns: repeat(2, 1fr);
-    gap: 2rem;
+    gap: 1rem;
     min-height: 300px;
   }
   
   .stats-container {
-    padding: 2.5rem 1.5rem 3.5rem 1.5rem;
+    padding: 2rem 1rem 2.5rem 1rem;
   }
 }
 
 @media (max-width: 1023px) and (min-width: 768px) {
   .stat-item {
-    padding: 2.5rem 1.8rem;
-    min-height: 130px;
+    padding: 1rem 0;
+    margin: 0;
+    min-height: auto;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    cursor: default !important;
+    transition: none !important;
+    transform: none !important;
+    perspective: none !important;
+    transform-style: flat !important;
+    isolation: auto !important;
+    position: static !important;
   }
   
   .stat-item::before {
-    border-radius: 18px;
+    display: none !important;
+  }
+  
+  .stat-item:hover {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
+  }
+  
+  .stat-item:hover .stat-number {
+    text-shadow: none !important;
+    transform: none !important;
+  }
+  
+  .stat-item:hover .stat-label {
+    text-shadow: none !important;
+    transform: none !important;
   }
 }
 
 @media (max-width: 767px) {
-  .about {
-    margin-top: 70px;
-  }
   
   .hero-section {
     height: 50vh;
@@ -358,52 +383,59 @@
   
   .stats-grid {
     grid-template-columns: 1fr;
-    gap: 2rem;
+    gap: 1rem;
     min-height: 600px;
   }
 
   .stats-container {
-    padding: 3rem 1rem 4rem 1rem;
+    padding: 2rem 1rem 3rem 1rem;
   }
 
   .stat-item {
-    padding: 2.5rem 2rem;
-    margin: 12px 0;
-    border-radius: 20px;
-    min-height: 140px;
-    max-width: 350px;
+    padding: 1rem 0;
+    margin: 0;
+    min-height: auto;
+    max-width: none;
     width: 100%;
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    cursor: default !important;
+    transition: none !important;
+    transform: none !important;
+    perspective: none !important;
+    transform-style: flat !important;
+    isolation: auto !important;
+    position: static !important;
   }
   
   .stat-item::before {
-    border-radius: 22px;
-    top: -2px;
-    left: -2px;
-    right: -2px;
-    bottom: -2px;
+    display: none !important;
   }
 
   .stat-item:hover {
-    transform: translateY(-6px) scale(1.03);
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
   }
 
-  /* Touch-friendly effect for mobile */
-  .stat-item:active {
-    background: 
-      linear-gradient(135deg, rgba(255, 255, 255, 0.22) 0%, rgba(255, 255, 255, 0.15) 100%),
-      rgba(255, 255, 255, 0.18);
-    border: 1px solid rgba(255, 255, 255, 0.35);
-    box-shadow: 
-      0 6px 25px rgba(0, 0, 0, 0.12),
-      0 4px 15px rgba(255, 255, 255, 0.12),
-      0 2px 8px rgba(110, 198, 255, 0.15),
-      inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  .stat-item:hover .stat-number {
+    text-shadow: none !important;
+    transform: none !important;
   }
   
-  /* Hide notch on mobile touch */
-  .stat-item:active::before {
-    opacity: 0.5;
-    transform: scale(0.98);
+  .stat-item:hover .stat-label {
+    text-shadow: none !important;
+    transform: none !important;
+  }
+
+  .stat-item:active {
+    background: none !important;
+    border: none !important;
+    box-shadow: none !important;
+    transform: none !important;
   }
   
   .cta-section {

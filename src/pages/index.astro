@@ -65,7 +65,10 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
     <div class="carousel-container">
         <div class="carousel-header">
             <h1 class="carousel-title">Our Game Collection</h1>
-            <p class="carousel-subtitle">Immersive experiences that refuse to grow up—packed with sharp wit, bold worlds, and just the right amount of trouble.</p>
+            <p class="carousel-subtitle">We design for mobile from day one — not as a port, not as a second-tier
+              platform. Every vibration, interaction, and UI element is crafted with the phone in
+              mind. At Castaway Studios, we believe mobile deserves games that feel made
+              for your hands — not just adapted to them.</p>
         </div>
 
         <div class="carousel-wrapper">
@@ -74,7 +77,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                 <div class="game-card">
                     <div class="phone-button-2"></div>
                     <div class="card-video-container">
-                        <video class="card-video" muted loop>
+                        <video class="card-video" muted loop autoplay playsinline>
                             <source src={game1Src} type="video/mp4">
                         </video>
                         <div class="video-overlay">
@@ -94,7 +97,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                 <div class="game-card">
                     <div class="phone-button-2"></div>
                     <div class="card-video-container">
-                        <video class="card-video" muted loop>
+                        <video class="card-video" muted loop autoplay playsinline>
                             <source src="https://via.placeholder.com/400x600/7c2d12/ffffff.mp4" type="video/mp4">
                         </video>
                         <div class="video-overlay">
@@ -114,7 +117,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                 <div class="game-card">
                     <div class="phone-button-2"></div>
                     <div class="card-video-container">
-                        <video class="card-video" muted loop>
+                        <video class="card-video" muted loop autoplay playsinline>
                             <source src={game3Src} type="video/mp4">
                         </video>
                         <div class="video-overlay">
@@ -134,7 +137,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                 <div class="game-card">
                     <div class="phone-button-2"></div>
                     <div class="card-video-container">
-                        <video class="card-video" muted loop>
+                        <video class="card-video" muted loop autoplay playsinline>
                             <source src={game4Src} type="video/mp4">
                         </video>
                         <div class="video-overlay">
@@ -154,7 +157,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                 <div class="game-card">
                     <div class="phone-button-2"></div>
                     <div class="card-video-container">
-                        <video class="card-video" muted loop>
+                        <video class="card-video" muted loop autoplay playsinline>
                             <source src={game5Src} type="video/mp4">
                         </video>
                         <div class="video-overlay">
@@ -191,7 +194,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
               this.currentIndex = 0;
               this.cardsPerView = this.getCardsPerView();
               this.totalCards = this.cards.length;
-              this.maxIndex = Math.max(0, this.totalCards - this.cardsPerView);
+              this.maxIndex = this.getMaxIndex();
               
               this.init();
           }
@@ -203,11 +206,12 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
               this.createFloatingParticles();
               this.autoPlayVideos();
               this.setupVideoHandlers();
+              this.setupVideoIntersectionObserver();
               
               // Responsive handling
               window.addEventListener('resize', () => {
                   this.cardsPerView = this.getCardsPerView();
-                  this.maxIndex = Math.max(0, this.totalCards - this.cardsPerView);
+                  this.maxIndex = this.getMaxIndex();
                   this.currentIndex = Math.min(this.currentIndex, this.maxIndex);
                   this.updateCarousel();
               });
@@ -218,12 +222,16 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
               if (window.innerWidth <= 1024) return 2;
               return 3;
           }
+          
+          getMaxIndex() {
+              // Always use the same logic: allow navigation to each individual card
+              return this.totalCards - 1;
+          }
 
           createIndicators() {
               this.indicators.innerHTML = '';
-              const totalSlides = this.maxIndex + 1;
-              
-              for (let i = 0; i < totalSlides; i++) {
+              // Always create indicators for each card
+              for (let i = 0; i < this.totalCards; i++) {
                   const indicator = document.createElement('div');
                   indicator.classList.add('indicator');
                   if (i === 0) indicator.classList.add('active');
@@ -263,15 +271,21 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                   const currentY = e.touches[0].clientY;
                   
                   const diffX = currentX - startX;
-                  const diffY = Math.abs(currentY - startY);
+                  const diffY = currentY - startY;
+                  const absDiffX = Math.abs(diffX);
+                  const absDiffY = Math.abs(diffY);
                   
-                  // Only prevent default if horizontal swipe is dominant
-                  if (Math.abs(diffX) > diffY) {
+                  // Simple direction detection
+                  if (absDiffX > absDiffY && absDiffX > 10) {
+                      // Horizontal swipe - prevent page scroll and show live preview
                       e.preventDefault();
-                      
-                      // Apply live transform during drag
                       const newTransform = initialTransform + diffX;
                       this.track.style.transform = `translateX(${newTransform}px)`;
+                  } else if (absDiffY > 10) {
+                      // Vertical scroll - stop carousel interaction
+                      isDragging = false;
+                      this.track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+                      this.updateCarousel();
                   }
               };
               
@@ -283,23 +297,29 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                   this.track.style.transition = 'transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
                   
                   const endX = e.changedTouches[0].clientX;
-                  const diff = startX - endX;
-                  const threshold = window.innerWidth * 0.15; // 15% of screen width
+                  const diffX = startX - endX;
+                  const absDiffX = Math.abs(diffX);
                   
-                  if (Math.abs(diff) > threshold) {
-                      if (diff > 0) {
+                  // Simple swipe detection - if significant horizontal movement, change slide
+                  const threshold = 50; // Simple fixed threshold
+                  
+                  if (absDiffX > threshold) {
+                      if (diffX > 0 && this.currentIndex < this.maxIndex) {
                           this.nextSlide();
-                      } else {
+                      } else if (diffX < 0 && this.currentIndex > 0) {
                           this.prevSlide();
+                      } else {
+                          // At bounds, just snap back to current position
+                          this.updateCarousel();
                       }
                   } else {
-                      // Snap back to current position
+                      // Small movement, stay at current position
                       this.updateCarousel();
                   }
               };
               
               // Attach touch events
-              this.track.addEventListener('touchstart', handleTouchStart, { passive: false });
+              this.track.addEventListener('touchstart', handleTouchStart, { passive: true });
               this.track.addEventListener('touchmove', handleTouchMove, { passive: false });
               this.track.addEventListener('touchend', handleTouchEnd, { passive: true });
               
@@ -379,9 +399,50 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
               if (this.cards.length === 0) return;
               
               const isMobile = window.innerWidth <= 768;
+              const isTablet = window.innerWidth > 768 && window.innerWidth <= 1024;
+              const isDesktop = window.innerWidth > 1024;
               const gap = isMobile ? 15 : 40;
-              const cardWidth = this.cards[0].offsetWidth + gap;
-              const offset = -this.currentIndex * cardWidth;
+              const trackPadding = 20;
+              
+              // Calculate perfect centering
+              const wrapperWidth = this.track.parentElement.offsetWidth;
+              const wrapperCenter = wrapperWidth / 2;
+              
+              // Get the actual card dimensions including margins
+              const cardElement = this.cards[0];
+              const cardWidth = cardElement.offsetWidth;
+              const cardStyle = window.getComputedStyle(cardElement);
+              const marginLeft = parseFloat(cardStyle.marginLeft) || 0;
+              const marginRight = parseFloat(cardStyle.marginRight) || 0;
+              
+              let offset;
+              
+              if (isDesktop) {
+                  // Desktop: Show multiple cards, center the view around current selection
+                  const cardsPerView = 3; // Desktop shows ~3 cards at once
+                  const totalCardSpace = cardWidth + gap;
+                  
+                  // Calculate offset to show cards naturally centered
+                  if (this.currentIndex === 0) {
+                      // First card: align to start with minimal padding
+                      offset = trackPadding;
+                  } else if (this.currentIndex >= this.totalCards - cardsPerView) {
+                      // Last cards: align to end
+                      const maxOffset = -(this.totalCards - cardsPerView) * totalCardSpace;
+                      offset = maxOffset + trackPadding;
+                  } else {
+                      // Middle cards: center the current card
+                      const cardPosition = this.currentIndex * totalCardSpace;
+                      const centerPosition = Math.floor(cardsPerView / 2) * totalCardSpace;
+                      offset = trackPadding + centerPosition - cardPosition;
+                  }
+              } else {
+                  // Mobile/Tablet: Single card centering
+                  const totalCardSpace = cardWidth + marginLeft + marginRight + gap;
+                  const cardCenter = cardWidth / 2;
+                  const cardPosition = trackPadding + marginLeft + (this.currentIndex * totalCardSpace);
+                  offset = wrapperCenter - cardCenter - cardPosition;
+              }
               
               this.track.style.transform = `translateX(${offset}px)`;
               
@@ -399,12 +460,29 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
               this.cards.forEach(card => {
                   const video = card.querySelector('.card-video');
                   if (video) {
-                      video.addEventListener('loadeddata', () => {
+                      // Set video properties for better mobile support
+                      video.setAttribute('playsinline', 'true');
+                      video.setAttribute('webkit-playsinline', 'true');
+                      video.muted = true;
+                      
+                      // Try to play immediately
+                      const tryPlay = () => {
                           video.play().catch(() => {
                               // Fallback for browsers that don't allow autoplay
-                              console.log('Autoplay prevented');
+                              console.log('Autoplay prevented, will try on user interaction');
                           });
-                      });
+                      };
+                      
+                      // Try on different events
+                      video.addEventListener('loadeddata', tryPlay);
+                      video.addEventListener('canplay', tryPlay);
+                      
+                      // For mobile devices, also try on touchstart
+                      if ('ontouchstart' in window) {
+                          document.addEventListener('touchstart', () => {
+                              tryPlay();
+                          }, { once: true });
+                      }
                   }
               });
           }
@@ -440,6 +518,16 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                   if (!video) return;
                   
                   container.style.cursor = 'pointer';
+                  
+                  // For mobile, ensure video plays on touch
+                  if (isMobile) {
+                      container.addEventListener('touchstart', () => {
+                          video.play().catch(() => {
+                              console.log('Mobile video play failed');
+                          });
+                      }, { passive: true });
+                  }
+                  
                   container.addEventListener('click', () => {
                       if (isMobile) {
                           this.openVideoFullscreen(video);
@@ -495,6 +583,35 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                   }
               });
           }
+
+          setupVideoIntersectionObserver() {
+              const options = {
+                  root: null,
+                  rootMargin: '0px',
+                  threshold: 0.5
+              };
+
+              const observer = new IntersectionObserver((entries) => {
+                  entries.forEach(entry => {
+                      const video = entry.target.querySelector('.card-video');
+                      if (video) {
+                          if (entry.isIntersecting) {
+                              video.play().catch(() => {
+                                  console.log('Intersection video play failed');
+                              });
+                          } else {
+                              video.pause();
+                          }
+                      }
+                  });
+              }, options);
+
+              this.cards.forEach(card => {
+                  observer.observe(card);
+              });
+          }
+
+          
       }
 
       // Initialize carousel when DOM is loaded
@@ -561,7 +678,11 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
         <div class="about__content">
           <h2 class="about__title">WHO ARE WE?</h2>
           <div class="about__text">
-            <p>Castaway Studiosooned on the island of game development and loving every minute of it. We craft games with attitude, humor, and a healthy disregard for the rules. Whether you're here for epic adventures, questionable jokes, or just to see what happens when you mix rum with code, you're in the right place.</p>
+            <p>Castaway Studios is a global joint stock mobile game studio rooted in Turkey,
+              with a creative hub in Canada. We create mobile-first games with depth, style,
+              and purpose.
+              Built on trust and creativity, our team delivers intuitive controls, bold worlds, and
+              scalable systems — with a focus on data, live feedback, and long-term growth.</p>
             <p class="about__highlight">We don't just make games—we throw a party on every screen.</p>
           </div>
         </div>

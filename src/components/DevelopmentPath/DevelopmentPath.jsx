@@ -6,25 +6,25 @@ const TIMELINE = [
     number: 'one.png',
     icon: 'map.png',
     title: 'Concept & Design',
-    desc: 'We start with innovative ideas and create compelling game concepts that push the boundaries of interactive entertainment.'
+    desc: 'We turn bold ideas into game concepts with strong market potential and creative impact.'
   },
   {
     number: 'two.png',
     icon: 'wheel.png',
     title: 'Development',
-    desc: 'Our expert team brings concepts to life using cutting-edge technology and proven development methodologies.'
+    desc: 'We build high-performance, mobile-first games with smooth controls and data-driven design.'
   },
   {
     number: 'three.png',
     icon: 'Isolation_Mode.png',
     title: 'Testing & Polish',
-    desc: 'Rigorous testing and refinement ensure every game quality and player experience.'
+    desc: 'Games go through rigorous QA and playtesting, with refinements based on live player feedback.'
   },
   {
     number: 'four.png',
     icon: 'cannon.png',
     title: 'Launch',
-    desc: 'Strategic launch campaigns and ongoing support help our games achieve their full potential in the market.'
+    desc: 'We launch strategically, using soft launches and player data to refine and support long-term success.'
   }
 ];
 

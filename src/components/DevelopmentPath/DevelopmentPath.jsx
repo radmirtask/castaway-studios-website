@@ -18,13 +18,13 @@ const TIMELINE = [
     number: 'three.png',
     icon: 'Isolation_Mode.png',
     title: 'Testing & Polish',
-    desc: 'Games go through rigorous QA and playtesting, with refinements based on live player feedback.'
+    desc: 'Games undergo rigorous QA and playtesting to ensure a polished experience, with a strong focus on gameplay feel, technical stability, and player retention.'
   },
   {
     number: 'four.png',
     icon: 'cannon.png',
     title: 'Launch',
-    desc: 'We launch strategically, using soft launches and player data to refine and support long-term success.'
+    desc: 'We launch with intent — using strategic soft launches, player data, and iteration to refine performance before full release.'
   }
 ];
 

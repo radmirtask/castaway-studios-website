@@ -57,13 +57,13 @@ const Timeline = memo(function Timeline({ children }) {
     return () => sectionObserver.disconnect();
   }, [isVisible]);
 
-  // Scroll line animation
+  // Scroll line animation - initialize immediately without waiting for visibility
   useEffect(() => {
     const section = sectionRef.current;
     const line = scrollLineRef.current;
     const timeline = timelineRef.current;
     
-    if (!section || !line || !timeline || hasAnimated) return;
+    if (!section || !line || !timeline) return;
 
     let maxHeight = 0;
     let animationFrameId = null;
@@ -116,16 +116,20 @@ const Timeline = memo(function Timeline({ children }) {
       });
     }
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    onScroll(); // Initialize on mount
+    // Add a small delay to ensure elements are properly mounted
+    const timeoutId = setTimeout(() => {
+      window.addEventListener('scroll', onScroll, { passive: true });
+      onScroll(); // Initialize on mount
+    }, 100);
 
     return () => {
+      clearTimeout(timeoutId);
       window.removeEventListener('scroll', onScroll);
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
       }
     };
-  }, [isVisible, hasAnimated]);
+  }, []); // Remove dependencies so it runs immediately on mount
 
   return (
     <section 

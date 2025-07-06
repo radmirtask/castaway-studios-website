@@ -95,26 +95,6 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
 
                 <!-- Game Card 2 -->
                 <div class="game-card">
-                    <div class="phone-button-2"></div>
-                  <div class="card-video-container">
-                        <video class="card-video" muted loop autoplay playsinline>
-                          <source src="https://via.placeholder.com/400x600/7c2d12/ffffff.mp4" type="video/mp4">
-                      </video>
-                      <div class="video-overlay">
-                            <h3 class="card-title">PUPPY COLLECTOR</h3>
-                            <p class="card-description">Collect Cute Puppies and relax</p>
-                      <div class="card-tags">
-                          <span class="tag">Casual</span>
-                          <span class="tag">Puzzle</span>
-                          <span class="tag">Relaxing</span>
-                      </div>
-                            <button class="card-button">PLAY NOW</button>
-                        </div>
-                  </div>
-              </div>
-
-                <!-- Game Card 3 -->
-                <div class="game-card">
                   <div class="phone-button-2"></div>
                   <div class="card-video-container">
                       <video class="card-video" muted loop autoplay playsinline>
@@ -132,6 +112,26 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                       </div>
                     </div>
                 </div>
+
+                <!-- Game Card 3 -->
+                <div class="game-card">
+                  <div class="phone-button-2"></div>
+                <div class="card-video-container">
+                      <video class="card-video" muted loop autoplay playsinline>
+                        <source src="https://via.placeholder.com/400x600/7c2d12/ffffff.mp4" type="video/mp4">
+                    </video>
+                    <div class="video-overlay">
+                          <h3 class="card-title">PUPPY COLLECTOR</h3>
+                          <p class="card-description">Collect Cute Puppies and relax</p>
+                    <div class="card-tags">
+                        <span class="tag">Casual</span>
+                        <span class="tag">Puzzle</span>
+                        <span class="tag">Relaxing</span>
+                    </div>
+                          <button class="card-button">PLAY NOW</button>
+                      </div>
+                </div>
+            </div>
             </div>
         </div>
 
@@ -512,13 +512,35 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
           openVideoModal(video) {
               const modal = document.createElement('div');
               modal.className = 'video-modal';
+              
+              const currentTime = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+              
               modal.innerHTML = `
                   <div class="video-modal-overlay">
                       <div class="video-modal-content">
                           <button class="video-modal-close">&times;</button>
-                          <video class="video-modal-player" controls autoplay>
-                              <source src="${video.querySelector('source').src}" type="video/mp4">
-                          </video>
+                          <div class="video-modal-phone-screen">
+                              <div class="video-modal-status-bar">
+                                  <div class="video-modal-time">${currentTime}</div>
+                                  <div class="video-modal-battery">
+                                      <div class="video-modal-signal"></div>
+                                      <div class="video-modal-battery-icon">
+                                          <div class="video-modal-battery-level"></div>
+                                      </div>
+                                  </div>
+                              </div>
+                              <video class="video-modal-player" autoplay muted loop>
+                                  <source src="${video.querySelector('source').src}" type="video/mp4">
+                              </video>
+                              <div class="video-modal-controls">
+                                  <button class="video-modal-play-btn">▶</button>
+                                  <button class="video-modal-sound-btn">🔊</button>
+                                  <div class="video-modal-progress">
+                                      <div class="video-modal-progress-bar"></div>
+                                  </div>
+                                  <div class="video-modal-time-display">0:00 / 0:00</div>
+                              </div>
+                          </div>
                       </div>
                   </div>
               `;
@@ -526,7 +548,67 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
               document.body.appendChild(modal);
               document.body.style.overflow = 'hidden';
               
+              const modalVideo = modal.querySelector('.video-modal-player');
+              const playBtn = modal.querySelector('.video-modal-play-btn');
+              const soundBtn = modal.querySelector('.video-modal-sound-btn');
+              const progressBar = modal.querySelector('.video-modal-progress-bar');
+              const timeDisplay = modal.querySelector('.video-modal-time-display');
+              
+              // Video controls
+              let isPlaying = true;
+              let isMuted = true; // Start muted as videos autoplay muted
+              
+              playBtn.addEventListener('click', () => {
+                  if (isPlaying) {
+                      modalVideo.pause();
+                      playBtn.textContent = '▶';
+                      isPlaying = false;
+                  } else {
+                      modalVideo.play();
+                      playBtn.textContent = '⏸';
+                      isPlaying = true;
+                  }
+              });
+              
+              soundBtn.addEventListener('click', () => {
+                  if (isMuted) {
+                      modalVideo.muted = false;
+                      soundBtn.textContent = '🔊';
+                      soundBtn.classList.remove('muted');
+                      isMuted = false;
+                  } else {
+                      modalVideo.muted = true;
+                      soundBtn.textContent = '🔇';
+                      soundBtn.classList.add('muted');
+                      isMuted = true;
+                  }
+              });
+              
+              // Progress tracking
+              modalVideo.addEventListener('timeupdate', () => {
+                  const progress = (modalVideo.currentTime / modalVideo.duration) * 100;
+                  progressBar.style.width = `${progress}%`;
+                  
+                  const currentMin = Math.floor(modalVideo.currentTime / 60);
+                  const currentSec = Math.floor(modalVideo.currentTime % 60);
+                  const durationMin = Math.floor(modalVideo.duration / 60);
+                  const durationSec = Math.floor(modalVideo.duration % 60);
+                  
+                  timeDisplay.textContent = `${currentMin}:${currentSec.toString().padStart(2, '0')} / ${durationMin}:${durationSec.toString().padStart(2, '0')}`;
+              });
+              
+              modalVideo.addEventListener('play', () => {
+                  playBtn.textContent = '⏸';
+                  isPlaying = true;
+              });
+              
+              modalVideo.addEventListener('pause', () => {
+                  playBtn.textContent = '▶';
+                  isPlaying = false;
+              });
+              
               const closeModal = () => {
+                  modalVideo.pause();
                   document.body.removeChild(modal);
                   document.body.style.overflow = '';
               };
@@ -540,6 +622,10 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                   if (e.key === 'Escape') {
                       closeModal();
                       document.removeEventListener('keydown', escapeHandler);
+                  }
+                  if (e.key === ' ') {
+                      e.preventDefault();
+                      playBtn.click();
                   }
               });
           }
@@ -595,32 +681,65 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
               }
           });
       });
+
+      // Stats section hover effects (matching aboutUs implementation)
+      // Check if device has touch capability
+      const isTouchDevice = ('ontouchstart' in window) || 
+                           (navigator.maxTouchPoints > 0);
+      
+      // Only add mouse interactions for non-touch devices
+      if (!isTouchDevice) {
+        const statItems = document.querySelectorAll('.stat-item');
+        
+        statItems.forEach(item => {
+          item.addEventListener('mouseenter', function() {
+            this.style.transition = 'transform 0.1s ease-out, background 0.4s ease, backdrop-filter 0.4s ease, border 0.4s ease, box-shadow 0.4s ease';
+          });
+          
+          item.addEventListener('mouseleave', function() {
+            this.style.transition = 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)';
+            this.style.transform = 'translateY(0) scale(1) rotateX(0deg) rotateY(0deg)';
+          });
+          
+          item.addEventListener('mousemove', function(e) {
+            const element = this;
+            const rect = element.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / centerY * -12;
+            const rotateY = (x - centerX) / centerX * 12;
+            
+            element.style.transform = `translateY(-8px) scale(1.02) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+          });
+        });
+      }
   </script>
     </section>
     
-    <!-- Stats About Section -->
-    <section class="stats-about">
-      <!-- <div class="stats-about__bg"></div> -->
-      <img src={arrowsBgSrc.src} alt="arrows" class="stats-about__bg" draggable="false" />
-      <div class="stats-about__container">
-        <div class="stats-about__items">
-          <div class="stats-about__item">
-            <div class="stats-about__content">
-              <span class="stats-about__number">3+</span>
-              <span class="stats-about__label">ACTIVE PROJECTS</span>
-            </div>
+    <!-- Stats Section -->
+    <section class="stats-section" aria-label="Company Stats">
+      <div class="stats-bg"></div>
+      <div class="stats-container">
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-number">3+</div>
+            <div class="stat-label">Games<br>in Development</div>
           </div>
-          <div class="stats-about__item">
-            <div class="stats-about__content">
-              <span class="stats-about__number">2+</span>
-              <span class="stats-about__label">YEARS EXPERIENCE</span>
-            </div>
+          <div class="stat-item">
+            <div class="stat-number">5</div>
+            <div class="stat-label">Team<br>Members</div>
           </div>
-          <div class="stats-about__item">
-            <div class="stats-about__content">
-              <span class="stats-about__number">5+</span>
-              <span class="stats-about__label">TEAM MEMBERS</span>
-            </div>
+          <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Years<br>Experience</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">2</div>
+            <div class="stat-label">Games<br>in Apple Store</div>
           </div>
         </div>
       </div>

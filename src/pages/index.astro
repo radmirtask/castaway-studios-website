@@ -471,52 +471,47 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
           }
 
           setupVideoHandlers() {
-                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-
-                    document.querySelectorAll('.card-video-container').forEach(container => {
-                        const video = container.querySelector('.card-video');
-                        if (!video) return;
-
-                        container.style.cursor = 'pointer';
-
-                        // Mobile: kick off inline play on touchstart (no modal)
-                        if (isMobile) {
-                            container.addEventListener('touchstart', () => {
-                                video.play().catch(() => {
-                                    console.log('Mobile video play failed');
-                                });
-                            }, { passive: true });
-                        }
-
-                        // Desktop & tap: open modal on click
-                        container.addEventListener('click', () => {
-                            this.openVideoModal(video);
-                        });
-
-                        // Mobile: only open modal on a true "tap" (minimal movement)
-                        if (isMobile) {
-                            let startX = 0, startY = 0;
-                            const TAP_THRESHOLD = 10; // px
-
-                            container.addEventListener('touchstart', e => {
-                                startX = e.touches[0].clientX;
-                                startY = e.touches[0].clientY;
-                            }, { passive: true });
-
-                            container.addEventListener('touchend', e => {
-                                const endX = e.changedTouches[0].clientX;
-                                const endY = e.changedTouches[0].clientY;
-                                const dx = Math.abs(endX - startX);
-                                const dy = Math.abs(endY - startY);
-
-                                if (dx < TAP_THRESHOLD && dy < TAP_THRESHOLD) {
-                                    this.openVideoModal(video);
-                                }
-                                // no preventDefault(), so scrolling remains smooth
-                            }, { passive: true });
-                        }
+              const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+              document.querySelectorAll('.card-video-container').forEach(container => {
+                const video = container.querySelector('.card-video');
+                if (!video) return;
+                container.style.cursor = 'pointer';
+                const playNowBtn = container.querySelector('.card-button');
+                // Mobile: kick off inline play on touchstart
+                if (isMobile) {
+                  container.addEventListener('touchstart', e => {
+                    if (e.target.closest('.card-button')) return;
+                    video.play().catch(() => {
+                      console.log('Mobile video play failed');
                     });
+                  }, { passive: true });
                 }
+                // Desktop & tap: open modal on click
+                container.addEventListener('click', e => {
+                  if (e.target.closest('.card-button')) return;
+                  this.openVideoModal(video);
+                });
+                // Mobile: only open modal on a true "tap" (minimal movement)
+                if (isMobile) {
+                  let startX = 0, startY = 0;
+                  const TAP_THRESHOLD = 10;
+                  container.addEventListener('touchstart', e => {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                  }, { passive: true });
+                  container.addEventListener('touchend', e => {
+                    if (e.target.closest('.card-button')) return;
+                    const endX = e.changedTouches[0].clientX;
+                    const endY = e.changedTouches[0].clientY;
+                    const dx = Math.abs(endX - startX);
+                    const dy = Math.abs(endY - startY);
+                    if (dx < TAP_THRESHOLD && dy < TAP_THRESHOLD) {
+                      this.openVideoModal(video);
+                    }
+                  }, { passive: true });
+                }
+              });
+          }
 
           openVideoFullscreen(video) {
               if (video.requestFullscreen) {

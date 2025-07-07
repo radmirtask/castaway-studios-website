@@ -554,20 +554,44 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
               const progressBar = modal.querySelector('.video-modal-progress-bar');
               const timeDisplay = modal.querySelector('.video-modal-time-display');
               
-              // Video controls
-              let isPlaying = true;
+              // iOS detection and video controls
+              const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
+              let isPlaying = false; // Start paused for iOS compatibility
               let isMuted = true; // Start muted as videos autoplay muted
               
-              playBtn.addEventListener('click', () => {
+              // Handle iOS autoplay restrictions
+              if (isIOS) {
+                  modalVideo.removeAttribute('autoplay');
+                  playBtn.textContent = '▶';
+                  isPlaying = false;
+              } else {
+                  // Try autoplay for non-iOS devices
+                  modalVideo.play().catch(() => {
+                      // Autoplay failed, show play button
+                      playBtn.textContent = '▶';
+                      isPlaying = false;
+                  });
+              }
+              
+              const togglePlay = () => {
                   if (isPlaying) {
                       modalVideo.pause();
                       playBtn.textContent = '▶';
                       isPlaying = false;
                   } else {
-                      modalVideo.play();
-                      playBtn.textContent = '⏸';
-                      isPlaying = true;
+                      modalVideo.play().then(() => {
+                          playBtn.textContent = '⏸';
+                          isPlaying = true;
+                      }).catch(() => {
+                          console.log('Video play failed');
+                      });
                   }
+              };
+              
+              playBtn.addEventListener('click', togglePlay);
+              playBtn.addEventListener('touchend', (e) => {
+                  e.preventDefault();
+                  togglePlay();
               });
               
               soundBtn.addEventListener('click', () => {

@@ -6,25 +6,26 @@ const games = [
   {
     id: 'elarion',
     title: 'ELARION',
-    subtitle: 'Beat zombies and escape Dungeons',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    tags: ['Action RPG', 'Skill Tree', 'Procedural Maps'],
-    appStoreUrl: null
+    subtitle: 'One finger. Epic battles. A world that grows with you.',
+    description: 'Elarion is a vertical action RPG built for mobile, where fluid one-finger combat meets boss fights, loot hunts, and a base you\'ll call home. Dodge, strike, and unleash powerful skills in cinematic battles packed with haptics and style. Level up your hero. Rebuild your hometown. Defeat enemies from beyond the gate, and feel it all in the palm of your hand.',
+    tags: ['Vertical Action RPG', 'One-Finger Combat', 'Boss Fights'],
+    appStoreUrl: 'https://testflight.apple.com/join/zxnhRVqH',
+    isTestFlight: true
   },
   {
     id: 'arenaquest',
     title: 'ARENA QUEST',
-    subtitle: 'Defeat Enemis, Endless Action',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    tags: ['Action RPG', 'Skill Tree', 'Procedural Maps'],
+    subtitle: 'Step into the shadow. Fight to survive.',
+    description: 'Welcome to a dark fantasy RPG where you battle through cursed arenas filled with monsters, magic, and madness. Dodge, attack, and unleash powerful skills with smooth one-finger control. Choose your hero, upgrade your gear, and create the ultimate skill set to overcome each arena. Dive deeper into the Realm — and prove you have what it takes to survive. Fast action. Dark world. Deep mastery.',
+    tags: ['Dark Fantasy RPG', 'Arena Combat', 'Skill Customization'],
     appStoreUrl: 'https://apps.apple.com/tr/app/realms-of-shadow-arena-quest/id6463578863'
   },
   {
     id: 'puppycollector',
     title: 'PUPPY COLLECTOR',
-    subtitle: 'Collect Cute Puppies',
-    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.',
-    tags: ['Action RPG', 'Skill Tree', 'Procedural Maps'],
+    subtitle: 'Collect the puppies that choose you.',
+    description: 'Not every pup is yours to keep — only the ones who feel a connection. Explore charming worlds, bond with adorable dogs, and grow your collection one friendship at a time. Relaxing, heartwarming, and made for all ages, Puppy Collector is a cozy adventure where love leads the way.',
+    tags: ['Cozy Adventure', 'Collection Game', 'All Ages'],
     appStoreUrl: 'https://apps.apple.com/tr/app/puppy-collector/id6503171564'
   }
 ];
@@ -63,7 +64,11 @@ const games = [
                              <div class="game-card__button">
                  {game.appStoreUrl ? (
                    <a href={game.appStoreUrl} target="_blank" rel="noopener noreferrer">
-                     <img src="/games/app_store.png" alt="Download on App Store" class="app-store-button" />
+                     {game.isTestFlight ? (
+                       <img src="/games/testflight-badge.png" alt="Available on TestFlight" class="testflight-badge" />
+                     ) : (
+                       <img src="/games/app_store.png" alt="Download on App Store" class="app-store-button" />
+                     )}
                    </a>
                  ) : (
                    <img src="/games/app_store.png" alt="Coming Soon" class="app-store-button" />

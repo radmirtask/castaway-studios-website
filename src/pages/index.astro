@@ -42,7 +42,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
             </picture>
           </a>
           <p class="hero__description">
-            Castaway Studios creates original, high-impact mobile games that meet today’s players and set new standards for tomorrow.
+            Castaway Studios creates original, high-impact mobile games that meet today's players and set new standards for tomorrow.
           </p>
         </div>
         <picture>
@@ -88,7 +88,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                             <span class="tag">Adventure</span>
                             <span class="tag">RPG</span>
                         </div>
-                            <button class="card-button">PLAY NOW</button>
+                            <a href="/games#elarion" class="card-button">PLAY NOW</a>
                         </div>
                     </div>
                 </div>
@@ -108,7 +108,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                             <span class="tag">Adventure</span>
                             <span class="tag">Exploration</span>
                         </div>
-                          <button class="card-button">PLAY NOW</button>
+                          <a href="/games#arenaquest" class="card-button">PLAY NOW</a>
                       </div>
                   </div>
               </div>
@@ -128,7 +128,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                         <span class="tag">Puzzle</span>
                         <span class="tag">Relaxing</span>
                     </div>
-                          <button class="card-button">PLAY NOW</button>
+                          <a href="/games#puppycollector" class="card-button">PLAY NOW</a>
                       </div>
                     </div>
                 </div>
@@ -493,7 +493,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                             this.openVideoModal(video);
                         });
 
-                        // Mobile: only open modal on a true “tap” (minimal movement)
+                        // Mobile: only open modal on a true "tap" (minimal movement)
                         if (isMobile) {
                             let startX = 0, startY = 0;
                             const TAP_THRESHOLD = 10; // px

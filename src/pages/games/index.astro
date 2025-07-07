@@ -47,7 +47,7 @@ const games = [
     <section class="games-section">
       <div class="games-container">
         {games.map((game) => (
-          <div class="game-card">
+          <div class="game-card" id={game.id}>
             <div class="game-card__bg-image" style={`background-image: url('/games/${game.id}/BG.png')`}></div>
             <div class="game-card__phone">
               <img src={`/games/${game.id}/GameScreen.png`} alt={`${game.title} Screenshot`} class="game-card__phone-image" />
@@ -102,6 +102,16 @@ const games = [
           block: 'start'
         });
       });
+    }
+
+    if (window.location.hash) {
+      const id = window.location.hash.substring(1);
+      setTimeout(() => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 200);
     }
   });
 </script>

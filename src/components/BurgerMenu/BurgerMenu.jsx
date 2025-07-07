@@ -97,7 +97,7 @@ export default function BurgerMenu({ currentPath = '/' }) {
           ))}
           
           <div className="burger-social">
-            <a href="mailto:support@castaway.studio" className="social-link">
+            <a href="mailto:contact@castaway.studio" className="social-link">
               <img src="/global/material-symbols_mail.svg" alt="Email" />
             </a>
             <a href="https://www.linkedin.com/company/castaway-studios/" target="_blank" rel="noopener noreferrer" className="social-link">

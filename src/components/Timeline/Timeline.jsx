@@ -118,8 +118,8 @@ const Timeline = memo(function Timeline({ children }) {
 
     // Add a small delay to ensure elements are properly mounted
     const timeoutId = setTimeout(() => {
-      window.addEventListener('scroll', onScroll, { passive: true });
-      onScroll(); // Initialize on mount
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll(); // Initialize on mount
     }, 100);
 
     return () => {

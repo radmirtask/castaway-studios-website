@@ -110,17 +110,17 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                         </div>
                           <button class="card-button">PLAY NOW</button>
                       </div>
-                    </div>
-                </div>
+                  </div>
+              </div>
 
                 <!-- Game Card 3 -->
                 <div class="game-card">
                   <div class="phone-button-2"></div>
-                <div class="card-video-container">
+                  <div class="card-video-container">
                       <video class="card-video" muted loop autoplay playsinline>
                         <source src="https://via.placeholder.com/400x600/7c2d12/ffffff.mp4" type="video/mp4">
-                    </video>
-                    <div class="video-overlay">
+                      </video>
+                      <div class="video-overlay">
                           <h3 class="card-title">PUPPY COLLECTOR</h3>
                           <p class="card-description">Collect Cute Puppies and relax</p>
                     <div class="card-tags">
@@ -471,37 +471,52 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
           }
 
           setupVideoHandlers() {
-              const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-              
-              document.querySelectorAll('.card-video-container').forEach(container => {
-                  const video = container.querySelector('.card-video');
-                  if (!video) return;
-                  
-                  container.style.cursor = 'pointer';
-                  
-                  // For mobile, ensure video plays on touch
-                  if (isMobile) {
-                      container.addEventListener('touchstart', () => {
-                          video.play().catch(() => {
-                              console.log('Mobile video play failed');
-                          });
-                      }, { passive: true });
-                  }
-                  
-                  // Always use modal for all devices (responsive design handles mobile vs desktop)
-                  container.addEventListener('click', () => {
-                      this.openVideoModal(video);
-                  });
-                  
-                  // Also add touch event for mobile devices to ensure responsiveness
-                  if (isMobile) {
-                      container.addEventListener('touchend', (e) => {
-                          e.preventDefault();
-                          this.openVideoModal(video);
-                      }, { passive: false });
-                  }
-              });
-          }
+                    const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+                    document.querySelectorAll('.card-video-container').forEach(container => {
+                        const video = container.querySelector('.card-video');
+                        if (!video) return;
+
+                        container.style.cursor = 'pointer';
+
+                        // Mobile: kick off inline play on touchstart (no modal)
+                        if (isMobile) {
+                            container.addEventListener('touchstart', () => {
+                                video.play().catch(() => {
+                                    console.log('Mobile video play failed');
+                                });
+                            }, { passive: true });
+                        }
+
+                        // Desktop & tap: open modal on click
+                        container.addEventListener('click', () => {
+                            this.openVideoModal(video);
+                        });
+
+                        // Mobile: only open modal on a true “tap” (minimal movement)
+                        if (isMobile) {
+                            let startX = 0, startY = 0;
+                            const TAP_THRESHOLD = 10; // px
+
+                            container.addEventListener('touchstart', e => {
+                                startX = e.touches[0].clientX;
+                                startY = e.touches[0].clientY;
+                            }, { passive: true });
+
+                            container.addEventListener('touchend', e => {
+                                const endX = e.changedTouches[0].clientX;
+                                const endY = e.changedTouches[0].clientY;
+                                const dx = Math.abs(endX - startX);
+                                const dy = Math.abs(endY - startY);
+
+                                if (dx < TAP_THRESHOLD && dy < TAP_THRESHOLD) {
+                                    this.openVideoModal(video);
+                                }
+                                // no preventDefault(), so scrolling remains smooth
+                            }, { passive: true });
+                        }
+                    });
+                }
 
           openVideoFullscreen(video) {
               if (video.requestFullscreen) {

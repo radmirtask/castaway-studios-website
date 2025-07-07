@@ -737,6 +737,12 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
           });
         });
       }
+
+      document.querySelectorAll('.card-button').forEach(btn => {
+        btn.addEventListener('click', e => {
+          e.stopPropagation();
+        });
+      });
   </script>
     </section>
     

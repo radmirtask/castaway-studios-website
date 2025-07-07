@@ -130,8 +130,8 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                     </div>
                           <button class="card-button">PLAY NOW</button>
                       </div>
+                    </div>
                 </div>
-            </div>
             </div>
         </div>
 
@@ -471,7 +471,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
           }
 
           setupVideoHandlers() {
-              const isMobile = window.innerWidth <= 768;
+              const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
               
               document.querySelectorAll('.card-video-container').forEach(container => {
                   const video = container.querySelector('.card-video');
@@ -488,13 +488,18 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                       }, { passive: true });
                   }
                   
+                  // Always use modal for all devices (responsive design handles mobile vs desktop)
                   container.addEventListener('click', () => {
-                      if (isMobile) {
-                          this.openVideoFullscreen(video);
-                      } else {
-                          this.openVideoModal(video);
-                      }
+                      this.openVideoModal(video);
                   });
+                  
+                  // Also add touch event for mobile devices to ensure responsiveness
+                  if (isMobile) {
+                      container.addEventListener('touchend', (e) => {
+                          e.preventDefault();
+                          this.openVideoModal(video);
+                      }, { passive: false });
+                  }
               });
           }
 
@@ -530,8 +535,8 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
                                   </div>
                               </div>
                               <video class="video-modal-player" autoplay muted loop>
-                                  <source src="${video.querySelector('source').src}" type="video/mp4">
-                              </video>
+                              <source src="${video.querySelector('source').src}" type="video/mp4">
+                          </video>
                               <div class="video-modal-controls">
                                   <button class="video-modal-play-btn">▶</button>
                                   <button class="video-modal-sound-btn">🔊</button>
@@ -554,44 +559,20 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
               const progressBar = modal.querySelector('.video-modal-progress-bar');
               const timeDisplay = modal.querySelector('.video-modal-time-display');
               
-              // iOS detection and video controls
-              const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent);
-              let isPlaying = false; // Start paused for iOS compatibility
+              // Video controls
+              let isPlaying = true;
               let isMuted = true; // Start muted as videos autoplay muted
               
-              // Handle iOS autoplay restrictions
-              if (isIOS) {
-                  modalVideo.removeAttribute('autoplay');
-                  playBtn.textContent = '▶';
-                  isPlaying = false;
-              } else {
-                  // Try autoplay for non-iOS devices
-                  modalVideo.play().catch(() => {
-                      // Autoplay failed, show play button
-                      playBtn.textContent = '▶';
-                      isPlaying = false;
-                  });
-              }
-              
-              const togglePlay = () => {
+              playBtn.addEventListener('click', () => {
                   if (isPlaying) {
                       modalVideo.pause();
                       playBtn.textContent = '▶';
                       isPlaying = false;
                   } else {
-                      modalVideo.play().then(() => {
-                          playBtn.textContent = '⏸';
-                          isPlaying = true;
-                      }).catch(() => {
-                          console.log('Video play failed');
-                      });
+                      modalVideo.play();
+                      playBtn.textContent = '⏸';
+                      isPlaying = true;
                   }
-              };
-              
-              playBtn.addEventListener('click', togglePlay);
-              playBtn.addEventListener('touchend', (e) => {
-                  e.preventDefault();
-                  togglePlay();
               });
               
               soundBtn.addEventListener('click', () => {
@@ -752,7 +733,7 @@ import GameCarousel from '../components/Carusel/GameCarousel.jsx';
           <div class="stat-item">
             <div class="stat-number">3+</div>
             <div class="stat-label">Games<br>in Development</div>
-          </div>
+            </div>
           <div class="stat-item">
             <div class="stat-number">5</div>
             <div class="stat-label">Team<br>Members</div>

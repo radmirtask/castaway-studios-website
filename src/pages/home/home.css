@@ -1287,7 +1287,7 @@ section {
       padding: 20px;
       box-sizing: border-box;
       opacity: 1;
-      pointer-events: auto;
+      pointer-events: none;
   }
   
   .game-card:hover {
@@ -1308,20 +1308,23 @@ section {
       padding: 15px;
   }
   
-  .card-title {
+    .card-title {
       font-size: 20px;
       margin-bottom: 8px;
       transform: translateY(0);
+      pointer-events: auto;
   }
-  
+
   .card-description {
       font-size: 11px;
       margin-bottom: 12px;
       transform: translateY(0);
+      pointer-events: auto;
   }
-  
+
   .card-tags {
       transform: translateY(0);
+      pointer-events: auto;
   }
   
     .card-button {
@@ -1329,6 +1332,7 @@ section {
     font-size: 12px;
     transform: translateY(0);
     margin-bottom: 10px;
+    pointer-events: auto;
   }
   
   .carousel-controls {
@@ -1377,7 +1381,7 @@ section {
   
   .video-overlay {
       opacity: 1;
-      pointer-events: auto;
+      pointer-events: none;
   }
   
   .game-card:hover {
@@ -1390,19 +1394,23 @@ section {
   
   .card-title {
       transform: translateY(0);
+      pointer-events: auto;
   }
   
   .card-description {
       transform: translateY(0);
+      pointer-events: auto;
   }
   
   .card-tags {
       transform: translateY(0);
+      pointer-events: auto;
   }
   
   .card-button {
       transform: translateY(0);
       margin-bottom: 12px;
+      pointer-events: auto;
   }
   
   .carousel-track {
@@ -1625,22 +1633,39 @@ html {
 /* Desktop - Phone mockup */
 @media (min-width: 1024px) {
   .video-modal-content {
-    width: 380px;
-    height: 760px;
+    width: 340px;
+    height: 700px;
+    position: relative;
+    z-index: 10000;
+  }
+  
+  .video-modal-content::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    left: 8;
+    width: 90%;
+    height: 90%;
     background: url('/global/phone_frame.png') no-repeat center center;
-    background-size: contain;
+    background-size: 100% 100%;
+    z-index: 10005;
+    pointer-events: none;
   }
   
   .video-modal-phone-screen {
-    position: relative;
-    width: 300px;
-    height: 600px;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 280px;
+    height: 580px;
     background: #000;
     border-radius: 30px;
     overflow: hidden;
     box-shadow: 
       inset 0 0 0 2px rgba(255, 255, 255, 0.1),
       0 10px 30px rgba(0, 0, 0, 0.5);
+    z-index: 1;
   }
   
   .video-modal-status-bar {
@@ -1654,7 +1679,7 @@ html {
     align-items: center;
     justify-content: space-between;
     padding: 8px 20px 0 20px;
-    z-index: 10002;
+    z-index: 10006;
     font-size: 14px;
     color: white;
     font-weight: 500;
@@ -1667,8 +1692,10 @@ html {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    object-position: center;
     display: block;
     border-radius: 30px;
+    z-index: 2;
   }
   
   .video-modal-controls {
@@ -1683,7 +1710,7 @@ html {
     padding: 15px;
     border-radius: 20px;
     backdrop-filter: blur(10px);
-    z-index: 10002;
+    z-index: 10006;
   }
 }
 
